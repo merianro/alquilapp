@@ -1,0 +1,20 @@
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+<div class="cho-container"></div>
+<script>
+  const mp = new MercadoPago('TEST-de6762ae-cc39-4042-881a-886a879b019a', {
+    locale: 'es-AR'
+  });
+
+  mp.checkout({
+    preference: {
+      id: '<%= @preference_id %>'
+    },
+    render: {
+      container: '.cho-container',
+      label: 'Pagar',
+    }
+  });
+</script>
+
+
