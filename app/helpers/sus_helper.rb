@@ -1,0 +1,2 @@
+module SusHelper
+end
