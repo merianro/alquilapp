@@ -14,12 +14,15 @@
  *= require_self
  */
 
+
  body {
   background-color: #ffffff;
+  margin: 0;
+  padding: 0;
 }
 
 .wrapper {
-  height: 65px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content:center;
@@ -121,3 +124,5 @@ a:hover::after {
   }
 }
 
+/* de aca para arriba css navbar
+de aca para abajo css leftsidebar */ 
