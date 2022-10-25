@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @user %>
+<%= @user.email %>
 
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
@@ -8,5 +9,5 @@
 
   <%= button_to "Destroy this user", @user, method: :delete %>
 
-  <%= render "application/left_sidebar" %>
+  <% render "application/left_sidebar" %>
 </div>

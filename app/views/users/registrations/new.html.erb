@@ -8,25 +8,28 @@
     <%= f.input :name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "nombre" }%>
+                input_html: { autocomplete: "name" }%>
 
     <%= f.input :surname,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "surname" }%>
 
-    <%= f.input :birthdate,
+    <%= f.input :birthdate, start_year: Time.now.year - 100, end_year: Time.now.year-18,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "" }%>    
+                input_html: { autocomplete: "birthdate" }%>    
+
     <%= f.input :email,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
+                
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
+
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
