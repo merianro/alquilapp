@@ -1,6 +1,9 @@
 <div class="wrapper">
   <nav>
-    <a href="#" class="logo">AAA</a>
+    <%= link_to root_path do%>
+    <h4>Home</h4>
+  <% end %>
+    
     <ul>
       <li>
         <a href="#">About</a>
@@ -15,7 +18,9 @@
         <a href="#">FAQ</a>
       </li>
       <li>
-        <a href="#">Mi Cuenta</a>
+        <%= link_to new_user_registration_path do%>
+          <h4>Sign Up</h4>
+        <% end %>
       </li>
     </ul>
   </nav>
