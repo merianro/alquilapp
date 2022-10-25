@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :only_see_own_page, only: [:show]
 
   # GET /users or /users.json
   def index
@@ -57,6 +59,17 @@ class UsersController < ApplicationController
     end
   end
 
+
+
+  # defino un metodo para que un usuario solo pueda ver SU informacion y no la de otros.
+  
+
+  
+
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -67,4 +80,12 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :surname, :birthdate)
     end
+
+    def only_see_own_page   
+      @user = User.find(params[:id])
+      if current_user != @user
+        redirect_to root_path, notice: "Sorry, but you are only allowed to view your own profile page."
+      end
+    end
+    
 end

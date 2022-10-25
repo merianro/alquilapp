@@ -24,6 +24,16 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
+    
+    <%= f.input :dni, as: :integer,
+                required: true,
+                autofocus: true,
+                input_html: {  maxlength: 8, autocomplete: "dni" }%>      
+    
+    <%= f.input :phone,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "phone" }%>  
                 
     <%= f.input :password,
                 required: true,
