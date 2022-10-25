@@ -18,7 +18,11 @@
   </head>
 
   <body id="body">
+  <% if !user_signed_in? %>
+     <%= render "application/header" %>
+  <% else %>
     <%= render "application/left_sidebar" %>
+  <% end %>
     <%= yield %>
   </body>
 </html>
