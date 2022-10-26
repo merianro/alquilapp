@@ -33,6 +33,7 @@ gem "jbuilder"
 gem 'simple_form'
 gem 'devise'
 gem 'mercadopago-sdk'
+gem 'pundit'
 
 
 

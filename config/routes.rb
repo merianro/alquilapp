@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cars
   get 'main/home'
   devise_for :sus
   devise_for :users
