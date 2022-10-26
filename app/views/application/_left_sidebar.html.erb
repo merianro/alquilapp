@@ -11,8 +11,10 @@
 <div class="menu__side" id="menu_side">
 
     <div class="name__page">
+    <%= link_to root_path do%>
         <i class='bx bxs-car bx-sm bx-tada-hover' style='color:#ffc24b'  ></i>
         <h4>Alquilapp</h4>
+        <% end %>
     </div>
 
     <div class="options__menu">	
@@ -24,12 +26,11 @@
             </div>
         </a>
 
-        <a href="#">
-            <div class="option">
-                <i class='bx bxs-car-garage'></i>
-                <h4>Vehiculos</h4>
-            </div>
-        </a>
+        <li>
+            <%= link_to users_path do %>
+            Mi cuenta
+            <% end %>
+        </li>
         
         <a href="#">
             <div class="option">
@@ -65,6 +66,13 @@
                 <h4>Validaciones</h4>
             </div>
         </a>
+        <li>
+        <li>
+        <%= link_to "Desloguearse",destroy_user_session_path(user_session), method: :delete %>
+
+        <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+    </li>
+    </li>
     </div>
 </div>
 
