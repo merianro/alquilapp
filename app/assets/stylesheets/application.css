@@ -14,6 +14,17 @@
  *= require_self
  */
 
+.principal{
+  justify-content: center;
+  align-items: center;
+  position:relative;
+}
+
+.principal a h2{
+  padding-left:10px;
+  padding-top:5px;
+}
+
 body {
   background-color: #ffffff;
   margin: 0;
@@ -29,16 +40,22 @@ body {
 }
 
 nav {
+  justify-content: space-between;
+  align-items: center;
   display: flex;
   width: 90%;
 }
 
 ul li a {
+  height:30px;
+  display:flex;
+  text-align:center;
+  vertical-align:middle;
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  font-size: 1.25em;
   margin-left: 1.5em;
-}
-
-a.logo {
-  margin-right: auto;
 }
 
 ul {
@@ -49,13 +66,16 @@ ul {
 }
 
 a {
+  display:flex;
+  text-align:center;
+  vertical-align:middle;
   text-decoration: none;
   color: #ffffff;
   position: relative;
   font-size: 1.25em;
 }
 
-a::after {
+ul li a::after {
   content:"";
   top: 80%;
   border-bottom: 2px solid #F8E71C;
@@ -63,16 +83,16 @@ a::after {
   position: absolute;
 }
 
-a:hover::after {
+ul li a:hover::after {
   transition: all 0.35s;
 }
 
-a::after {
+ul li a::after {
   right: 50%;
   left: 50%;
 }
 
-a:hover::after {
+ul li a:hover::after {
   right: 0;
   left: 0;
 }
