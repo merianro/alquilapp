@@ -5,8 +5,10 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
   end
+# con esto quito que se pueda ver la tabla en .../users
+# entonces solo podran verse desde /admin 
+  
 
   # GET /users/1 or /users/1.json
   def show
@@ -60,16 +62,6 @@ class UsersController < ApplicationController
   end
 
 
-
-  # defino un metodo para que un usuario solo pueda ver SU informacion y no la de otros.
-  
-
-  
-
-
-
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -81,6 +73,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :surname, :birthdate)
     end
 
+
+  # defino un metodo para que un usuario solo pueda ver SU informacion y no la de otros.
     def only_see_own_page   
       @user = User.find(params[:id])
       if current_user != @user

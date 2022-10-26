@@ -26,6 +26,17 @@
     <%= form.date_field :birthdate %>
   </div>
 
+
+  <div>
+    <%= form.label :phone, style: "display: block" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div>
+    <%= form.label :dni, style: "display: block" %>
+    <%= form.text_field :dni, disabled: true %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>
