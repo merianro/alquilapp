@@ -22,13 +22,23 @@ class UserPolicy
     def resolve
       if user.admin?
         scope.all
-      else user.su?
+      else 
         scope.where(role: 'user' )
       end
-    end
-  end
-
+   end
+end
   def index?
     @current_user.admin? or @current_user.su?
   end
+
+  def show?
+    @current_user.admin? # or is_owner?
+  end
+
+  private 
+  def is_owner?
+    current_user = @user
+  end
+
+  # todavia no funciona
 end
