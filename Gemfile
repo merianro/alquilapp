@@ -31,7 +31,6 @@ gem "jbuilder"
 
 #gem 'bcrypt'
 gem 'simple_form'
-gem 'rails_admin'
 gem 'devise'
 gem 'mercadopago-sdk'
 
