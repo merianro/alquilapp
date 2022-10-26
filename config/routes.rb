@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   resources :cars
   get 'main/home'
-  devise_for :sus
   devise_for :users
  
-  resources :sus
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

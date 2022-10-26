@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  after_action :verify_policy_scoped, only: :index
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :only_see_own_page, only: [:show]
 
   # GET /users or /users.json
   def index
+    @users = policy_scope(User)
+    authorize @users
   end
-# con esto quito que se pueda ver la tabla en .../users
-# entonces solo podran verse desde /admin 
-  
 
   # GET /users/1 or /users/1.json
   def show
