@@ -1,27 +1,19 @@
 <div class="wrapper">
   <nav>
-    <%= link_to root_path do%>
-    <h4>Home</h4>
-  <% end %>
+      <div class="principal">
+      <%= link_to root_path do%>
+          <i class='bx bxs-car bx-lg' style='color:#ffc24b'  ></i>
+          <h2>Alquilapp</h2> 
+      <% end %>
+      </div>
     
     <ul>
-      <li>
-        <a href="#">About</a>
-      </li>
-      <li>
-        <a href="#">Features</a>
-      </li>
-      <li>
-        <a href="#">Pricing</a>
-      </li>
-      <li>
-        <a href="#">FAQ</a>
-      </li>
-      <li>
-        <%= link_to new_user_registration_path do%>
-          <h4>Sign Up</h4>
+    <li>
+        <%= link_to new_user_session_path do %>
+          Sign in
         <% end %>
       </li>
+      
     </ul>
   </nav>
 </div>
