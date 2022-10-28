@@ -26,12 +26,15 @@
             </div>
         </a>
 
-        <li>
+        <a>
+            <div class="option">
             <%= link_to users_path do %>
+            <i class='bx bx-group'></i> 
             Mi cuenta
             <% end %>
-        </li>
-        
+            </div>
+        </a>
+
         <a href="#">
             <div class="option">
                 <i class='bx bx-group'></i>
@@ -66,11 +69,12 @@
                 <h4>Validaciones</h4>
             </div>
         </a>
+        
         <li>
         <li>
         <%= link_to "Desloguearse",destroy_user_session_path(user_session), method: :delete %>
-
-        <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+        
+        <%= button_to "logout", destroy_user_session_path, method: :delete,class:"btn btn-primary"  %>
     </li>
     </li>
     </div>

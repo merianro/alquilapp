@@ -4,12 +4,7 @@
     <title>Alquilapp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <!-- Los voy a matar hijos de puta -->
-    <!-- Falta TODO la re concha de sus madres. -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Fin -->
-
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -20,8 +15,13 @@
   <body id="body">
   <% if !user_signed_in? %>
      <%= render "application/header" %>
+  <% elsif current_user.role == "driver" %>
+    <%= render "application/left_sidebar_driver" %>
+  <% elsif current_user.role == "su" %>
+    <%= render "application/left_sidebar_su" %> 
+  <% elsif current_user.role == "admin" %>
+    <%= render "application/left_sidebar_admin" %>
   <% else %>
-    <%= render "application/left_sidebar" %>
   <% end %>
     <%= yield %>
   </body>
