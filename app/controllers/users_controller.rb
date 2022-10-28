@@ -17,6 +17,9 @@ class UsersController < ApplicationController
     authorize @users
   end
 
+  def cmngsoon
+
+  end
 
   def show
     @user = User.find(params[:id])
