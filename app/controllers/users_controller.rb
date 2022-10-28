@@ -1,19 +1,28 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_policy_scoped, only: :index
-  before_action :set_user, only: %i[ show edit update destroy ]
+  # before_action :set_user, only: %i[ show edit update destroy ]
 
 
   # GET /users or /users.json
   def index
+    @user = User.all
+    @users = policy_scope(User)
+    authorize @users
+  end
+
+  def suindex
+    @user = User.where(role: 'su')
     @users = policy_scope(User)
     authorize @users
   end
 
 
   def show
+    @user = User.find(params[:id])
     @users = policy_scope(User)
     authorize @users
+    
   end
 
 
@@ -43,6 +52,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }

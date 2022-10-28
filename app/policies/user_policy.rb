@@ -27,8 +27,12 @@ end
     @current_user.admin? or @current_user.su?
   end
 
+  def suindex?
+    @current_user.admin?
+  end
+
   def show?
-    @current_user.admin? # or is_owner?
+    @current_user.admin? or @current_user.su? # or is_owner?
   end
 
   def edit?
@@ -36,7 +40,7 @@ end
   end
 
   def update?
-    @current_user.admin? # or is_owner?
+    true
   end
 
   private 
