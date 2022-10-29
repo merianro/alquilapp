@@ -19,7 +19,7 @@ main {
 }
 
 header {
-  width: 96%;
+  width: 100%;
   height: 80px;
   background: #F2E6E6;
   display: flex;
@@ -33,6 +33,10 @@ header {
 
 .header_button {
   display: flex;
+  justify-content: center;
+  overflow: hidden;
+  padding-left: 380px;
+  padding-right: 250px;
 }
 
 .icon__menu {
@@ -176,3 +180,5 @@ a.selected {
     left: -80px;
   }
 }
+
+
