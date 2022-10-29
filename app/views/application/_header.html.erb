@@ -1,20 +1,53 @@
-<%= stylesheet_link_tag "navbar" %>
-<div class="wrapper">
-  <nav>
-      <div class="principal">
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark  ">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="alquilapp">
       <%= link_to root_path do%>
-          <i class='bx bxs-car bx-lg bx-tada-hover' style='color:#ffc24b'  ></i>
-          <h2>Alquilapp</h2> 
-      <% end %>
-      </div>
-    
-    <ul>
-    <li>
-        <%= link_to new_user_session_path do %>
-          Iniciar Sesión
+        <i class='bx bxs-car bx-lg bx-tada-hover' style='color:#ffc24b'></i>
+        <h2>Alquilapp</h2>
         <% end %>
-    </li>
-      
-    </ul>
-  </nav>
-</div>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+      <form class="d-flex" role="search">
+        <%= link_to "Iniciar Sesión" , new_user_session_path, class:"btn btn-outline-warning" %>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+  * {
+    font-family: 'Nunito';
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  .alquilapp {
+    display: flex;
+    text-align: center;
+  }
+
+  .alquilapp a {
+    display: flex;
+  }
+
+  .alquilapp h2 {
+    padding-top: 8px;
+    padding-left: 5px;
+  }
+</style>

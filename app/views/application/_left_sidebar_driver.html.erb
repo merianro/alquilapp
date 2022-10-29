@@ -1,9 +1,9 @@
 <%= stylesheet_link_tag "left_sidebar" %>
-<header>
+<header class="header">
     <div class="icon__menu">
         <i class='bx bx-menu bx-md' id="btn_open"></i>
     </div>
-    <div class="header_img", margin> 
+    <div class="header_button"> 
         <%= button_to "Cerrar Sesión", destroy_user_session_path, method: :delete,class:"btn btn-outline-dark"  %>
     </div>
 </header>
@@ -19,12 +19,11 @@
 
     <div class="options__menu">	
 
-        <a>
+
             <%= link_to root_path, :class=>"option" do %>
             <i class='bx bxs-dashboard'></i> 
             <h4>Inicio</h4>
             <% end %>
-        </a>
 
         <a>
             <%= link_to users_path, :class=>"option"  do %>

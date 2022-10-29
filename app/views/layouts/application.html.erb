@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Alquilapp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Alquilapp</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+      <%= stylesheet_link_tag "application","data-turbo-track":"reload"%>
+      <%= javascript_importmap_tags %>
+</head>
 
-  <body id="body">
+<body id="body">
   <% if !user_signed_in? %>
-     <%= render "application/header" %>
-  <% elsif current_user.role == "driver" %>
-    <%= render "application/left_sidebar_driver" %>
-  <% elsif current_user.role == "su" %>
-    <%= render "application/left_sidebar_su" %> 
-  <% elsif current_user.role == "admin" %>
-    <%= render "application/left_sidebar_admin" %>
-  <% else %>
-  <% end %>
-    <%= yield %>
-  </body>
+    <%= render "application/header" %>
+      <% elsif current_user.role=="driver" %>
+        <%= render "application/left_sidebar_driver" %>
+          <% elsif current_user.role=="su" %>
+            <%= render "application/left_sidebar_su" %>
+              <% elsif current_user.role=="admin" %>
+                <%= render "application/left_sidebar_admin" %>
+                  <% else %>
+                    <% end %>
+                      <%= yield %>
+
+</body>
+
 </html>
