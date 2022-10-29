@@ -5,12 +5,11 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @user %>
-<%= @user.email %>
 
 <div>
   <%= link_to "Editar tus datos", edit_user_path(@user) %> |
 
   <%= button_to "Eliminar tu cuenta", @user, method: :delete %>
 
-  <% render "application/left_sidebar" %>
+  <% render "application/left_sidebar_driver" %>
 </div>

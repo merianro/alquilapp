@@ -2,15 +2,38 @@
 
 <h1>Supervisores</h1>
 
-<div id="users">
-  <% @users.each do |user| %>
-    <% if user.role == "su" then %>
-      <%= render user %>
-    <p>
-      <%= link_to "Detalles de este supervisor", user %>
-    </p>
-    <% end %>
-  <% end %>
-</div>
+<table class="table table-hover">
 
- <%= link_to "Agregar nuevo supervisor", new_user_path %>
+  <thead class="thead-dark">
+    <tr>
+      <th>Nombre</th> 
+      <th>Apellido</th> 
+      <th>DNI</th> 
+      <th>Fecha de Nacimiento</th> 
+      <th>Email</th> 
+      <th>Celular de Contacto</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <% if user.role == "su" then %>
+      <tr>
+        <td><%= user.name %></td> 
+        <td><%= user.surname %></td> 
+        <td><%= user.dni %></td> 
+        <td><%= user.birthdate %></td>
+        <td><%= user.email %></td> 
+        <td><%= user.phone %></td>
+        <td><%= link_to "Ver detalle", user %></td> 
+        <td><%= link_to "Editar", edit_user_path(user) %></td> 
+        <td><%= link_to "Eliminar", user,:onclick => "return confirm('Esta seguro que desea eliminar el usuario?')", :method => :delete %></td>
+
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+
+</table>
+
+<%= link_to "Agregar nuevo supervisor", new_user_path %>

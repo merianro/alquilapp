@@ -1,14 +1,39 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Users</h1>
+<h1>Usuarios</h1>
 
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
-</div>
+<table class="table table-hover">
 
-<%= link_to "New user", new_user_path %>
+  <thead class="thead-dark">
+    <tr>
+      <th>Nombre</th> 
+      <th>Apellido</th> 
+      <th>DNI</th> 
+      <th>Fecha de Nacimiento</th> 
+      <th>Email</th> 
+      <th>Celular de Contacto</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <% if user.role == "su" or user.role == "driver" then %>
+      <tr>
+        <td><%=h user.name %></td> 
+        <td><%=h user.surname %></td> 
+        <td><%=h user.dni %></td> 
+        <td><%=h user.birthdate %></td>
+        <td><%=h user.email %></td> 
+        <td><%=h user.phone %></td>
+        <td><%= link_to "Ver detalle", user %></td> 
+        <td><%= link_to "Editar", edit_user_path(user) %></td> 
+        <td><%= link_to "Eliminar", user, :confirm => 'Are you sure?', :method => :delete %></td>
+
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+
+</table>
+
+<%= link_to "Agregar nuevo usuario", new_user_path %>
