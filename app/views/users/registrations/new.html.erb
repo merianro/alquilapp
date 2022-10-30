@@ -1,53 +1,73 @@
-<h2>Sign up</h2>
+<%= stylesheet_link_tag "login" %>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card border-0 shadow rounded-3 my-5">
+            <div class="card-body p-4 p-sm-5">
+              <h5 class="card-title text-center mb-4 fw-light fs-5">Registrarse</h5>
+              <form>
+                <div class="form-floating mb-3">
+                  <div class="row">
+                    <div class="col">
+                      <%= f.input :name,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "name" }%>
+                    </div>
+                    <div class="col">
+                      <%= f.input :surname,
+                                  required: true,
+                                  autofocus: true,
+                                  input_html: { autocomplete: "surname" }%>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <%= f.input :birthdate, start_year: Time.now.year - 100, end_year: Time.now.year-18,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "birthdate" }%> 
+                </div>
+                <div class="form-floating mb-3">
+                  <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" }%>
+                </div>
+                <div class="form-floating mb-3">
+                  <%= f.input :dni, as: :integer,
+                  required: true,
+                  autofocus: true,
+                  input_html: {  maxlength: 8, autocomplete: "dni" }%>  
+                </div>
+                <div class="form-floating mb-3">
+                  <%= f.input :phone,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "phone" }%>  
+                </div>
+                <div class="form-floating mb-3">
+                  <%= f.input :password,
+                  required: true,
+                  hint: ("#{@minimum_password_length} caracteres minimos" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password" } %>
+                </div>
+                <div class="form-floating mb-3">
+                  <%= f.input :password_confirmation,
+                  required: true,
+                  input_html: { autocomplete: "new-password" } %>
+                </div>
 
-  <div class="form-inputs">
 
-    <%= f.input :name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "name" }%>
-
-    <%= f.input :surname,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "surname" }%>
-
-    <%= f.input :birthdate, start_year: Time.now.year - 100, end_year: Time.now.year-18,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "birthdate" }%>    
-
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    
-    <%= f.input :dni, as: :integer,
-                required: true,
-                autofocus: true,
-                input_html: {  maxlength: 8, autocomplete: "dni" }%>      
-    
-    <%= f.input :phone,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "phone" }%>  
-                
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+                <div class="d-grid">
+                  <%= f.button :submit, "Registrarse" , class:"btn btn-warning"%>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>

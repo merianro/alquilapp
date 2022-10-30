@@ -3,71 +3,72 @@
     <div class="icon__menu">
         <i class='bx bx-menu bx-md' id="btn_open"></i>
     </div>
-    <div class="header_img"> 
-        <img src="#" alt=""> 
+    <div class="header_button"> 
+        <%= button_to "Cerrar Sesión", destroy_user_session_path, method: :delete,class:"btn btn-outline-dark"  %>
     </div>
 </header>
 
 <div class="menu__side" id="menu_side">
 
     <div class="name__page">
-    <%= link_to root_path do%>
-        <i class='bx bxs-car bx-sm bx-tada-hover' style='color:#ffc24b'  ></i>
-        <h4>Alquilapp</h4>
-        <% end %>
-    </div>
-
-    <div class="options__menu">	
-
-        <a href="#" class="selected">
-            <div class="option">
-                <i class='bx bxs-dashboard'></i>
-                <h4>Inicio</h4>
-            </div>
-        </a>
-
-        <li>
-            <%= link_to users_path do %>
-            Mi cuenta
+        <%= link_to root_path do%>
+            <i class='bx bxs-car bx-sm bx-tada-hover' style='color:#ffc24b'  ></i>
+            <h4>Alquilapp</h4>
             <% end %>
-        </li>
-
-        <a href="#">
-            <div class="option">
-                <i class='bx bx-user' ></i>
+        </div>
+    
+        <div class="options__menu">	
+    
+            <a>
+                <%= link_to root_path, :class=>"option" do %>
+                <i class='bx bxs-dashboard'></i> 
+                <h4>Inicio</h4>
+                <% end %>
+            </a>
+    
+            <a>
+                <%= link_to current_user, :class=>"option"  do %>
+                <i class='bx bxs-user'></i> 
+                <h4>Mi cuenta</h4>
+                <% end %>
+            </a>
+    
+            <a>
+                <%= link_to users_path, :class=>"option" do %>
+                <i class='bx bx-group'></i> 
                 <h4>Usuarios</h4>
-            </div>
-        </a>
-
-        <a href="#">
-            <div class="option">
+                <% end %>
+            </a>
+    
+            <a>
+                <%= link_to users_suindex_path, :class=>"option" do %>
+                <i class='bx bxs-group'></i> 
+                <h4>Supervisores</h4>
+                <% end %>
+            </a>
+    
+            <a>
+                <%= link_to users_cmngsoon_path, :class=>"option" do %>
                 <i class='bx bx-stats' ></i>
-                <h4>Estadisticas</h4>
-            </div>
-        </a>
-
-        <a href="#">
-            <div class="option">
+                <h4>Estadísticas</h4>
+                <% end %>
+            </a>
+    
+            <a>
+                <%= link_to users_cmngsoon_path, :class=>"option" do %>
                 <i class='bx bx-support'></i>
                 <h4>Reportes</h4>
-            </div>
-        </a>
-
-        <a href="#">
-            <div class="option">
+                <% end %>
+            </a>
+    
+            <a>
+                <%= link_to users_cmngsoon_path, :class=>"option" do %>
                 <i class='bx bx-check'></i>
                 <h4>Validaciones</h4>
-            </div>
-        </a>
-        
-        <li>
-        <li>
-        <%= link_to "Desloguearse",destroy_user_session_path(user_session), method: :delete %>
-        
-        <%= button_to "logout", destroy_user_session_path, method: :delete,class:"btn btn-primary"  %>
-    </li>
-    </li>
-    </div>
+                <% end %>
+            </a>
+    
+        </div>
 </div>
 
 <script>

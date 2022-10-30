@@ -4,8 +4,24 @@
 <head>
   <title>Alquilapp</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Boxicon -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!--  -->
+  
+  <!-- Bootstrap 5.2 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!--  -->
+
+  <!-- Mapkick -->
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js"></script>
+  <script>
+    mapboxgl.accessToken = "<%= Rails.application.credentials.mapbox %>";
+  </script>
+  <script src="https://unpkg.com/mapkick@0.1.1/dist/mapkick.js"></script>
+  <!--  -->
+
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 

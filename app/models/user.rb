@@ -6,5 +6,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
    # Al crearse el usuario se setea con rango usuario automaticamente.
-     
+   has_many :cars
 end
