@@ -12,6 +12,9 @@
       <th>Fecha de Nacimiento</th> 
       <th>Email</th> 
       <th>Celular de Contacto</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -27,7 +30,7 @@
         <td><%=h user.phone %></td>
         <td><%= link_to "Ver detalle", user %></td> 
         <td><%= link_to "Editar", edit_user_path(user) %></td> 
-        <td><%= link_to "Eliminar", user, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= link_to "Eliminar", user,:onclick => "return confirm('Esta seguro que desea eliminar el usuario?')", :method => :delete %></td>
 
       </tr>
       <% end %>
