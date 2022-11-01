@@ -2,7 +2,8 @@
 
 <div class="cho-container"></div>
 <script>
-  const mp = new MercadoPago('TEST-de6762ae-cc39-4042-881a-886a879b019a', {
+                                      // public key
+  const mp = new MercadoPago('APP_USR-0d905e0a-bd60-4908-8616-417b109b414e', {
     locale: 'es-AR'
   });
 
@@ -12,9 +13,12 @@
     },
     render: {
       container: '.cho-container',
-      label: 'Pagar',
+      label: 'Depositar',
     }
   });
 </script>
+
+<h2> Saldo actual: $<%= current_user.saldo %> </h2>
+
 
 

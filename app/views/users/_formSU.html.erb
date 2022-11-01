@@ -26,6 +26,11 @@
     <%= form.text_field :dni, disabled: true, value: current_user.dni %>
   </div>
 
+   <div>
+    <%= form.label "Rol", style: "display: block" %>
+    <%= form.text_field :Role, disabled: true, value: "su" %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

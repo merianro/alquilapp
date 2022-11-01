@@ -17,8 +17,13 @@ class UsersController < ApplicationController
     authorize @users
   end
 
-  def cmngsoon
+  def newsu
+    @user = User.new
+    @users = policy_scope(User)
+    authorize @users
+  end
 
+  def cmngsoon
   end
 
   def show
@@ -36,6 +41,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
+
   end
 
   # POST /users or /users.json
@@ -75,6 +82,12 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def anadir_saldo#(saldo, id)
+    @user = User.find(params[:id])
+    aux = @user.saldo + params[:saldo].to_f
+    @user = @user.update(saldo: aux)  
   end
 
 

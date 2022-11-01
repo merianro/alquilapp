@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @mp_webhook %>
+
+<div>
+  <%= link_to "Edit this mp webhook", edit_mp_webhook_path(@mp_webhook) %> |
+  <%= link_to "Back to mp webhooks", mp_webhooks_path %>
+
+  <%= button_to "Destroy this mp webhook", @mp_webhook, method: :delete %>
+</div>

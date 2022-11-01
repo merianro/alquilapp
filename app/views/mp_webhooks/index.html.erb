@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Mp webhooks</h1>
+
+<div id="mp_webhooks">
+  <% @mp_webhooks.each do |mp_webhook| %>
+    <%= render mp_webhook %>
+    <p>
+      <%= link_to "Show this mp webhook", mp_webhook %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New mp webhook", new_mp_webhook_path %>
