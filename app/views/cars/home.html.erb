@@ -3,6 +3,16 @@
     <div id="map" style="height: 600px;"></div>
 
     <script>
-        new Mapkick.Map("map", [{ latitude: -34.63531227666873, longitude:-58.3647656654727 }]);
+        var array = [];
+        <% Car.all.each do | car | %> 
+            var obj = {
+            latitude: <%= car.ubication.x %>,
+            longitude: <%= car.ubication.y %>,
+            tooltip: "Marca: <%= car.marca %>, Modelo: <%= car.modelo %>"
+        }
+        array.push(obj);
+        <% end %>
+            console.log(array);
+        new Mapkick.Map("map", array, { zoom: 13 });
     </script>
 </div>
