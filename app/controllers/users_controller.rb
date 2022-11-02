@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_policy_scoped, only: :index
+  #after_action :verify_policy_scoped, only: :index
   # before_action :set_user, only: %i[ show edit update destroy ]
 
 
@@ -27,10 +27,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @users = policy_scope(User)
-    authorize @users
-    
+    if current_user.id == params[:id].to_i or current_user.admin? then    
+      @user = User.find(params[:id])
+    else
+      redirect_to root_path
+    end  
   end
 
 
@@ -84,10 +85,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def anadir_saldo#(saldo, id)
-    @user = User.find(params[:id])
-    aux = @user.saldo + params[:saldo].to_f
-    @user = @user.update(saldo: aux)  
+  def anadir_saldo(saldo, id)
+    @user = User.find(id)
+    aux = @user.saldo + saldo.to_f
+    @user.update(saldo: aux)  
   end
 
 

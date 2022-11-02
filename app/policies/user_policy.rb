@@ -20,8 +20,8 @@ class UserPolicy
       else 
         scope.where(user: user)
       end
-   end
-end
+    end
+  end
 
   def index?
     @current_user.admin? or @current_user.su?
@@ -36,7 +36,6 @@ end
   end
 
   def show?
-    @current_user.admin? or @current_user.su? # or is_owner?
   end
 
   def edit?
@@ -49,9 +48,7 @@ end
 
   private 
   # todavia no funciona
-  def is_owner?
-    current_user = @user
-  end
+
 
   
 end
