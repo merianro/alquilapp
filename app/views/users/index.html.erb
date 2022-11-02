@@ -28,10 +28,10 @@
         <td><%=h user.birthdate %></td>
         <td><%=h user.email %></td> 
         <td><%=h user.phone %></td>
-        <td><%= link_to "Ver detalle", user %></td> 
-        <td><%= link_to "Editar", edit_user_path(user) %></td> 
-        <td><%= link_to "Eliminar", user,:onclick => "return confirm('Esta seguro que desea eliminar el usuario?')", :method => :delete %></td>
-
+        <td><%= button_to "Ver detalle", user, class:"btn btn-outline-primary" %></td>
+        <td><%= button_to "Editar", edit_user_path(user), class:"btn btn-outline-secondary" %></td>
+        <td><%= button_to "Eliminar", user,:onclick => "return confirm('Esta seguro que desea eliminar el usuario?')", method: :delete, class:"btn btn-outline-danger" %></td>
+      
       </tr>
       <% end %>
     <% end %>
@@ -39,4 +39,4 @@
 
 </table>
 
-<%= link_to "Agregar nuevo usuario", new_user_path %>
+<%= button_to "Agregar nuevo usuario", new_user_path, class:"btn btn-outline-success" %>

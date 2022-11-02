@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get 'users/suindex', to: 'users#suindex'
   post 'users/suindex', to: 'users#suindex'
 
+  post '/cars/:id/edit', to: 'cars#edit'
+  post '/cars/new', to: 'cars#new'
+
+  post '/users/:id/edit', to: 'users#edit'
+  post '/users/new', to: 'users#new'
+
   get 'users/anadir_saldo', to: 'users#anadir_saldo'
   post 'users/anadir_saldo', to: 'users#anadir_saldo'
 
@@ -27,6 +33,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "cars#home"
-  # root "validations#index"
 
 end

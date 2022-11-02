@@ -31,14 +31,13 @@
       <td><%=h car.capacidad %></td>
       <td><%=h car.tipo %></td>
       <td><%=h car.disponible %></td>
-      <td><%= link_to "Ver detalle", car %></td> 
-      <td><%= link_to "Editar", edit_car_path(car) %></td> 
-      <td><%= link_to "Eliminar", car,:onclick => "return confirm('Esta seguro que desea eliminar el vehículo?')", :method => :delete %></td>
-
+      <td><%= button_to "Ver detalle", car, class:"btn btn-outline-primary" %></td>
+      <td><%= button_to "Editar", edit_car_path(car), class:"btn btn-outline-secondary" %></td>
+      <td><%= button_to "Eliminar", car,:onclick => "return confirm('Esta seguro que desea eliminar el vehículo?')", method: :delete, class:"btn btn-outline-danger" %></td>
     </tr>
     <% end %>
 </tbody>
 
 </table>
 
-<%= link_to "Agregar nuevo vehículo", new_car_path %>
+<%= button_to "Agregar nuevo vehículo", new_car_path, class:"btn btn-outline-success" %>

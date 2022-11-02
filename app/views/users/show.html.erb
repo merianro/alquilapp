@@ -7,9 +7,9 @@
 <%= render @user %>
 
 <div>
-  <%= link_to "Editar tus datos", edit_user_path(@user) %> |
+  <%= link_to "Editar datos", edit_user_path(@user) %> 
 
-  <%= button_to "Eliminar tu cuenta", @user, method: :delete %>
+  <%= button_to "Eliminar cuenta", @user, method: :delete %>
 
   <% render "application/left_sidebar_driver" %>
 </div>
