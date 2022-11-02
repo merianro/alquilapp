@@ -1,14 +1,14 @@
 
-<%= simple_form_for(@validacion) do |f| %>
+<%= simple_form_for(@validation) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.file_field :image %>
-    <% f.number_field :current_user.id %>
+    <% f.input :su_id %>
+    <%= f.input :image %>
   </div>
 
   <div class="form-actions">
-    <%= f.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>

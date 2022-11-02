@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @validation %>
+
+<div>
+  <%= link_to "Edit this validation", edit_validation_path(@validation) %> |
+  <%= link_to "Back to validations", validations_path %>
+
+  <%= button_to "Destroy this validation", @validation, method: :delete %>
+</div>

@@ -1,3 +1,2 @@
 class MpWebhook < ApplicationRecord
- 
 end

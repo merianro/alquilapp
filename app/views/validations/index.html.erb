@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Validations</h1>
+
+<div id="validations">
+  <% @validations.each do |validation| %>
+    <%= render validation %>
+    <p>
+      <%= link_to "Show this validation", validation %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New validation", new_validation_path, class:"btn btn-outline-dark" %>
