@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :validacions
   resources :cars
   resources :mercado_pagos
   resources :mp_webhooks
@@ -25,8 +26,9 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
-  root "cars#home"
+  # root "cars#home"
+
+  root "validacions#index"
 
  
 

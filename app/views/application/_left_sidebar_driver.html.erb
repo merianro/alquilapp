@@ -26,7 +26,7 @@
             <% end %>
 
         <a>
-            <%= link_to users_path, :class=>"option"  do %>
+            <%= link_to current_user, :class=>"option"  do %>
             <i class='bx bxs-user'></i> 
             <h4>Mi cuenta</h4>
             <% end %>
@@ -43,6 +43,13 @@
             <%= link_to mercado_pagos_path, :class=>"option" do %>
             <i class='bx bx-wallet' ></i>
             <h4>Mi billetera</h4>
+            <% end %>
+        </a>
+
+        <a>
+            <%= link_to users_cmngsoon_path, :class=>"option" do %>
+            <i class='bx bx-id-card'></i>
+            <h4>Validacion</h4>
             <% end %>
         </a>
     </div>

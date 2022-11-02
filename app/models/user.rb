@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
    # Al crearse el usuario se setea con rango usuario automaticamente.
    has_many :cars
+   has_one :validacion
 end
