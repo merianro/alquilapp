@@ -12,14 +12,18 @@ class MpWebhooksController < ApplicationController
   def show
   end
 
+  def new
+    @wh = MpWebhook.new
+  end
+
   def create
     data_json = JSON.parse request.body.read
 
     @idPago = data_json['data']['id']
-   # capturo el id del pago -- basicamente cuando alguien pague llegará un webhook con un id
-    puts("1. CREATE")
-    puts("*************** 2. pago_aprobado")
-    puts("*************** 3. id usuario recargar")
+    # capturo el id del pago -- basicamente cuando alguien pague llegará un webhook con un id
+
+    @wh = MpWebhook.new(id_pago: @idPago, accredited: false)
+    @wh.save
 
     aux = 'https://api.mercadopago.com/v1/payments/'+ @idPago
     uri = URI(aux)
@@ -38,17 +42,21 @@ class MpWebhooksController < ApplicationController
     # si detecta en el json que esta aprobado el pago
     idUsuario = ""
     saldo = 0.0
-   
-   
-    if aux2["approved"] then
+    
+
+
+    if ((aux2["approved"]) &&  (MpWebhook.where(id_pago: @idPago).first.accredited == false)) then
+      MpWebhook.where(id_pago: @idPago).first.update(accredited: true)
       idUsuario = data_json['metadata']['one']  
       saldo = data_json['transaction_amount']
       puts(idUsuario)
       puts(saldo)
+      UsersController.new.anadir_saldo(idUsuario,saldo)
       redirect_to controller: :users, action: :anadir_saldo, saldo: saldo, id: idUsuario and return
     end
     return
   end
 
-  
+
+
 end
