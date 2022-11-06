@@ -1,18 +1,25 @@
 <div class="container-fluid">
-    <h1>Alquilapp</h1>
-    <div id="map" style="height: 600px;"></div>
+    <% if user_signed_in? then %>
+        <div id="map" style="height: 600px;"></div>
 
-    <script>
-        var array = [];
-        <% Car.all.each do | car | %> 
-            var obj = {
-            latitude: <%= car.ubication.x %>,
-            longitude: <%= car.ubication.y %>,
-            tooltip: "Marca: <%= car.marca %> Modelo: <%= car.modelo %> "
-        }
-        array.push(obj);
-        <% end %>
-            console.log(array);
-        new Mapkick.Map("map", array, { zoom: 13 });
-    </script>
+        <script>
+            var array = [];
+            <% Car.all.each do | car | %> 
+                var obj = {
+                latitude: <%= car.ubication.x %>,
+                longitude: <%= car.ubication.y %>,
+                tooltip: "Marca: <%= car.marca %>, Modelo: <%= car.modelo %>"
+            }
+            array.push(obj);
+            <% end %>
+                console.log(array);
+            new Mapkick.Map("map", array, { zoom: 13 });
+        </script>
+    <% else %>
+        <%= button_to "Ingresar ", new_user_session_path, class:"btn btn-outline-dark btn-lg" %>
+        <%= image_tag("main.jpg", size: "100% 100%")%>
+        <p style="background-image_tag('home.jpg');">
+
+        
+    <% end %>
 </div>

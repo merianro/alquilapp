@@ -32,21 +32,32 @@
             <h4>Mi cuenta</h4>
             <% end %>
         </a>
+        <% if current_user.role == "su" or current_user.role == "admin" then %>
 
-        
-        <a>
-            <%= link_to users_path, :class=>"option" do %>
-            <i class='bx bx-group'></i> 
-            <h4>Usuarios</h4>
-            <% end %>
-        </a>
+            <a>
+                <%= link_to users_drindex_path, :class=>"option" do %>
+                <i class='bx bx-group'></i> 
+                <h4>Conductores</h4>
+                <% end %>
+            </a>
 
-        <a>
-            <%= link_to users_suindex_path, :class=>"option" do %>
-            <i class='bx bxs-group'></i> 
-            <h4>Supervisores</h4>
+            <% if current_user.role == "admin" then %>
+                <a>
+                    <%= link_to users_suindex_path, :class=>"option" do %>
+                    <i class='bx bxs-group'></i> 
+                    <h4>Supervisores</h4>
+                    <% end %>
+                    </a>
             <% end %>
-        </a>
+
+            <a>
+                <%= link_to cars_path, :class=>"option" do %>
+                <i class='bx bxs-car'></i>
+                <h4>Vehículos</h4>
+                <% end %>
+            </a>
+
+        <% end %>
 
         <a>
             <%= link_to users_cmngsoon_path, :class=>"option" do %>
@@ -55,19 +66,30 @@
             <% end %>
         </a>
 
-        <a>
-            <%= link_to users_cmngsoon_path, :class=>"option" do %>
-            <i class='bx bx-support'></i>
-            <h4>Reportes</h4>
-            <% end %>
-        </a>
+        <% if current_user.role == "su" or current_user.role == "admin" then %>
+            <a>
+                <%= link_to users_cmngsoon_path, :class=>"option" do %>
+                <i class='bx bx-support'></i>
+                <h4>Reportes</h4>
+                <% end %>
+            </a>
 
-        <a>
-            <%= link_to users_cmngsoon_path, :class=>"option" do %>
-            <i class='bx bx-check'></i>
-            <h4>Validaciones</h4>
-            <% end %>
-        </a>
+            <a>
+                <%= link_to validations_path, :class=>"option" do %>
+                <i class='bx bx-check'></i>
+                <h4>Validaciones</h4>
+                <% end %>
+            </a>
+        <% end %>
+
+        <% if current_user.role == "driver" then %>
+            <a>
+                <%= link_to mercado_pagos_path, :class=>"option" do %>
+                <i class='bx bx-wallet' ></i>
+                <h4>Mi billetera</h4>
+                <% end %>
+            </a>
+        <% end %>
 
     </div>
 </div>

@@ -3,11 +3,14 @@ Rails.application.routes.draw do
   resources :cars
   resources :mercado_pagos
   resources :mp_webhooks
-  get 'main/home'
+  get 'main/home', to: 'home#main'
   devise_for :users
 
   get 'users/suindex', to: 'users#suindex'
   post 'users/suindex', to: 'users#suindex'
+
+  get 'users/drindex', to: 'users#drindex'
+  post 'users/drindex', to: 'users#drindex'
 
   post '/cars/:id/edit', to: 'cars#edit'
   post '/cars/new', to: 'cars#new'
@@ -32,6 +35,6 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "cars#home"
+  root "main#home"
 
 end

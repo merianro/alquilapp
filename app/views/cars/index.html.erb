@@ -15,8 +15,6 @@
       <th>Tipo</th>
       <th>Disponible</th>
       <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -31,9 +29,7 @@
       <td><%=h car.capacidad %></td>
       <td><%=h car.tipo %></td>
       <td><%=h car.disponible %></td>
-      <td><%= button_to "Ver detalle", car, class:"btn btn-outline-primary" %></td>
-      <td><%= button_to "Editar", edit_car_path(car), class:"btn btn-outline-secondary" %></td>
-      <td><%= button_to "Eliminar", car,:onclick => "return confirm('Esta seguro que desea eliminar el vehículo?')", method: :delete, class:"btn btn-outline-danger" %></td>
+      <td><%= link_to "Ver detalle", car %></td>
     </tr>
     <% end %>
 </tbody>

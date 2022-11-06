@@ -17,6 +17,12 @@ class UsersController < ApplicationController
     authorize @users
   end
 
+  def drindex
+    @user = User.where(role: 'driver')
+    #@users = policy_scope(User)
+    #authorize @users
+  end
+
   def newsu
     @user = User.new
     @users = policy_scope(User)
