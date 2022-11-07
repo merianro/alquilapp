@@ -6,6 +6,7 @@ class ValidationsController < ApplicationController
   def index
     if current_user.admin? || current_user.su? then    
       @validations = Validation.all
+    end
   end
 
   # GET /validations/1 or /validations/1.json
