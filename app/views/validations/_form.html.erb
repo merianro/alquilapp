@@ -5,6 +5,7 @@
 
   <div class="form-inputs">
     <% f.input :su_id %>
+    <%= f.input :user_id, :as => :hidden, input_html: {:value => current_user.id}%>
     <%= f.input :image %>
   </div>
 
