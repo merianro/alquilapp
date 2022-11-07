@@ -1,0 +1,36 @@
+<%= form_with(model: user) do |form| %>
+
+    <div>
+      <%= form.label "Nombre", style: "display: block" %>
+      <%= form.text_field :name %>
+    </div>
+  
+    <div>
+      <%= form.label "Apellido", style: "display: block" %>
+      <%= form.text_field :surname %>
+    </div>
+  
+    <div>
+      <%= form.label "Fecha de nacimiento", style: "display: block" %>
+      <%= form.date_field :birthdate %>
+    </div>
+  
+  
+    <div>
+      <%= form.label "Teléfono", style: "display: block" %>
+      <%= form.text_field :phone %>
+    </div>
+  
+    <div>
+      <%= form.label "DNI", style: "display: block" %>
+      <%= form.text_field :dni %>
+    </div>
+  
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+  
+  
+  
+  

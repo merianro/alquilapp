@@ -1,32 +1,93 @@
 <div id="<%= dom_id user %>">
-  <p>
-    <strong>Nombre:</strong>
-    <%= user.name %>
-  </p>
-
-  <p>
-    <strong>Apellido:</strong>
-    <%= user.surname %>
-  </p>
-
-  <p>
-  <strong>DNI:</strong>
-  <%= user.dni %>
-  </p>
-
-  <p>
-  <strong>Celular:</strong>
-  <%= user.phone %>
-  </p>
-
-  <p>
-    <strong>Fecha de Nacimiento:</strong>
-    <%= user.birthdate %>
-  </p>
-
-  <p>
-  <strong>Email:</strong>
-  <%= user.email %>
-  </p>
-
-</div>
+<section style="background-color: #ffffff;">
+      <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nombre</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= user.name %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Apellido</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= user.surname %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">DNI</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= user.dni %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Teléfono</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= user.phone %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Fecha de Nacimiento</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= user.birthdate %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= user.email %></p>
+              </div>
+            </div>
+            <% if (current_user.role == "su" or current_user.role == "admin") and user.role =="driver" then %>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Estado</p>
+                </div>
+                <div class="col-sm-9">
+                  <% if user.validado? then %>
+                  <p class="text-muted mb-0">Validado</p>
+                  <% else %>
+                  <p class="text-muted mb-0">No validado</p>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="botonDelete">
+          <%= button_to "Eliminar cuenta", @user, method: :delete, class:"btn btn-outline-danger" %>
+          </div>
+          <!-- <%= link_to "Editar datos", edit_user_path(@user) %> -->
+          
+        </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+<style>
+.botonDelete{
+  margin-left: auto;
+  padding-left: 5px;
+}
+</style>
