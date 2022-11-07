@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   
   get 'mp_webhooks', to: 'mp_webhooks#index'
   post "mp_webhooks", to: "mp_webhooks#create"
+  
+  get 'mp_webhooks/create', to: 'mp_webhooks#create'
 
   get 'users/cmngsoon', to: 'users#cmngsoon'
   post 'users/cmngsoon', to: 'users#comngsoon'

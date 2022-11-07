@@ -4,7 +4,7 @@ class MercadoPagosController < ApplicationController
 
   def index
     # Agrega credenciales ACCESS TOKEN
-    sdk = Mercadopago::SDK.new('APP_USR-8843504109866257-110621-7391f45bd20d4f750c8f7edd1ab848e8-1233334179')
+    sdk = Mercadopago::SDK.new('APP_USR-2185035345250512-110711-a414960bc15e6b23db5ce0ecf3eec42e-1233642853')
     # Crea un objeto de preferencia
     preference_data = {
       items: [
@@ -109,8 +109,8 @@ class MercadoPagosController < ApplicationController
   # Este valor reemplazará el string "<%= @preference_id %>" en tu HTML
   @preference_id = preference['id']
   @preference_id2 = preference2['id']
-  @preference_id3 = preference2['id']
-  @preference_id4 = preference2['id']
+  @preference_id3 = preference3['id']
+  @preference_id4 = preference4['id']
 
   end
 

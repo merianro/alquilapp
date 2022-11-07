@@ -1,5 +1,5 @@
 class MpWebhooksController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
   require 'json'
   require 'net/http'
@@ -29,7 +29,8 @@ class MpWebhooksController < ApplicationController
     aux = 'https://api.mercadopago.com/v1/payments/'+ @idPago
     uri = URI(aux)
     req = Net::HTTP::Get.new(uri)
-    req['Authorization'] = 'Bearer APP_USR-1810282633093795-102310-24df0f40240b34b3a7444cf598319bb8-1223417679'
+    # access token
+    req['Authorization'] = 'Bearer APP_USR-2185035345250512-110711-a414960bc15e6b23db5ce0ecf3eec42e-1233642853'
 
     req_options = {
       use_ssl: uri.scheme == "https"
@@ -44,9 +45,8 @@ class MpWebhooksController < ApplicationController
     idUsuario = ""
     saldo = 0.0
     
-
-
-    if ((aux2["approved"]) &&  (MpWebhook.where(id_pago: @idPago).first.accredited == false)) then
+    if ((aux2["approved"]) && MpWebhook.where(id_pago: @idPago).first.accredited == false) then
+      puts "*********************** un convicto *******************"
       MpWebhook.where(id_pago: @idPago).first.update(accredited: true)
       idUsuario = data_json['metadata']['one']  
       saldo = data_json['transaction_amount']
@@ -55,7 +55,11 @@ class MpWebhooksController < ApplicationController
       UsersController.new.anadir_saldo(idUsuario,saldo)
       redirect_to controller: :users, action: :anadir_saldo, saldo: saldo, id: idUsuario and return
     end
-    return
+
+    respond_to do |format|
+        format.html { redirect_to root_path, notice: "ratio" }
+        format.json { render :nothing => true, :status => 200 }
+    end
   end
 
 

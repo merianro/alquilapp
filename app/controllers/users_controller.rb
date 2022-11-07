@@ -83,6 +83,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
@@ -91,7 +92,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def anadir_saldo(saldo, id)
+  def anadir_saldo(id,saldo)
     @user = User.find(id)
     aux = @user.saldo + saldo.to_f
     @user.update(saldo: aux)  
