@@ -3,8 +3,7 @@
 <%= render @car %>
 
 <div>
+  <%= button_to "Volver a vehículos", cars_path , class:"btn btn-outline-success"%>
   <%= button_to "Editar vehículo", edit_car_path(@car), class:"btn btn-outline-warning" %> 
-  <%= button_to "Volver a vehículos", cars_path , class:"btn btn-outline-warning"%>
-
-  <%= button_to "Eliminar vehículo", @car, method: :delete, class:"btn btn-outline-warning" %>
+  <%= button_to "Eliminar vehículo", @car, method: :delete, class:"btn btn-outline-danger" %>
 </div>

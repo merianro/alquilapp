@@ -1,7 +1,9 @@
 <div class="container-fluid">
     <% if user_signed_in? then %>
         <div id="map" style="height: 600px;"></div>
-
+        <% if current_user.role == "driver" and !current_user.validado then %>
+            <%= button_to "Recorda que para poder alquilar debes estar validado. Hace click acá para validarte", new_validation_path, class:"btn btn-outline-danger" %>
+        <% end %>
         <script>
             var array = [];
             <% Car.all.each do | car | %> 

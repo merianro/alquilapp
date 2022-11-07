@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user.id == params[:id].to_i or current_user.admin? then    
+    if current_user.id == params[:id].to_i or current_user.admin? or current_user.su? then    
       @user = User.find(params[:id])
     else
       redirect_to root_path

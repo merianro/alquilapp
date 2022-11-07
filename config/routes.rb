@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'main/home', to: 'home#main'
   devise_for :users
 
-  
+  get '/validations/new', to: 'validations#new'
+  post '/validations/new', to: 'validations#new'
+
   get 'users/suindex', to: 'users#suindex'
   post 'users/suindex', to: 'users#suindex'
 
