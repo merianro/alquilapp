@@ -1,9 +1,10 @@
 class MercadoPagosController < ApplicationController
+  before_action :authenticate_user!
   require 'mercadopago'
 
   def index
     # Agrega credenciales ACCESS TOKEN
-    sdk = Mercadopago::SDK.new('APP_USR-1810282633093795-102310-24df0f40240b34b3a7444cf598319bb8-1223417679')
+    sdk = Mercadopago::SDK.new('APP_USR-8843504109866257-110621-7391f45bd20d4f750c8f7edd1ab848e8-1233334179')
     # Crea un objeto de preferencia
     preference_data = {
       items: [

@@ -1,9 +1,11 @@
 class ValidationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_validation, only: %i[ show edit update destroy ]
 
   # GET /validations or /validations.json
   def index
-    @validations = Validation.all
+    if current_user.admin? || current_user.su? then    
+      @validations = Validation.all
   end
 
   # GET /validations/1 or /validations/1.json

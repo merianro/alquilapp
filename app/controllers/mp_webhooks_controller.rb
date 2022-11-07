@@ -1,4 +1,5 @@
 class MpWebhooksController < ApplicationController
+  before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
   require 'json'
   require 'net/http'

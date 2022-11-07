@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  #after_action :verify_policy_scoped, only: :index
+  after_action :verify_policy_scoped, only: :index
   # before_action :set_user, only: %i[ show edit update destroy ]
 
 
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :surname, :birthdate)
+      params.require(:user).permit(:name, :surname, :birthdate, :phone, :dni)
     end
     
 end
