@@ -1,84 +1,96 @@
+<%= stylesheet_link_tag "mercado_pagos" %>
+
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-<div class="cho-container"></div>
-<script>
-                                      // public key
-  const mp = new MercadoPago('APP_USR-0f612326-bcf8-4156-b659-65f6c02a11e3', {
-    locale: 'es-AR'
-  });
+ <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card border-0 shadow rounded-3 my-5">
+            <div class="card-body p-4 p-sm-5">
+              <h5 class="card-title text-center mb-4 fw-light fs-5">Billetera</h5>
+              <h5 class="card-title text-center mb-4 fw-light fs-5">Tu saldo: <%= current_user.saldo %> </h5> 
 
-  mp.checkout({
-    preference: {
-      id: '<%= @preference_id %>'
-    },
-    render: {
-      container: '.cho-container',
-      label: 'Depositar $100',
-    }
-  });
-</script>
+              <div class="cho-container"></div>
+              <script>
+                 // public key
+                const mp = new MercadoPago('APP_USR-0f612326-bcf8-4156-b659-65f6c02a11e3', {
+                  locale: 'es-AR'
+                });
 
-
-<div class="cho-container"></div>
-<script>
-                                      // public key
-  const mp2 = new MercadoPago('APP_USR-0f612326-bcf8-4156-b659-65f6c02a11e3', {
-    locale: 'es-AR'
-  });
-
-  mp2.checkout({
-    preference: {
-      id: '<%= @preference_id2 %>'
-    },
-    render: {
-      container: '.cho-container',
-      label: 'Depositar $500',
-    }
-  });
-
-</script>
-
-<div class="cho-container"></div>
-<script>
-                                      // public key
-  const mp3 = new MercadoPago('APP_USR-0f612326-bcf8-4156-b659-65f6c02a11e3', {
-    locale: 'es-AR'
-  });
-
-  mp3.checkout({
-    preference: {
-      id: '<%= @preference_id3 %>'
-    },
-    render: {
-      container: '.cho-container',
-      label: 'Depositar $1000',
-    }
-  });
-
-</script>
+                mp.checkout({
+                  preference: {
+                    id: '<%= @preference_id %>'
+                  },
+                  render: {
+                    container: '.cho-container',
+                    label: 'Depositar $100',
+                  }
+                });
+              </script>
 
 
-<div class="cho-container"></div>
-<script>
-  // public key
-  const mp4 = new MercadoPago('APP_USR-0f612326-bcf8-4156-b659-65f6c02a11e3', {
-    locale: 'es-AR'
-  });
+              <div class="cho-container"></div>
+              <script>
+                                                    // public key
+                const mp2 = new MercadoPago('APP_USR-0f612326-bcf8-4156-b659-65f6c02a11e3', {
+                  locale: 'es-AR'
+                });
 
-  mp4.checkout({
-    preference: {
-      id: '<%= @preference_id4 %>'
-    },
-    render: {
-      container: '.cho-container',
-      label: 'Depositar $5000',
-    }
-  });
+                mp2.checkout({
+                  preference: {
+                    id: '<%= @preference_id2 %>'
+                  },
+                  render: {
+                    container: '.cho-container',
+                    label: 'Depositar $500',
+                  }
+                });
 
-</script>
+              </script>
+
+              <div class="cho-container"></div>
+              <script>
+                                                    // public key
+                const mp3 = new MercadoPago('APP_USR-0f612326-bcf8-4156-b659-65f6c02a11e3', {
+                  locale: 'es-AR'
+                });
+
+                mp3.checkout({
+                  preference: {
+                    id: '<%= @preference_id3 %>'
+                  },
+                  render: {
+                    container: '.cho-container',
+                    label: 'Depositar $1000',
+                  }
+                });
+
+              </script>
 
 
+              <div class="cho-container"></div>
+              <script>
+                // public key
+                const mp4 = new MercadoPago('APP_USR-0f612326-bcf8-4156-b659-65f6c02a11e3', {
+                  locale: 'es-AR'
+                });
+
+                mp4.checkout({
+                  preference: {
+                    id: '<%= @preference_id4 %>'
+                  },
+                  render: {
+                    container: '.cho-container',
+                    label: 'Depositar $5000',
+                  }
+                });
+
+              </script>
+     
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-
-<h2> Saldo actual: $<%= current_user.saldo %> </h2>
