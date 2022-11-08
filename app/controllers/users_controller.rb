@@ -23,15 +23,12 @@ class UsersController < ApplicationController
     #authorize @users
   end
 
-  def newsu
-    @user = User.new
-    @users = policy_scope(User)
-    authorize @users
-  end
 
+  
+  
   def cmngsoon
   end
-
+  
   def show
     if current_user.id == params[:id].to_i or current_user.admin? or current_user.su? then    
       @user = User.find(params[:id])
@@ -45,11 +42,32 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-
+  
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-
+    
+  end
+  
+  def newsu
+    @user = User.new
+    @users = policy_scope(User)
+    authorize @users
+  end
+  
+  def create_su
+    @user = User.new(su_params)
+  
+    respond_to do |format|
+      if @user.save
+        User.where(id: @user.id).update(role: 'su')
+        format.html { redirect_to suindex, notice: "Supervisor creado correcatamente." }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /users or /users.json
@@ -116,6 +134,10 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:name, :surname, :birthdate, :phone, :dni)
+    end
+
+    def su_params
+      params.require(:user).permit(:name, :surname, :birthdate, :phone, :dni, :email, :password)
     end
     
 end
