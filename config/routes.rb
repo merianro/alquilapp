@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   get 'main/home',   to: 'home#main'
   devise_for :users, controllers: { registrations: "users/registrations" }
 
+  get 'cars', to: 'cars#index'
+  post 'cars', to: 'cars#index'
+
   get 'users/create_su', to: 'users#create_su'
   post 'users/create_su', to: 'users#create_su'
 

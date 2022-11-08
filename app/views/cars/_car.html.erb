@@ -1,32 +1,136 @@
 <div id="<%= dom_id car %>">
-  <p>
-    <strong>Marca:</strong>
-    <%= car.marca %>
-  </p>
-
-  <p>
-    <strong>Modelo:</strong>
-    <%= car.modelo %>
-  </p>
-
-  <p>
-    <strong>Ano:</strong>
-    <%= car.ano %>
-  </p>
-
-  <p>
-    <strong>Color:</strong>
-    <%= car.color %>
-  </p>
-
-  <p>
-    <strong>Transmision:</strong>
-    <%= car.transmision %>
-  </p>
-
-  <p>
-    <strong>Capacidad:</strong>
-    <%= car.capacidad %>
-  </p>
-
-</div>
+<section style="background-color: #ffffff;">
+      <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Marca</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.marca %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Modelo</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.modelo %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Año</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.ano %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Color</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.color %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Transmision</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.transmision %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Capacidad</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.capacidad %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Ubicación</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.ubication %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tipo</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.tipo %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Disponible</p>
+              </div>
+              <div class="col-sm-9">
+              <% if car.disponible? then %>
+                <p class="text-muted mb-0">Disponible</p>
+              <% else %>
+                <p class="text-muted mb-0">No disponible</p>
+              <% end %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Patente</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.patente %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Porcentaje de Combustible</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.porcentaje_combustible %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tipo de combustible</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= car.tipo_de_combustible %></p>
+              </div>
+            </div>
+          </div>
+          <div class="botonDelete">
+            <%= button_to "Eliminar vehículo", @car, method: :delete, class:"btn btn-outline-danger" %>
+          </div>
+          <!-- <%= link_to "Editar datos", edit_car_path(@car) %> -->
+          
+        </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+<style>
+.botonDelete{
+  margin-left: auto;
+  padding-left: 5px;
+}
+</style>

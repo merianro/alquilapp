@@ -5,6 +5,7 @@
 <br>
 
 <div>
-  <%= link_to "Ver detalle del vehículo", @car %> |
+  <%= button_to "Volver a vehículos", cars_path , class:"btn btn-outline-success"%>
+  <%= button_to "Ver detalle del vehículo", @car , class:"btn btn-outline-secondary"%>
   <%= link_to "Volver a vehículos", cars_path %>
 </div>

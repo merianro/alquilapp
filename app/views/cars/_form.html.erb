@@ -10,41 +10,124 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :marca, style: "display: block" %>
-    <%= form.text_field :marca %>
+  <section style="background-color: #ffffff;">
+      <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Marca</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.text_field :marca %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Modelo</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.text_field :modelo %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Año</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.text_field :ano %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Color</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.text_field :color %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Transmision</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.text_field :transmision %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Capacidad</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.number_field :capacidad %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Ubicación</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.text_field :ubication %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tipo</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.text_field :tipo %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Disponible</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.text_field :disponible %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Patente</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.number_field :patente %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Porcentaje de Combustible</p>
+              </div>
+              <div class="col-sm-9">
+                <%= form.number_field :porcentaje_combustible %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tipo de combustible</p>
+              </div>
+              <div class="col-sm-9">
+              <%= form.text_field :tipo_de_combustible %>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :modelo, style: "display: block" %>
-    <%= form.text_field :modelo %>
-  </div>
-
-  <div>
-    <%= form.label :año, style: "display: block" %>
-    <%= form.text_field :ano %>
-  </div>
-
-  <div>
-    <%= form.label :color, style: "display: block" %>
-    <%= form.text_field :color %>
-  </div>
-
-  <div>
-    <%= form.label :transmision, style: "display: block" %>
-    <%= form.text_field :transmision %>
-  </div>
-
-  <div>
-    <%= form.label :capacidad, style: "display: block" %>
-    <%= form.number_field :capacidad %>
-  </div>
-
-  <div>
-    <%= form.label :ubication, style: "display: block" %>
-    <%= form.point :ubication %>
-  </div>
+</section>
 
   <div>
     <%= form.submit %>

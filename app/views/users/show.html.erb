@@ -9,7 +9,6 @@
 <div>
   
   <% if current_user.role == "su" or current_user.role == "admin" then %>
-
     <%= button_to "Volver a Conductores", users_drindex_path, class:"btn btn-outline-success" %>
   <% end %>
 

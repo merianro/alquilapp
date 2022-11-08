@@ -22,6 +22,7 @@ class CarsController < ApplicationController
 
   # POST /cars or /cars.json
   def create
+    puts("`````````````````````````````````maticapo````````````````````")
     @car = Car.new(car_params)
 
     respond_to do |format|
