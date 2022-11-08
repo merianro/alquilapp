@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   get 'validations/asignarse', to: 'validations#asignarse'
   post 'validations/asignarse', to: 'validations#asignarse'
   
+  get 'validations/validate', to: 'validations#validate'
+  post 'validations/validate', to: 'validations#validate'
+
   resources :users
   resources :validations
   resources :cars

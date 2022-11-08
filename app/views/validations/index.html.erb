@@ -28,28 +28,32 @@
               <th>Apellido</th>
               <th>DNI</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
 
           <tbody>
             <% @validations.each do |validation| %>
-              <% if validation.su_id == current_user.id then %>
-              <tr>
-                <td>
-                  <%= validation.user.name %>
-                </td>
-                <td>
-                  <%= validation.user.surname %>
-                </td>
-                <td>
-                  <%= validation.user.dni %>
-                </td>
-                <td>
-                  <%= link_to "Ver detalle" , validation %>
-                </td>
-              </tr>
-              <% end %>
-              <% end %>
+              <% if validation.su_id==current_user.id and validation.user.validado == false then %>
+                <tr>
+                  <td>
+                    <%= validation.user.name %>
+                  </td>
+                  <td>
+                    <%= validation.user.surname %>
+                  </td>
+                  <td>
+                    <%= validation.user.dni %>
+                  </td>
+                  <td>
+                    <%= link_to "Validar" , '/validations/validate?id=' + validation.id.to_s %>
+                  </td>
+                  <td>
+                    <%= link_to "Ver detalle" , validation %>
+                  </td>
+                </tr>
+                <% end %>
+                  <% end %>
           </tbody>
 
         </table>
@@ -71,26 +75,26 @@
 
           <tbody>
             <% @validations.each do |validation| %>
-            <% if validation.su_id == nil then %>
-              <tr>
-                <td>
-                  <%= validation.user.name %>
-                </td>
-                <td>
-                  <%= validation.user.surname %>
-                </td>
-                <td>
-                  <%= validation.user.dni %>
-                </td>
-                <td>
-                  <%= link_to "Asignarla", '/validations/asignarse?id=' + validation.id.to_s %>
-                </td>
-                <td>
-                  <%= link_to "Ver detalle" , validation %>
-                </td>
-              </tr>
-              <% end %>
-              <% end %>
+              <% if validation.su_id==nil then %>
+                <tr>
+                  <td>
+                    <%= validation.user.name %>
+                  </td>
+                  <td>
+                    <%= validation.user.surname %>
+                  </td>
+                  <td>
+                    <%= validation.user.dni %>
+                  </td>
+                  <td>
+                    <%= link_to "Asignarla" , '/validations/asignarse?id=' + validation.id.to_s %>
+                  </td>
+                  <td>
+                    <%= link_to "Ver detalle" , validation %>
+                  </td>
+                </tr>
+                <% end %>
+                  <% end %>
           </tbody>
 
         </table>
@@ -98,5 +102,3 @@
     </div>
 
   </div>
-
-  <%= link_to "New validation", new_validation_path, class:"btn btn-outline-dark" %> 

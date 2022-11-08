@@ -67,9 +67,17 @@ class ValidationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to validations_url, notice: "Validation was successfully destroyed." }
       format.json { head :no_content }
+    end
   end
 
+  def validate
+    @validation = Validation.find(params[:id])  
+    @validation.user.update(validado: true)
 
+    respond_to do |format|
+      format.html { redirect_to validations_url, notice: "Validation was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
