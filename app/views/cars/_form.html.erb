@@ -1,4 +1,4 @@
-<%= simple_form_for @car do |form| %>
+<%= simple_form_for(@car) do |f| %>
   <% if car.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
@@ -19,7 +19,7 @@
                 <p class="mb-0">Marca</p>
               </div>
               <div class="col-sm-9">
-                <%= form.text_field :marca %>
+                <%= f.input :marca, required: true, autofocus: true, input_html: { autocomplete: "marca" } %>
               </div>
             </div>
             <hr>
@@ -28,7 +28,7 @@
                 <p class="mb-0">Modelo</p>
               </div>
               <div class="col-sm-9">
-                <%= form.text_field :modelo %>
+                  <%= f.input :modelo, required: true, autofocus: true, input_html: { autocomplete: "modelo" } %>
               </div>
             </div>
             <hr>
@@ -37,7 +37,7 @@
                 <p class="mb-0">Año</p>
               </div>
               <div class="col-sm-9">
-                <%= form.text_field :ano %>
+                <%= f.input :ano, required: true, autofocus: true, input_html: { autocomplete: "ano" } %>
               </div>
             </div>
             <hr>
@@ -46,7 +46,7 @@
                 <p class="mb-0">Color</p>
               </div>
               <div class="col-sm-9">
-                <%= form.text_field :color %>
+                <%= f.input :color, required: true, autofocus: true, input_html: { autocomplete: "color" } %>
               </div>
             </div>
             <hr>
@@ -55,7 +55,7 @@
                 <p class="mb-0">Transmision</p>
               </div>
               <div class="col-sm-9">
-                <%= form.text_field :transmision %>
+                 <%= f.input :transmision, collection: [['Manual'], ['Automatica']],required: true, autofocus: true, input_html: { autocomplete: "transmision" } %>
               </div>
             </div>
             <hr>
@@ -64,25 +64,17 @@
                 <p class="mb-0">Capacidad</p>
               </div>
               <div class="col-sm-9">
-                <%= form.number_field :capacidad %>
+                 <%= f.input :capacidad, required: true, autofocus: true, input_html: { autocomplete: "capacidad" } %>
               </div>
             </div>
             <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Ubicación</p>
-              </div>
-              <div class="col-sm-9">
-                <%= form.text_field :ubication %>
-              </div>
-            </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Tipo</p>
               </div>
               <div class="col-sm-9">
-                <%= form.text_field :tipo %>
+                <%= f.input :tipo, required: true, autofocus: true, input_html: { autocomplete: "tipo" } %>
               </div>
             </div>
             <hr>
@@ -91,7 +83,8 @@
                 <p class="mb-0">Disponible</p>
               </div>
               <div class="col-sm-9">
-                <%= form.text_field :disponible %>
+                <%= f.input :disponible, required: true, autofocus: true, input_html: { autocomplete: "disponible" } %>
+              </div>
               </div>
             </div>
             <hr>
@@ -100,7 +93,7 @@
                 <p class="mb-0">Patente</p>
               </div>
               <div class="col-sm-9">
-                <%= form.number_field :patente %>
+                <%= f.input :patente, required: true, autofocus: true, input_html: { autocomplete: "patente" } %>
               </div>
             </div>
             <hr>
@@ -109,7 +102,7 @@
                 <p class="mb-0">Porcentaje de Combustible</p>
               </div>
               <div class="col-sm-9">
-                <%= form.number_field :porcentaje_combustible %>
+                <%= f.input :porcentaje_combustible, collection: 0..100, required: true, autofocus: true, input_html: { autocomplete: "porcentaje_combustible" } %>
               </div>
             </div>
             <hr>
@@ -118,9 +111,12 @@
                 <p class="mb-0">Tipo de combustible</p>
               </div>
               <div class="col-sm-9">
-              <%= form.text_field :tipo_de_combustible %>
+                <%= f.input :tipo_de_combustible, collection: [['Nafta'], ['Diesel'], ['GNC']],required: true, autofocus: true, input_html: { autocomplete: "tipo_de_combustible" } %>
               </div>
             </div>
+          </div>
+          <div class="botonConf">
+            <%= form.button :submit, "Guardar cambios", class:"btn btn-outline-success" %>
           </div>
           <div class="botonConf">
             <%= form.button :submit, "Guardar cambios", class:"btn btn-outline-success" %>
@@ -132,7 +128,9 @@
   </div>
 </section>
 
-  
+  <div>
+     <%= f.button :submit %>
+  </div>
 <% end %>
 
 <style>

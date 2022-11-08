@@ -22,9 +22,9 @@ class CarsController < ApplicationController
 
   # POST /cars or /cars.json
   def create
-    puts("`````````````````````````````````maticapo````````````````````")
+    puts ("HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOLA")
     @car = Car.new(car_params)
-
+    Car.where(id: @car.id).update(ubication: "-34.932396841058896, -57.93801864135309")
     respond_to do |format|
       if @car.save
         format.html { redirect_to car_url(@car), notice: "Car was successfully created." }
@@ -67,6 +67,6 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:marca, :modelo, :ano, :color, :transmision, :capacidad)
+      params.require(:car).permit(:marca, :modelo, :ano, :color, :transmision, :capacidad, :patente, :disponible, :tipo_de_combustible, :porcentaje_combustible)
     end
 end

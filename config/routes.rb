@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   post 'users/create_su', to: 'users#create_su'
 
   get 'cars/:id', to: 'cars#show'
-  post 'cars/:id', to: 'cars#show'  
+  post 'cars/:id', to: 'cars#show'get 'users/edit_su', to: 'users#edit_su'
+  post 'users/edit_su', to: 'users#edit_su'
   
   get 'users/suindex', to: 'users#suindex'
   post 'users/suindex', to: 'users#suindex'

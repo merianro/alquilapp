@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_07_161148) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_08_121627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,9 +64,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_161148) do
     t.point "ubication"
     t.string "tipo"
     t.boolean "disponible"
-    t.string "patente"
     t.float "porcentaje_combustible"
     t.string "tipo_de_combustible"
+    t.string "patente"
   end
 
   create_table "mercado_pagos", force: :cascade do |t|

@@ -1,12 +1,11 @@
 class ValidationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_op, except: [ :new ]
   before_action :set_validation, only: %i[ show edit update destroy ]
 
   # GET /validations or /validations.json
-  def index
-    if current_user.admin? || current_user.su? then    
-      @validations = Validation.all
-    end
+  def index 
+    @validations = Validation.all
   end
 
   # GET /validations/1 or /validations/1.json
@@ -90,4 +89,13 @@ class ValidationsController < ApplicationController
     def validation_params
       params.require(:validation).permit(:su_id, :image, :user_id)
     end
+
+    def is_op
+      if current_user.su?
+        return true
+      else
+        redirect_to root_path
+      end
+    end
+
 end

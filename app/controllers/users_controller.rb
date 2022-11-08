@@ -46,25 +46,29 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-    
+  end
+
+  def edit_su
+    @user = User.find(params[:id])
   end
   
   def newsu
-    @user = User.new
-    @users = policy_scope(User)
-    authorize @users
+    if current_user.admin? 
+      @user = User.new
+    end
   end
   
   def create_su
+
     @user = User.new(su_params)
   
     respond_to do |format|
       if @user.save
         User.where(id: @user.id).update(role: 'su')
-        format.html { redirect_to suindex, notice: "Supervisor creado correcatamente." }
+        format.html { redirect_to users_suindex_path, notice: "Supervisor creado correcatamente." }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to users_suindex_path, notice: "Error al crear Supervisor." }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

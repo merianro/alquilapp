@@ -45,6 +45,9 @@ class UserPolicy
   def update?
     true
   end
+  
+  def create_su
+  end
 
   private 
   # todavia no funciona

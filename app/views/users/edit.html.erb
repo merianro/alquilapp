@@ -1,6 +1,11 @@
 <h1>Editar cuenta</h1>
 
-<%= render "form", user: @user %>
+<% if !@user.su? %>
+  <%= render "form", user: @user %>
+<% else %>
+  <%= render "formCrearSupervisor", user: @user %>
+<% end%>
+
 
 <br>
 
