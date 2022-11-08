@@ -22,9 +22,9 @@ class MercadoPagosController < ApplicationController
         # envio el id del usuario que esta recargando el saldo
       },
       back_urls: {
-            success: "http://www.success.com",
-            failure: "http://www.failure.com",
-            pending: "http://www.pending.com"
+            success: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
+            failure: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
+            pending: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos"
         }   
       }
 
@@ -44,9 +44,9 @@ class MercadoPagosController < ApplicationController
         # envio el id del usuario que esta recargando el saldo
       },
       back_urls: {
-            success: "http://www.success.com",
-            failure: "http://www.failure.com",
-            pending: "http://www.pending.com"
+        success: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
+        failure: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
+        pending: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos"
         }   
       } 
 
@@ -66,9 +66,9 @@ class MercadoPagosController < ApplicationController
         # envio el id del usuario que esta recargando el saldo
       },
       back_urls: {
-            success: "http://www.success.com",
-            failure: "http://www.failure.com",
-            pending: "http://www.pending.com"
+        success: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
+        failure: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
+        pending: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos"
         }   
       } 
 
@@ -88,9 +88,9 @@ class MercadoPagosController < ApplicationController
           # envio el id del usuario que esta recargando el saldo
         },
         back_urls: {
-              success: "http://www.success.com",
-              failure: "http://www.failure.com",
-              pending: "http://www.pending.com"
+          success: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
+          failure: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
+          pending: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos"
           }   
       } 
 

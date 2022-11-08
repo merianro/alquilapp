@@ -1,7 +1,8 @@
 <div id="<%= dom_id user %>">
-<section style="background-color: #ffffff;">
+<div class="container-fluid principal">
+<section class="sectionShow">
       <div class="col-lg-8">
-      <div class="card mb-4">
+      <div class="card text-center">
         <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
@@ -73,7 +74,7 @@
             <% end %>
           </div>
           <div class="botonDelete">
-          <%= button_to "Eliminar cuenta", @user, method: :delete, class:"btn btn-outline-danger" %>
+            <%= button_to "Eliminar cuenta", @user, method: :delete, class:"btn btn-outline-danger" %>
           </div>
           <!-- <%= link_to "Editar datos", edit_user_path(@user) %> -->
           
@@ -84,10 +85,16 @@
     </div>
   </div>
 </section>
+</div>
   
 <style>
 .botonDelete{
   margin-left: auto;
   padding-left: 5px;
 }
+
+.principal{
+
+}
+
 </style>

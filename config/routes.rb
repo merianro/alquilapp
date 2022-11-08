@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get 'users/create_su', to: 'users#create_su'
   post 'users/create_su', to: 'users#create_su'
 
-    
+  get 'cars/:id', to: 'cars#show'
+  post 'cars/:id', to: 'cars#show'  
   
   get 'users/suindex', to: 'users#suindex'
   post 'users/suindex', to: 'users#suindex'

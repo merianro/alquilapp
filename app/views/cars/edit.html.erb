@@ -4,8 +4,8 @@
 
 <br>
 
-<div>
-  <%= button_to "Volver a vehículos", cars_path , class:"btn btn-outline-success"%>
-  <%= button_to "Ver detalle del vehículo", @car , class:"btn btn-outline-secondary"%>
-  <%= link_to "Volver a vehículos", cars_path %>
+<div class="btn-group" role="group" data-inline:"true">
+  <%= button_to "Volver a vehículos", cars_path , class:"btn btn-outline-primary"%>
+  <%= button_to "Volver al detalle", car_path , class:"btn btn-outline-secondary"%>
+  
 </div>

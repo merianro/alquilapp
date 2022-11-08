@@ -115,10 +115,14 @@
               </div>
             </div>
           </div>
+          <div class="btn-group" role="group" data-inline:"true">
+          <%= button_to "Editar vehículo", edit_car_path(@car), class:"btn btn-outline-warning" %>
           <div class="botonDelete">
             <%= button_to "Eliminar vehículo", @car, method: :delete, class:"btn btn-outline-danger" %>
           </div>
+          
           <!-- <%= link_to "Editar datos", edit_car_path(@car) %> -->
+          </div>
           
         </div>
           
