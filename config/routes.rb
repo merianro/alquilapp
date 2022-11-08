@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  resources :validations
-  resources :cars
-  resources :mercado_pagos
-  resources :mp_webhooks
   get 'main/home',   to: 'home#main'
   devise_for :users
   
@@ -34,11 +30,21 @@ Rails.application.routes.draw do
   get 'users/cmngsoon', to: 'users#cmngsoon'
   post 'users/cmngsoon', to: 'users#comngsoon'
   
+  get 'validations/new', to: 'validations#new'
+  post 'validations/new', to: 'validations#new'
+  
+  get 'validations/asignarse', to: 'validations#asignarse'
+  post 'validations/asignarse', to: 'validations#asignarse'
+  
   resources :users
+  resources :validations
+  resources :cars
+  resources :mercado_pagos
+  resources :mp_webhooks
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   # Defines the root path route ("/")
-
+  
   authenticated :user do
     root "cars#home", as: :authenticated_root
   end

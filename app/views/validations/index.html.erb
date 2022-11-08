@@ -1,4 +1,4 @@
-<p style="color: green"><%= notice %></p>
+<!-- <p style="color: green"><%= notice %></p>
 
 <h1>Validations</h1>
 
@@ -10,5 +10,93 @@
     </p>
   <% end %>
 </div>
+-->
 
-<%= link_to "New validation", new_validation_path, class:"btn btn-outline-dark" %>
+
+<%= stylesheet_link_tag "validations.css" %>
+  <div class="container-fluid principal">
+    <div class="row">
+      <div class="col card left">
+        <div class="text-center">
+          <h2>Mis Validaciones</h2>
+        </div>
+        <table class="table table-hover">
+
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @validations.each do |validation| %>
+              <% if validation.su_id == current_user.id then %>
+              <tr>
+                <td>
+                  <%= validation.user.name %>
+                </td>
+                <td>
+                  <%= validation.user.surname %>
+                </td>
+                <td>
+                  <%= validation.user.dni %>
+                </td>
+                <td>
+                  <%= link_to "Ver detalle" , validation %>
+                </td>
+              </tr>
+              <% end %>
+              <% end %>
+          </tbody>
+
+        </table>
+      </div>
+      <div class="col card right">
+        <div class="text-center">
+          <h2>Validaciones</h2>
+        </div>
+        <table class="table table-hover">
+
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @validations.each do |validation| %>
+            <% if validation.su_id == nil then %>
+              <tr>
+                <td>
+                  <%= validation.user.name %>
+                </td>
+                <td>
+                  <%= validation.user.surname %>
+                </td>
+                <td>
+                  <%= validation.user.dni %>
+                </td>
+                <td>
+                  <%= link_to "Asignarla", '/validations/asignarse?id=' + validation.id.to_s %>
+                </td>
+                <td>
+                  <%= link_to "Ver detalle" , validation %>
+                </td>
+              </tr>
+              <% end %>
+              <% end %>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <%= link_to "New validation", new_validation_path, class:"btn btn-outline-dark" %> 

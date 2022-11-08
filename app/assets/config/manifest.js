@@ -4,4 +4,7 @@
 //= link_tree ../builds
 //= link left_sidebar.css   
 //= link login.css
+  //= link home.css
+  //= link validations.css 
+
 //= link mercado_pagos.css

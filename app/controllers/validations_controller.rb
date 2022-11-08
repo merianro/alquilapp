@@ -60,6 +60,18 @@ class ValidationsController < ApplicationController
     end
   end
 
+  def asignarse
+    @validation = Validation.find(params[:id])
+    @validation.update(su_id: current_user.id)
+
+    respond_to do |format|
+      format.html { redirect_to validations_url, notice: "Validation was successfully destroyed." }
+      format.json { head :no_content }
+  end
+
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_validation
