@@ -1,43 +1,45 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Vehículos</h1>
+<div class="container-fluid justify-content-center">
 
-<table class="table table-hover">
-
-  <thead class="thead-dark">
-    <tr>
-      <th>Marca</th> 
-      <th>Modelo</th> 
-      <th>Año</th> 
-      <th>Color</th> 
-      <th>Transmision</th> 
-      <th>Capacidad</th>
-      <th>Disponible</th>
-      <th>Patente</th>
-      <th>Porcentaje de combustible</th>
-      <th>Tipo de combustible</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @cars.each do |car| %>
-    <tr>
-      <td><%=h car.marca %></td> 
-      <td><%=h car.modelo %></td> 
-      <td><%=h car.ano %></td> 
-      <td><%=h car.color %></td>
-      <td><%=h car.transmision %></td> 
-      <td><%=h car.capacidad %></td>
-      <td><%=h car.disponible %></td>
-      <td><%=h car.patente %></td>
-      <td><%=h car.porcentaje_combustible %></td>
-      <td><%=h car.tipo_de_combustible %></td>
-      <td><%= link_to "Ver detalle", car %></td>
-    </tr>
-    <% end %>
-</tbody>
-
-</table>
+  <table class="table table-hover">
+  
+    <thead class="thead-dark">
+      <tr>
+        <th>Marca</th> 
+        <th>Modelo</th> 
+        <th>Año</th> 
+        <th>Color</th> 
+        <th>Transmision</th> 
+        <th>Capacidad</th>
+        <th>Disponible</th>
+        <th>Patente</th>
+        <th>Porcentaje de combustible</th>
+        <th>Tipo de combustible</th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%=h car.marca %></td> 
+        <td><%=h car.modelo %></td> 
+        <td><%=h car.ano %></td> 
+        <td><%=h car.color %></td>
+        <td><%=h car.transmision %></td> 
+        <td><%=h car.capacidad %></td>
+        <td><%=h car.disponible %></td>
+        <td><%=h car.patente %></td>
+        <td><%=h car.porcentaje_combustible %></td>
+        <td><%=h car.tipo_de_combustible %></td>
+        <td><%= link_to "Ver detalle", car %></td>
+      </tr>
+      <% end %>
+  </tbody>
+  
+  </table>
+</div>
 
 <%= button_to "Agregar nuevo vehículo", new_car_path, class:"btn btn-outline-success" %>

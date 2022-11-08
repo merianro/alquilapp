@@ -23,7 +23,7 @@ class CarsController < ApplicationController
   # POST /cars or /cars.json
   def create
     @car = Car.new(car_params)
-    Car.where(id: @car.id).update(ubication: "-34.932396841058896, -57.93801864135309")
+    @car.update(ubication: "-34.932396841058896, -57.93801864135309")
     respond_to do |format|
       if @car.save
         format.html { redirect_to car_url(@car), notice: "Car was successfully created." }
