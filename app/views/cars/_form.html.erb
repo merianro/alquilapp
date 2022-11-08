@@ -1,4 +1,4 @@
-<%= simple_form_for(@car) do |f| %>
+<%= simple_form_for(@car, url: cars_create_url) do |f| %>
   <% if car.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
@@ -69,14 +69,6 @@
             </div>
             <hr>
             <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Tipo</p>
-              </div>
-              <div class="col-sm-9">
-                <%= f.input :tipo, required: true, autofocus: true, input_html: { autocomplete: "tipo" } %>
-              </div>
-            </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
@@ -116,10 +108,7 @@
             </div>
           </div>
           <div class="botonConf">
-            <%= form.button :submit, "Guardar cambios", class:"btn btn-outline-success" %>
-          </div>
-          <div class="botonConf">
-            <%= form.button :submit, "Guardar cambios", class:"btn btn-outline-success" %>
+            <%= f.button :submit,  'Guardar cambios',class:"btn btn-outline-success"   %>          
           </div>
         </div>
         </div>
@@ -128,9 +117,7 @@
   </div>
 </section>
 
-  <div>
-     <%= f.button :submit %>
-  </div>
+
 <% end %>
 
 <style>

@@ -22,7 +22,6 @@ class CarsController < ApplicationController
 
   # POST /cars or /cars.json
   def create
-    puts ("HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOLA")
     @car = Car.new(car_params)
     Car.where(id: @car.id).update(ubication: "-34.932396841058896, -57.93801864135309")
     respond_to do |format|
@@ -67,6 +66,6 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:marca, :modelo, :ano, :color, :transmision, :capacidad, :patente, :disponible, :tipo_de_combustible, :porcentaje_combustible)
+      params.require(:car).permit(:marca, :modelo, :ano, :color, :tipo_de_combustible, :transmision, :capacidad, :patente, :disponible, :porcentaje_combustible)
     end
 end

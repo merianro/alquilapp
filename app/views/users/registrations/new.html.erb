@@ -11,21 +11,21 @@
                 <div class="form-floating mb-3">
                   <div class="row">
                     <div class="col">
-                      <%= f.input :name,
+                      <%= f.input :name, label: 'Nombre',
                       required: true,
                       autofocus: true,
                       input_html: { autocomplete: "name" }%>
                     </div>
                     <div class="col">
-                      <%= f.input :surname,
+                      <%= f.input :surname, label: 'Apellido',
                                   required: true,
-                                  autofocus: true,
+                                  autofocus: true, 
                                   input_html: { autocomplete: "surname" }%>
                     </div>
                   </div>
                 </div>
                 <div class="form-floating mb-3">
-                  <%= f.input :birthdate, start_year: Time.now.year - 100, end_year: Time.now.year-18,
+                  <%= f.input :birthdate, label: 'Fecha de nacimiento',start_year: Time.now.year - 100, end_year: Time.now.year-18,
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "birthdate" }%> 
@@ -43,19 +43,19 @@
                   input_html: {  maxlength: 8, autocomplete: "dni" }%>  
                 </div>
                 <div class="form-floating mb-3">
-                  <%= f.input :phone,
+                  <%= f.input :phone, label: 'Telefono',
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "phone" }%>  
                 </div>
                 <div class="form-floating mb-3">
-                  <%= f.input :password,
+                  <%= f.input :password, label: 'Contrasena',
                   required: true,
                   hint: ("#{@minimum_password_length} caracteres minimos" if @minimum_password_length),
                   input_html: { autocomplete: "new-password" } %>
                 </div>
                 <div class="form-floating mb-3">
-                  <%= f.input :password_confirmation,
+                  <%= f.input :password_confirmation, label: 'Apellido',
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
                 </div>

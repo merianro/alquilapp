@@ -5,11 +5,18 @@ Rails.application.routes.draw do
   get 'cars', to: 'cars#index'
   post 'cars', to: 'cars#index'
 
+  get 'cars/new', to: 'cars#new'
+  post 'cars/new', to: 'cars#new'
+
+  get 'cars/create', to: 'cars#create'
+  post 'cars/create', to: 'cars#create'
+
   get 'users/create_su', to: 'users#create_su'
   post 'users/create_su', to: 'users#create_su'
 
   get 'cars/:id', to: 'cars#show'
-  post 'cars/:id', to: 'cars#show'get 'users/edit_su', to: 'users#edit_su'
+  post 'cars/:id', to: 'cars#show'
+  get 'users/edit_su', to: 'users#edit_su'
   post 'users/edit_su', to: 'users#edit_su'
   
   get 'users/suindex', to: 'users#suindex'
@@ -19,7 +26,7 @@ Rails.application.routes.draw do
   post 'users/drindex', to: 'users#drindex'
   
   post '/cars/:id/edit', to: 'cars#edit'
-  post '/cars/new', to: 'cars#new'
+
   
   post '/users/:id/edit', to: 'users#edit'
   post '/users/new', to: 'users#new'
