@@ -1,37 +1,42 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Conductores</h1>
+<div class="container-fluid justify-content-center">
 
-<table class="table table-hover">
+  <h1>Conductores</h1>
+  <div class="table-responsive">
 
-  <thead class="thead-dark">
-    <tr>
-      <th>Nombre</th> 
-      <th>Apellido</th> 
-      <th>DNI</th> 
-      <th>Fecha de Nacimiento</th> 
-      <th>Email</th> 
-      <th>Celular de Contacto</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user.each do |user| %>
-      <% if user.role == "driver" then %>
-      <tr>
-        <td><%= user.name %></td> 
-        <td><%= user.surname %></td> 
-        <td><%= user.dni %></td> 
-        <td><%= user.birthdate %></td>
-        <td><%= user.email %></td> 
-        <td><%= user.phone %></td>
-        <td><%= link_to "Ver detalle", user %></td> 
-      </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-
-</table>
+    <table class="table table-hover">
+    
+      <thead class="table-light">
+        <tr>
+          <th class="text-center">Nombre</th> 
+          <th class="text-center">Apellido</th> 
+          <th class="text-center">DNI</th> 
+          <th class="text-center">Fecha de Nacimiento</th> 
+          <th class="text-center">Email</th> 
+          <th class="text-center">Celular de Contacto</th>
+          <th class="text-center"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @user.each do |user| %>
+          <% if user.role == "driver" then %>
+          <tr>
+            <td class="text-center"><%= user.name %></td> 
+            <td class="text-center"><%= user.surname %></td> 
+            <td class="text-center"><%= user.dni %></td> 
+            <td class="text-center"><%= user.birthdate %></td>
+            <td class="text-center"><%= user.email %></td> 
+            <td class="text-center"><%= user.phone %></td>
+            <td class="text-center"><%= link_to "Ver detalle", user %></td> 
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    
+    </table>
+  </div>
+</div>
 
 <%= link_to "Agregar nuevo conductor", users_new_path %>

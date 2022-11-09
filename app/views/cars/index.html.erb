@@ -1,45 +1,75 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green">
+  <%= notice %>
+</p>
 
-<h1>Vehículos</h1>
 <div class="container-fluid justify-content-center">
+  <h1>Vehículos</h1>
+  <div class="table-responsive">
 
-  <table class="table table-hover">
-  
-    <thead class="thead-dark">
-      <tr>
-        <th>Marca</th> 
-        <th>Modelo</th> 
-        <th>Año</th> 
-        <th>Color</th> 
-        <th>Transmision</th> 
-        <th>Capacidad</th>
-        <th>Disponible</th>
-        <th>Patente</th>
-        <th>Porcentaje de combustible</th>
-        <th>Tipo de combustible</th>
-        <th></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-    <% @cars.each do |car| %>
-      <tr>
-        <td><%=h car.marca %></td> 
-        <td><%=h car.modelo %></td> 
-        <td><%=h car.ano %></td> 
-        <td><%=h car.color %></td>
-        <td><%=h car.transmision %></td> 
-        <td><%=h car.capacidad %></td>
-        <td><%=h car.disponible %></td>
-        <td><%=h car.patente %></td>
-        <td><%=h car.porcentaje_combustible %></td>
-        <td><%=h car.tipo_de_combustible %></td>
-        <td><%= link_to "Ver detalle", car %></td>
-      </tr>
-      <% end %>
-  </tbody>
-  
-  </table>
+    <table class="table table-hover">
+
+      <thead class="table-light">
+        <tr>
+          <th class="text-center">Marca</th>
+          <th class="text-center">Modelo</th>
+          <th class="text-center">Año</th>
+          <th class="text-center">Color</th>
+          <th class="text-center">Transmision</th>
+          <th class="text-center">Capacidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Disponible</th>
+          <th class="text-center">Patente</th>
+          <th class="text-center">Porcentaje de combustible</th>
+          <th class="text-center">Tipo de combustible</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @cars.each do |car| %>
+          <tr>
+            <td class="text-center">
+              <%=h car.marca %>
+            </td>
+            <td class="text-center">
+              <%=h car.modelo %>
+            </td>
+            <td class="text-center">
+              <%=h car.ano %>
+            </td>
+            <td class="text-center">
+              <%=h car.color %>
+            </td>
+            <td class="text-center">
+              <%=h car.transmision %>
+            </td>
+            <td class="text-center">
+              <%=h car.capacidad %>
+            </td>
+            <td class="text-center">
+              <%=h car.tipo %>
+            </td>
+            <td class="text-center">
+              <%=h car.disponible %>
+            </td>
+            <td class="text-center">
+              <%=h car.patente %>
+            </td>
+            <td class="text-center">
+              <%=h car.porcentaje_combustible %>
+            </td>
+            <td class="text-center">
+              <%=h car.tipo_de_combustible %>
+            </td>
+            <td class="text-center">
+              <%= link_to "Ver detalle" , car %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+
+    </table>
+  </div>
+
+  <%= button_to "Agregar nuevo vehículo" , new_car_path, class:"btn btn-outline-success" %>
 </div>
-
-<%= button_to "Agregar nuevo vehículo", new_car_path, class:"btn btn-outline-success" %>

@@ -19,7 +19,7 @@
 
           <tbody>
             <% @validations.each do |validation| %>
-              <% if validation.su_id==current_user.id and validation.user.validado == false then %>
+              <% if validation.su_id==current_user.id and validation.user.validado==nil then %>
                 <tr>
                   <td>
                     <%= validation.user.name %>
@@ -81,9 +81,7 @@
                 <% end %>
                   <% end %>
           </tbody>
-
         </table>
       </div>
     </div>
-
   </div>
