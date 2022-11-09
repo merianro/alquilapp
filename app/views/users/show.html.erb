@@ -9,7 +9,11 @@
 <div>
   
   <% if current_user.role == "su" or current_user.role == "admin" then %>
-      <%= button_to "Editar", edit_user_path(@user), class:"btn btn-outline-warning" %>   
+      <% if @user.su? %>
+        <%= button_to "Editar supervisor", edit_user_path(@user), class:"btn btn-outline-warning" %>   
+      <% else %>
+        <%= button_to "Editar usuario", edit_user_path(@user), class:"btn btn-outline-warning" %>  
+      <% end %> 
     <%= button_to "Volver a Conductores", users_drindex_path, class:"btn btn-outline-success" %>
   <% end %>
 

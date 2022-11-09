@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'main/home',   to: 'home#main'
   devise_for :users, controllers: { registrations: "users/registrations" }
-
+  
   get 'cars', to: 'cars#index'
   post 'cars', to: 'cars#index'
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post 'cars/:id', to: 'cars#show'
   get 'users/edit_su', to: 'users#edit_su'
   post 'users/edit_su', to: 'users#edit_su'
-  
+
   get 'users/suindex', to: 'users#suindex'
   post 'users/suindex', to: 'users#suindex'
   

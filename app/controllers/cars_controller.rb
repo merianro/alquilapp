@@ -26,7 +26,7 @@ class CarsController < ApplicationController
     @car.update(ubication: "-34.932396841058896, -57.93801864135309")
     respond_to do |format|
       if @car.save
-        format.html { redirect_to car_url(@car), notice: "Car was successfully created." }
+        format.html { redirect_to car_url(@car), notice: "Auto correctamente creado." }
         format.json { render :show, status: :created, location: @car }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class CarsController < ApplicationController
   def update
     respond_to do |format|
       if @car.update(car_params)
-        format.html { redirect_to car_url(@car), notice: "Car was successfully updated." }
+        format.html { redirect_to car_url(@car), notice: "Auto correctamente actualizado." }
         format.json { render :show, status: :ok, location: @car }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,10 +51,16 @@ class CarsController < ApplicationController
   # DELETE /cars/1 or /cars/1.json
   def destroy
     @car.destroy
-
-    respond_to do |format|
-      format.html { redirect_to cars_url, notice: "Car was successfully destroyed." }
-      format.json { head :no_content }
+    if @car.disponible
+      respond_to do |format|
+        format.html { redirect_to cars_url, notice: "Auto eliminado correctamente." }
+        format.json { head :no_content }
+      end
+    else 
+      respond_to do |format|
+        format.html { redirect_to cars_url, notice: "No se pudo eliminar el auto debido a que está en uso." }
+        format.json { head :no_content }
+      end
     end
   end
 

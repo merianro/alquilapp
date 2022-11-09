@@ -3,7 +3,7 @@
 <% if !@user.su? %>
   <%= render "form", user: @user %>
 <% else %>
-  <%= render "formCrearSupervisor", user: @user %>
+  <%= render "formEditSupervisor", user: @user %>
 <% end%>
 
 

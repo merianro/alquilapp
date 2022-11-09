@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         User.where(id: @user.id).update(role: 'su')
-        format.html { redirect_to users_suindex_path, notice: "Supervisor creado correcatamente." }
+        format.html { redirect_to users_suindex_path, notice: "Supervisor creado correctamente." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { redirect_to users_suindex_path, notice: "Error al crear Supervisor." }
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+        format.html { redirect_to user_url(@user), notice: "Usuario creado correctamente." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -92,13 +92,25 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     @user = User.find(params[:id])
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    if !@user.su?
+      respond_to do |format|
+        if @user.update(user_params)
+          format.html { redirect_to user_url(@user), notice: "Usuario editado correctamente." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        if @user.update(su_params)
+          format.html { redirect_to user_url(@user), notice: "Supervisor editado correctamente." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -110,12 +122,12 @@ class UsersController < ApplicationController
 
     if current_user.admin? or current_user.su?  then
       respond_to do |format|
-        format.html { redirect_to users_drindex_path, notice: "User was successfully destroyed." }
+        format.html { redirect_to users_drindex_path, notice: "Usuario correctamente eliminado." }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+        format.html { redirect_to users_url, notice: "Usuario correctamente eliminado." }
         format.json { head :no_content }
       end
     end

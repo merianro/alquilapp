@@ -1,7 +1,7 @@
-<%= simple_form_for(@car, url: cars_create_url) do |f| %>
+<%= simple_form_for(@car) do |f| %>
   <% if car.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(car.errors.count, "error") %> no permitio que este auto se guarde:</h2>
+      <h2><%= pluralize(car.errors.count, "error") %> no permitio que este auto se guarde :</h2>
 
       <ul>
         <% car.errors.each do |error| %>
@@ -55,7 +55,7 @@
                 <p class="mb-0">Transmision</p>
               </div>
               <div class="col-sm-9">
-                 <%= f.input :transmision, collection: ['Manual','Automatica'],required: true, autofocus: true, input_html: { autocomplete: "transmision" } %>
+                 <%= f.input :transmision, collection: ['Manual', 'Automatica'],required: true, autofocus: true, input_html: { autocomplete: "transmision" } %>
               </div>
             </div>
             <hr>
