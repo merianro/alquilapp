@@ -1,11 +1,19 @@
 <%= simple_form_for (@user) do |f| %>
   <%= f.input :name, required: true, autofocus: true, input_html: { autocomplete: "name" } %>
+
   <%= f.input :surname, required: true, autofocus: true, input_html: { autocomplete: "surname" } %>
+
   <%= f.input :birthdate, required: true, autofocus: true, input_html: { autocomplete: "birthdate" } %>
-  <%= f.input :phone, required: true, autofocus: true, input_html: { autocomplete: "birthdate" } %>
+
+  <%= f.input :phone, required: true, autofocus: true, input_html: { autocomplete: "phone" } %>
+
   <%= f.input :dni, required: true, autofocus: true, input_html: { autocomplete: "dni" } %>
+
   <%=  f.input :role, :as => :hidden, :input_html => { :value => 0 } %>
+
   <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" } %>
+
   <%= f.input :password, required: true, autofocus: true, input_html: { autocomplete: "email" } %>
+
   <%= f.button :submit, 'Guardar cambios' %>
 <% end %>

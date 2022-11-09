@@ -66,6 +66,7 @@
 
     </table>
   </div>
-
-  <%= button_to "Agregar nuevo vehículo" , new_car_path, class:"btn btn-outline-success" %>
+  <% if current_user.admin? then%>
+    <%= button_to "Agregar nuevo vehículo" , new_car_path, class:"btn btn-outline-success" %>
+  <% end %>
 </div>
