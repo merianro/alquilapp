@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  validate :password_regex
   enum role: [:driver, :su, :admin]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -10,5 +11,10 @@ class User < ApplicationRecord
   has_one :validation, dependent: :destroy
   validates_uniqueness_of :dni
 
+  private
+  def password_regex
+    return if password.blank? || password =~ /\A(?=.*[a-z])(?=.*[A-Z]).{5,}\z/ || password == email
+      errors.add :password,'La contraseña debe ser diferente al email y debe tener entre 6 y 20 caracteres incluyendo una letra minúscula y una letra mayúscula'
+  end
 
 end
