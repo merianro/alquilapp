@@ -19,7 +19,7 @@
 
           <tbody>
             <% @validations.each do |validation| %>
-              <% if validation.su_id==current_user.id and validation.user.validado==nil then %>
+              <% if validation.su_id==current_user.id and validation.user.validado==false then %>
                 <tr>
                   <td>
                     <%= validation.user.name %>
