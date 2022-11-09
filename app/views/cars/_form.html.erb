@@ -1,7 +1,7 @@
 <%= simple_form_for(@car, url: cars_create_url) do |f| %>
-  <% if car.errors.any? %>
+   <% if car.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(car.errors.count, "error") %> no permitio que este auto se guarde:</h2>
+      <h2><%= pluralize(car.errors.count, "error") %> no permitio que este auto se guarde :</h2>
 
       <ul>
         <% car.errors.each do |error| %>
@@ -10,10 +10,10 @@
       </ul>
     </div>
   <% end %>
-  <section style="background-color: #ffffff;">
-      <div class="col-lg-8">
-      <div class="card mb-4">
-        <div class="card-body">
+  <div class="container-fluid justify-content-center" align="center">
+      <div class="col-lg-7 ">
+        <div class="card mb">
+        <div class="card-body text-start">
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Marca</p>
@@ -55,7 +55,7 @@
                 <p class="mb-0">Transmision</p>
               </div>
               <div class="col-sm-9">
-                 <%= f.input :transmision, collection: ['Manual','Automatica'],required: true, autofocus: true, input_html: { autocomplete: "transmision" } %>
+                 <%= f.input :transmision, collection: ['Manual', 'Automatica'],required: true, autofocus: true, input_html: { autocomplete: "transmision" } %>
               </div>
             </div>
             <hr>
@@ -68,8 +68,6 @@
               </div>
             </div>
             <hr>
-            <hr>
-            <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Disponible</p>
@@ -78,14 +76,13 @@
                 <%= f.input :disponible, required: true, autofocus: true, input_html: { autocomplete: "disponible" } %>
               </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Patente</p>
-              </div>
-              <div class="col-sm-9">
-                <%= f.input :patente, required: true, autofocus: true, input_html: { autocomplete: "patente" } %>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Patente</p>
+                </div>
+                <div class="col-sm-9">
+                <%= f.input :patente, required: true, autofocus: true, input_html: { autocomplete: "patente"} %>
               </div>
             </div>
             <hr>
@@ -107,15 +104,16 @@
               </div>
             </div>
           </div>
-          <div class="botonConf">
-            <%= f.button :submit,  'Guardar cambios',class:"btn btn-outline-success"   %>          
+            <div class="btn-group botonConf" role="group">
+              <%= f.button :submit,'Guardar cambios',class:"btn btn-outline-success"%>          
+            </div>
           </div>
         </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 
 <% end %>
@@ -123,6 +121,7 @@
 <style>
 .botonConf{
   margin-left: auto;
-  padding-left: 5px;
+  padding: 7px;
+  gap: 10px;
 }
 </style>

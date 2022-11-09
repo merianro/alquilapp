@@ -44,8 +44,8 @@ class MpWebhooksController < ApplicationController
     # si detecta en el json que esta aprobado el pago
     idUsuario = ""
     saldo = 0.0
-    
-    if ((aux2['"status": "approved",']) && MpWebhook.where(id_pago: @idPago).first.accredited == false) then
+
+    if ((aux2['\"status\":\"approved\"']) && MpWebhook.where(id_pago: @idPago).first.accredited == false) then
       MpWebhook.where(id_pago: @idPago).first.update(accredited: true)
       idUsuario = data_json['metadata']['one']  
       saldo = data_json['transaction_amount']

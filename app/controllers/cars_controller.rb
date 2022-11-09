@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: %i[ update ]
   before_action :set_car, only: %i[ show edit update destroy ]
 
   # GET /cars or /cars.json
@@ -50,8 +51,8 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1 or /cars/1.json
   def destroy
-    @car.destroy
     if @car.disponible
+      @car.destroy
       respond_to do |format|
         format.html { redirect_to cars_url, notice: "Auto eliminado correctamente." }
         format.json { head :no_content }
