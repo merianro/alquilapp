@@ -1,6 +1,6 @@
 class ValidationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_op, except: [ :new ]
+  before_action :is_op, except: [ :new, :create, :edit, :update ]
   before_action :set_validation, only: %i[ show edit update destroy ]
 
   # GET /validations or /validations.json
@@ -27,7 +27,7 @@ class ValidationsController < ApplicationController
 
     respond_to do |format|
       if @validation.save
-        format.html { redirect_to validation_url(@validation), notice: "Validation was successfully created." }
+        format.html { redirect_to validation_url(@validation), notice: "Validacion correctamente creada." }
         format.json { render :show, status: :created, location: @validation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,8 @@ class ValidationsController < ApplicationController
   def update
     respond_to do |format|
       if @validation.update(validation_params)
-        format.html { redirect_to validation_url(@validation), notice: "Validation was successfully updated." }
+        @validation.user.update(validado: false)
+        format.html { redirect_to validation_url(@validation), notice: "Validacion correctamente actualizada." }
         format.json { render :show, status: :ok, location: @validation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +55,7 @@ class ValidationsController < ApplicationController
     @validation.destroy
 
     respond_to do |format|
-      format.html { redirect_to validations_url, notice: "Validation was successfully destroyed." }
+      format.html { redirect_to validations_url, notice: "Validacion correctamente eliminada." }
       format.json { head :no_content }
     end
   end
@@ -64,7 +65,7 @@ class ValidationsController < ApplicationController
     @validation.update(su_id: current_user.id)
 
     respond_to do |format|
-      format.html { redirect_to validations_url, notice: "Validation was successfully destroyed." }
+      format.html { redirect_to validations_url, notice: "" }
       format.json { head :no_content }
     end
   end
@@ -74,7 +75,7 @@ class ValidationsController < ApplicationController
     @validation.user.update(validado: true)
 
     respond_to do |format|
-      format.html { redirect_to validations_url, notice: "Validation was successfully destroyed." }
+      format.html { redirect_to validations_url, notice: "" }
       format.json { head :no_content }
     end
   end

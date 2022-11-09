@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get 'cars/create', to: 'cars#create'
   post 'cars/create', to: 'cars#create'
 
+
+  post '/validations/:id/edit', to: 'validations#edit'
+
   get 'users/create_su', to: 'users#create_su'
   post 'users/create_su', to: 'users#create_su'
 
