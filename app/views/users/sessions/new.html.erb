@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "login" %>
-
+      
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="container">
       <div class="row">
@@ -22,6 +22,8 @@
                 <div class="d-grid">
                   <%= f.button :submit, "Iniciar Sesión" , class:"btn btn-warning btn-login text-uppercase fw-bold"%>
                 </div>
+                <p class="notice"><%= notice %></p>
+                <p class="alert"><%= alert %></p>
                 <hr class="my-4">
                 <div class="d-grid mb-2">
                   <%- if devise_mapping.registerable? && controller_name !='registrations' %>

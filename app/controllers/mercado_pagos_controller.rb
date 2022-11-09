@@ -4,7 +4,7 @@ class MercadoPagosController < ApplicationController
 
   def index
     # Agrega credenciales ACCESS TOKEN
-    sdk = Mercadopago::SDK.new('APP_USR-2185035345250512-110711-a414960bc15e6b23db5ce0ecf3eec42e-1233642853')
+    sdk = Mercadopago::SDK.new('APP_USR-2805752703700726-110908-7eb68cf1eb5a54dae828f0742764a1a4-1235201130')
     # Crea un objeto de preferencia
     preference_data = {
       items: [
@@ -22,9 +22,9 @@ class MercadoPagosController < ApplicationController
         # envio el id del usuario que esta recargando el saldo
       },
       back_urls: {
-            success: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
-            failure: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
-            pending: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos"
+            success: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos",
+            failure: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos",
+            pending: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos"
         }   
       }
 
@@ -44,9 +44,9 @@ class MercadoPagosController < ApplicationController
         # envio el id del usuario que esta recargando el saldo
       },
       back_urls: {
-        success: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
-        failure: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
-        pending: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos"
+        success: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos",
+        failure: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos",
+        pending: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos"
         }   
       } 
 
@@ -66,9 +66,9 @@ class MercadoPagosController < ApplicationController
         # envio el id del usuario que esta recargando el saldo
       },
       back_urls: {
-        success: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
-        failure: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
-        pending: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos"
+        success: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos",
+        failure: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos",
+        pending: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos"
         }   
       } 
 
@@ -88,9 +88,9 @@ class MercadoPagosController < ApplicationController
           # envio el id del usuario que esta recargando el saldo
         },
         back_urls: {
-          success: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
-          failure: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos",
-          pending: "https://447d-190-191-134-244.sa.ngrok.io/mercado_pagos"
+          success: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos",
+          failure: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos",
+          pending: "https://331f-191-84-232-112.sa.ngrok.io/mercado_pagos"
           }   
       } 
 

@@ -30,7 +30,7 @@ class MpWebhooksController < ApplicationController
     uri = URI(aux)
     req = Net::HTTP::Get.new(uri)
     # access token
-    req['Authorization'] = 'Bearer APP_USR-2185035345250512-110711-a414960bc15e6b23db5ce0ecf3eec42e-1233642853'
+    req['Authorization'] = 'Bearer APP_USR-2805752703700726-110908-7eb68cf1eb5a54dae828f0742764a1a4-1235201130'
 
     req_options = {
       use_ssl: uri.scheme == "https"
@@ -45,8 +45,7 @@ class MpWebhooksController < ApplicationController
     idUsuario = ""
     saldo = 0.0
     
-    if ((aux2["approved"]) && MpWebhook.where(id_pago: @idPago).first.accredited == false) then
-      puts "*********************** un convicto *******************"
+    if ((aux2['"status": "approved",']) && MpWebhook.where(id_pago: @idPago).first.accredited == false) then
       MpWebhook.where(id_pago: @idPago).first.update(accredited: true)
       idUsuario = data_json['metadata']['one']  
       saldo = data_json['transaction_amount']
