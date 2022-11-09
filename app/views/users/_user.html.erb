@@ -110,7 +110,7 @@
         </div>
 
       </div>
-
+      <% if user.validation != nil then %>
       <div class="card text-center containerFoto">
         <div class="container-fluid">
           <div>
@@ -124,6 +124,7 @@
           <%= button_to "Actualizar Licencia" , edit_validation_path(user.validation), class:"btn btn-outline-primary" %>
         </div>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
