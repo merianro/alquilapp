@@ -88,7 +88,7 @@ class ValidationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def validation_params
-      params.require(:validation).permit(:su_id, :image, :user_id)
+      params.require(:validation).permit(:image, :user_id)
     end
 
     def is_op
