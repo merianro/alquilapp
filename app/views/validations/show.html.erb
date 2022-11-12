@@ -1,12 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green">
+  <%= notice %>
+</p>
 
-<%= render @validation %>
+<!-- <%= render @validation %> -->
 
-<%= image_tag(@validation.image) %>
-<div>
+<div class="container justify-content-center">
 
-  <%= link_to "Edit this validation", edit_validation_path(@validation) %>
-  <%= link_to "Back to validations", validations_path %>
-
-  <%= button_to "Destroy this validation", @validation, method: :delete %>
+  <div class="card text-center containerFoto">
+    <div class="container-fluid">
+      <div>
+        <h3 class="fs-4 text-start">Licencia</h3>
+      </div>
+      <div class="container-fluid">
+        <%= image_tag(@validation.image,class:"img-fluid",style:"width:40%")%>
+      </div>
+    </div>
+    <div class="btn-group botones" role="group">
+      <!-- <%= link_to "Edit this validation", edit_validation_path(@validation) %> -->
+      <%= button_to "Rechazar validacion" , @validation, :onclick => "return confirm('Esta seguro que desea rechazar la validacion?')", method: :delete , class:"btn btn-outline-danger"%>
+      <%= link_to "Volver a validaciones", validations_path ,class:"btn btn-outline-secondary"%>
+    </div>
+  </div>
 </div>
+
+<style>
+  .botones {
+    margin-left: auto;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    gap: 10px;
+  }
+</style>

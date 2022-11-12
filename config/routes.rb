@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get 'cars/:id', to: 'cars#show'
   post 'cars/:id', to: 'cars#show'
+  
   get 'users/edit_su', to: 'users#edit_su'
   post 'users/edit_su', to: 'users#edit_su'
 
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   post 'users/drindex', to: 'users#drindex'
   
   post '/cars/:id/edit', to: 'cars#edit'
+  
 
   
   post '/users/:id/edit', to: 'users#edit'
@@ -54,6 +56,9 @@ Rails.application.routes.draw do
   
   get 'validations/asignarse', to: 'validations#asignarse'
   post 'validations/asignarse', to: 'validations#asignarse'
+
+  get 'validations/desasignar', to: 'validations#desasignar'
+  post 'validations/desasignar', to: 'validations#desasignar'
   
   get 'validations/validate', to: 'validations#validate'
   post 'validations/validate', to: 'validations#validate'

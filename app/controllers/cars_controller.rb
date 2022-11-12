@@ -57,10 +57,10 @@ class CarsController < ApplicationController
         format.html { redirect_to cars_url, notice: "Auto eliminado correctamente." }
         format.json { head :no_content }
       end
-    else 
+    else
       respond_to do |format|
-        format.html { redirect_to cars_url, notice: "No se pudo eliminar el auto debido a que está en uso." }
-        format.json { head :no_content }
+        format.html { redirect_to cars_url(@car), notice: "No se pudo eliminar el auto debido a que está en uso." }
+        format.json { render :show, status: :ok, location: @car }
       end
     end
   end

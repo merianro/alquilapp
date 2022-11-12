@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag "login" %>
 
   <%= simple_form_for(@validation) do |f| %>
-    <%= f.error_notification %>
-      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <!-- <%= f.error_notification %> -->
+      <!-- <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %> -->
         <div class="container">
           <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -12,7 +12,7 @@
                   <form>
                     <div class="form-floating mb-3">
                       <div class="input-group mb-3">
-                        <%= f.input :image, class:"form-control", id:"inputGroupFile02"%>
+                        <%= f.input :image, as: :file, class:"form-control", required: true%>
                       </div>
                     </div>
                     <div class="form-floating mb-3">

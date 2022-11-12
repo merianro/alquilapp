@@ -1,5 +1,7 @@
 <h1>Editar vehículo</h1>
-
-<%= render "form_edit", car: @car %>
-
+<% if current_user.admin? then %>
+    <%= render "form_edit", car: @car %>
+<% else %>
+    <%= render "form_edit_su", car: @car %>
+<% end %>
 <br>

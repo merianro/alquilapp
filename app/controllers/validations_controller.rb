@@ -53,7 +53,7 @@ class ValidationsController < ApplicationController
   # DELETE /validations/1 or /validations/1.json
   def destroy
     @validation.destroy
-
+    @validation.user.update(validado: false)
     respond_to do |format|
       format.html { redirect_to validations_url, notice: "Validacion correctamente eliminada." }
       format.json { head :no_content }
@@ -63,6 +63,16 @@ class ValidationsController < ApplicationController
   def asignarse
     @validation = Validation.find(params[:id])
     @validation.update(su_id: current_user.id)
+
+    respond_to do |format|
+      format.html { redirect_to validations_url, notice: "" }
+      format.json { head :no_content }
+    end
+  end
+
+  def desasignar
+    @validation = Validation.find(params[:id])
+    @validation.update(su_id: "")
 
     respond_to do |format|
       format.html { redirect_to validations_url, notice: "" }

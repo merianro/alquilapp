@@ -37,7 +37,7 @@
                 <p class="mb-0">Año</p>
               </div>
               <div class="col-sm-9">
-                <%= f.input :ano, required: true, autofocus: true, input_html: { autocomplete: "ano" } %>
+                <%= f.input :ano, autofocus: true, input_html: { autocomplete: "ano" } %>
               </div>
             </div>
             <hr>
@@ -46,7 +46,7 @@
                 <p class="mb-0">Color</p>
               </div>
               <div class="col-sm-9">
-                <%= f.input :color, required: true, autofocus: true, input_html: { autocomplete: "color" } %>
+                <%= f.input :color, autofocus: true, input_html: { autocomplete: "color" } %>
               </div>
             </div>
             <hr>
@@ -91,7 +91,7 @@
                 <p class="mb-0">Porcentaje de Combustible</p>
               </div>
               <div class="col-sm-9">
-                <%= f.input :porcentaje_combustible, collection: 0..100, required: true, autofocus: true, input_html: { autocomplete: "porcentaje_combustible" } %>
+                <%= f.input :porcentaje_combustible, collection: 0..100, autofocus: true, input_html: { autocomplete: "porcentaje_combustible" } %>
               </div>
             </div>
             <hr>

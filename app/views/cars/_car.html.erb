@@ -109,10 +109,12 @@
           </div>
           <div class="btn-group editBut" role="group" data-inline:"true">
             <% if current_user.admin? then%>
-              <%= button_to "Editar vehículo", edit_car_path(@car), class:"btn btn-outline-warning" %>
+              <%= button_to "Editar vehículo", edit_car_path(@car), class:"btn btn-outline-secondary" %>
             <% end %>
           <div class="botonDelete">
-            <%= button_to "Eliminar vehículo", @car,:onclick => "return confirm('Esta seguro que desea eliminar el auto?')", method: :delete, class:"btn btn-outline-danger" %>
+            <% if current_user.admin? then %>
+              <%= button_to "Eliminar vehículo", @car,:onclick => "return confirm('Esta seguro que desea eliminar el auto?')", method: :delete, class:"btn btn-outline-danger" %>
+            <% end %>
           </div>
           
           <!-- <%= link_to "Editar datos", edit_car_path(@car) %> -->

@@ -1,4 +1,4 @@
-<p style="color: green">
+<p style="color: red">
   <%= notice %>
 </p>
 
@@ -58,7 +58,18 @@
               <%=h car.tipo_de_combustible %>
             </td>
             <td class="text-center">
-              <%= link_to "Ver detalle" , car %>
+              <div class="btn-group">
+                  <%= button_to "Ver detalle",car_path(car),class:"btn btn-secondary btn-sm" %>
+                <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <!-- <span class="visually-hidden">Toggle Dropdown</span> -->
+                </button>
+                <ul class="dropdown-menu">
+                  <%= link_to "Editar vehículo", edit_car_path(car), class:"dropdown-item" %>
+                  <% if current_user.admin? then %>
+                    <%= button_to "Eliminar vehículo", car,:onclick => "return confirm('Esta seguro que desea eliminar el auto?')", method: :delete, class:"dropdown-item" %>
+                  <%end%>
+                </ul>
+              </div>
             </td>
           </tr>
           <% end %>

@@ -10,10 +10,10 @@ class Validation < ApplicationRecord
 
   private
 
-  def correct_document_mime_type
-    if image.attached? && !(image.image?)  
-      image.purge # delete the uploaded file
-      errors.add(:image, 'El archivo debe ser una imagen')
-    end
-  end
+ def correct_document_mime_type
+   if image.attached? && !(image.image?)  
+     image.purge # delete the uploaded file
+     errors.add(:image, 'El archivo debe ser una imagen')
+   end
+ end
 end
