@@ -35,7 +35,7 @@ gem 'devise'
 gem 'mercadopago-sdk'
 gem 'pundit'
 gem 'rails-i18n'
-
+gem 'activestorage-validator'
 
 
 
