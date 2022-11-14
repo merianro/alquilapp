@@ -5,7 +5,7 @@ class CarsController < ApplicationController
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.all
+    @cars = Car.order(params[:marca])
   end
 
   # GET /cars/1 or /cars/1.json
@@ -51,12 +51,18 @@ class CarsController < ApplicationController
 
   def habilitar
     @car = Car.find(params[:id])
-
     if (@car.habilitado == true)
-      @car.update(habilitado: false)
-      respond_to do |format|
-        format.html { redirect_to cars_url, notice: "Auto correctamente deshabilitado." }
-        format.json { head :no_content }
+      if (@car.disponible == true)
+        @car.update(habilitado: false)
+        respond_to do |format|
+          format.html { redirect_to cars_url, notice: "Auto correctamente deshabilitado." }
+          format.json { head :no_content }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to cars_url, alert: "No se ha podido deshabilitar debido a que el auto se encuentra actualmente en uso." }
+          format.json { head :no_content }      
+        end
       end
     else
       @car.update(habilitado: true)
