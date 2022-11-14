@@ -27,13 +27,17 @@
 
   <%= stylesheet_link_tag "application" ,"data-turbo-track":"reload"%>
   <%= javascript_importmap_tags %>
+
+
 </head>
 
 <body id="body">
   <% if !user_signed_in? %>
     <%= render "application/header" %>
+ 
   <% else  %>
     <%= render "application/left_sidebar" %>
+   
   <% end %>
 <%= yield %>
 

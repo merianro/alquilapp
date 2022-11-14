@@ -27,7 +27,7 @@ class CarsController < ApplicationController
     @car.update(ubication: "-34.932396841058896, -57.93801864135309")
     respond_to do |format|
       if @car.save
-        format.html { redirect_to car_url(@car), notice: "Auto correctamente creado." }
+        format.html { redirect_to car_url(@car), sucess: "Auto correctamente creado." }
         format.json { render :show, status: :created, location: @car }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -43,8 +43,8 @@ class CarsController < ApplicationController
         format.html { redirect_to car_url(@car), notice: "Auto correctamente actualizado." }
         format.json { render :show, status: :ok, location: @car }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @car.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity}
+        format.json { render json: @car.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -59,8 +59,8 @@ class CarsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to cars_url(@car), notice: "No se pudo eliminar el auto debido a que está en uso." }
-        format.json { render :show, status: :ok, location: @car }
+        format.html { redirect_to car_url(@car), alert: "No se pudo eliminar el auto debido a que está en uso." }
+        format.json { render :show, status: :unprocessable_entity, location: @car }
       end
     end
   end
