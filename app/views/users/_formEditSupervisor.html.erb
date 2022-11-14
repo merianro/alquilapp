@@ -3,7 +3,7 @@
 
   <%= f.input :surname, required: true, autofocus: true, input_html: { autocomplete: "surname" } %>
 
-  <%= f.input :birthdate, required: true, autofocus: true, input_html: { autocomplete: "birthdate" } %>
+  <%= f.input :birthdate,start_year: Time.now.year - 100, end_year: Time.now.year-18, required: true, autofocus: true, input_html: { autocomplete: "birthdate" } %>
 
   <%= f.input :phone, required: true, autofocus: true, input_html: { autocomplete: "birthdate" } %>
 
@@ -13,5 +13,7 @@
 
   <%= f.input :password, required: true, autofocus: true, input_html: { autocomplete: "password" } %>
   
+  <%= f.input :password_confirmation, required: true, autofocus: true, input_html: { autocomplete: "password_confirmation" } %>
+
   <%= f.button :submit, 'Actualizar Supervisor' %>
 <% end %>
