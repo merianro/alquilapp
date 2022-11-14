@@ -68,7 +68,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_suindex_path, notice: "Supervisor creado correctamente." }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { redirect_to users_suindex_path, notice: "Error al crear Supervisor." }
+        format.html { render :newsu,  status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -152,7 +152,7 @@ class UsersController < ApplicationController
     end
 
     def su_params
-      params.require(:user).permit(:name, :surname, :birthdate, :phone, :dni, :email, :password)
+      params.require(:user).permit(:name, :surname, :birthdate, :phone, :dni, :email, :password, :password_confirmation)
     end
     
 end
