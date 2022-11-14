@@ -1,7 +1,7 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token, only: %i[ update ]
-  before_action :set_car, only: %i[ show edit update destroy ]
+  before_action :set_car, only: %i[ show edit update destroy]
 
   # GET /cars or /cars.json
   def index
@@ -47,6 +47,25 @@ class CarsController < ApplicationController
         format.json { render json: @car.errors, status: :unprocessable_entity}
       end
     end
+  end
+
+  def habilitar
+    @car = Car.find(params[:id])
+
+    if (@car.habilitado == true)
+      @car.update(habilitado: false)
+      respond_to do |format|
+        format.html { redirect_to cars_url, notice: "Auto correctamente deshabilitado." }
+        format.json { head :no_content }
+      end
+    else
+      @car.update(habilitado: true)
+      respond_to do |format|
+        format.html { redirect_to cars_url, notice: "Auto correctamente habilitado." }
+        format.json { head :no_content }
+      end
+    end
+    
   end
 
   # DELETE /cars/1 or /cars/1.json

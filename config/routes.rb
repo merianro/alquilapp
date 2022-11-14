@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'cars', to: 'cars#index'
   post 'cars', to: 'cars#index'
 
+  get 'cars/habilitar', to: 'cars#habilitar'
+  post 'cars/habilitar', to: 'cars#habilitar'
+
   get 'cars/new', to: 'cars#new'
   post 'cars/new', to: 'cars#new'
 
