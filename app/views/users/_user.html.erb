@@ -117,8 +117,12 @@
           <div>
             <h3 class="fs-4 text-start">Tu Licencia</h3>
           </div>
+          <% user.validation.images.each do |images| %>
           <div class="container-fluid">
-            <%= image_tag(user.validation.image,class:"img-fluid",style:"width:30%")%>
+            <div class="row justify-content-center containerFoto">
+              <%= image_tag(images,class:"img-fluid",style:"width:40%")%>
+            </div>
+          <% end %>
           </div>
         </div>
         <div class="btn-group botones" role="group">
@@ -135,6 +139,7 @@
 <style>
   .botones {
     margin-left: auto;
+    margin-top: 20px;;
     padding-right: 10px;
     padding-bottom: 10px;
     gap: 10px;
@@ -142,6 +147,5 @@
 
   .containerFoto {
     margin-top: 50px;
-    margin-bottom: 50px;
   }
 </style>
