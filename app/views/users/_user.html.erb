@@ -78,6 +78,16 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
+                <p class="mb-0">Fecha de vencimiento de la Licencia</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">
+                  <%= user.expirationdate %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
@@ -103,7 +113,7 @@
             <% end %>
           </div>
           <div class="btn-group botones" role="group">
-            <!-- <%= button_to "Editar datos " , edit_user_path(@user), class:"btn btn-outline-primary" %> -->
+            <%= button_to "Editar datos " , edit_user_path(@user), class:"btn btn-outline-primary" %>
             <%= button_to "Eliminar cuenta", @user,:onclick => "return confirm('Esta seguro/a que desea eliminar la cuenta?')", method: :delete, class:"btn btn-outline-danger" %>
 
             

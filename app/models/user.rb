@@ -15,8 +15,8 @@ class User < ApplicationRecord
 
   private
   def password_regex
-    return if password.blank? || password =~ /\A(?=.*[a-z])(?=.*[A-Z]).{5,}\z/ || password == email
-      errors.add :password,'La contraseña debe ser diferente al email y debe tener entre 6 y 20 caracteres incluyendo una letra minúscula y una letra mayúscula'
+    return if password =~ /\A(?=.*[a-z])(?=.*[A-Z]).{5,}\z/ 
+      errors.add :password,'Debe tener entre 6 y 20 caracteres incluyendo una letra minúscula y una letra mayúscula'
   end
 
 end

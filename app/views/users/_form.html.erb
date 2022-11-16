@@ -4,5 +4,6 @@
   <%= f.input :birthdate, required: true, autofocus: true, input_html: { autocomplete: "birthdate" } %>
   <%= f.input :phone, required: true, autofocus: true, input_html: { autocomplete: "birthdate" } %>
   <%= f.input :dni, required: true, autofocus: true, input_html: { autocomplete: "dni" } %>
+  <%= f.input :expirationdate, start_year: Time.now.year , end_year: Time.now.year+10 %>
   <%= f.button :submit, 'Guardar cambios' %>
 <% end %>
