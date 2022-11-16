@@ -12,10 +12,11 @@ class Validation < ApplicationRecord
 
 
 private
-def rip_bool
-    return if (images.count == 1)
-      errors.add(:images, 'Debes subir la imagen del DNI y la Licencia')
-end
+  def rip_bool
+      return if (images.count != 1)
+        errors.add(:images, 'Debes subir la imagen del DNI y la Licencia')
+  end
+
   def number_images
     return if (images.count <= 2)
         errors.add(:images, 'Solo podes subir un maximo de 2 imagenes') 
