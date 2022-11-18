@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  validate :password_regex, on: :create
+  validate :password_regex,  on: :create
   validate :expiration_date_future
 
   enum role: [:driver, :su, :admin]

@@ -115,6 +115,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_password
+    @user = User.find(params[:id])
+      respond_to do |format|
+        if @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+          format.html { redirect_to user_url(@user), notice: "Contraseña editada correcatamente. Por favor, inicie sesion." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+  end
+
   # DELETE /users/1 or /users/1.json
   def destroy
     @user = User.find(params[:id])

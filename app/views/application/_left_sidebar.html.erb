@@ -34,6 +34,15 @@
                     <h4>Mi cuenta</h4>
                     <% end %>
             </a>
+
+            <a>
+                <%= link_to alquilers, :class=>"option" do %>
+                    <i class='bx bxs-car'></i>
+                    <h4>Mis alquileres</h4>
+                    <% end %>
+            </a>
+
+
             <% if current_user.role=="su" or current_user.role=="admin" then %>
 
                 <a>
@@ -70,7 +79,7 @@
 
                             <% if current_user.role=="su" or current_user.role=="admin" then %>
                                 <a>
-                                    <%= link_to users_cmngsoon_path, :class=>"option" do %>
+                                    <%= link_to  sistema_reportes_path, :class=>"option" do %>
                                         <i class='bx bx-support'></i>
                                         <h4>Reportes</h4>
                                         <% end %>

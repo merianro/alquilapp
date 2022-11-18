@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_16_224703) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_18_165616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_224703) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "alquilers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "horas"
+    t.bigint "user_id"
+    t.bigint "car_id"
+    t.index ["car_id"], name: "index_alquilers_on_car_id"
+    t.index ["user_id"], name: "index_alquilers_on_user_id"
+  end
+
   create_table "cars", force: :cascade do |t|
     t.string "marca"
     t.string "modelo"
@@ -79,6 +89,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_224703) do
     t.datetime "updated_at", null: false
     t.boolean "accredited"
     t.string "id_pago"
+  end
+
+  create_table "sistema_reportes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "su_id"
+    t.bigint "user_id"
+    t.boolean "finalizado"
+    t.integer "severidad"
+    t.text "descripcion"
+    t.index ["user_id"], name: "index_sistema_reportes_on_user_id"
   end
 
   create_table "sus", force: :cascade do |t|
