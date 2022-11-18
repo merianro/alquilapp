@@ -49,12 +49,21 @@
                     <% end %>
             </a>
 
+            <% if current_user.role=="driver" then %>
             <a>
-                <%= link_to alquilers, :class=>"option" do %>
+                <%= link_to alquilers_path, :class=>"option" do %>
                     <i class='bx bxs-car'></i>
                     <h4>Mis alquileres</h4>
                     <% end %>
             </a>
+            <% elsif  current_user.role=="admin"%>
+            <a>
+                <%= link_to alquilers_path, :class=>"option" do %>
+                    <i class='bx bxs-car'></i>
+                    <h4>Alquileres</h4>
+                    <% end %>
+            </a>
+            <% end %>
 
 
             <% if current_user.role=="su" or current_user.role=="admin" then %>
