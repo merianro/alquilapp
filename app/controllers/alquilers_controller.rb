@@ -65,6 +65,6 @@ class AlquilersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def alquiler_params
-      params.fetch(:alquiler, {})
+      params.require(:alquiler).permit(:horas, :user_id, :car_id)
     end
 end

@@ -1,2 +1,113 @@
 <div id="<%= dom_id alquiler %>">
+<div class="container-fluid justify-content-center" align="center">
+      <div class="col-lg-7">
+      <div class="card mb-4">
+        <div class="card-body text-start">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Marca</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= alquiler.car.marca %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Modelo</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= alquiler.car.modelo %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Año</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= alquiler.car.ano %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Color</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= alquiler.car.color %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Transmision</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= alquiler.car.transmision %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Capacidad</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= alquiler.car.capacidad %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Patente</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= alquiler.car.patente %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Porcentaje de Combustible</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= alquiler.car.porcentaje_combustible %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tipo de combustible</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= alquiler.car.tipo_de_combustible %></p>
+              </div>
+            </div>
+          </div>
+          <div class="btn-group editBut" role="group" data-inline:"true">
+              <%= button_to "Extender alquiler", root_path, class:"btn btn-outline-secondary" %>
+          <div class="botonDelete">
+            <% if current_user.admin? then %>
+              <%= button_to "Hacer reporte", @car,:onclick => "return confirm('Esta seguro que desea eliminar el auto?')", method: :delete, class:"btn btn-outline-danger" %>
+            <% end %>
+          </div>
+                  
+          
+        </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+  
+<style>
+.botonDelete{
+  margin-left: auto;
+  padding: 5px;
+}
+
+.editBut{
+  padding: 5px;
+}
+</style>
