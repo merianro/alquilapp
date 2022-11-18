@@ -79,6 +79,9 @@ Rails.application.routes.draw do
   get 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
   post 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
 
+  get 'alquilers/cuindex', to: 'alquilers#cuindex'
+  post 'alquilers/cuindex', to: 'alquilers#cuindex'
+
 
   resources :users
   resources :validations

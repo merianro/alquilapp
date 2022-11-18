@@ -12,8 +12,10 @@
                         <%= button_to "Cerrar Sesión",destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark' %>
                         <hr></hr>
                         <% if current_user.role=="admin" then %>
+                            <hr></hr>
                             <a> Cuenta Administrador </a>
                         <% elsif current_user.role=="su" then %>
+                            <hr></hr>
                             <a> Cuenta Supervisor </a>
                         <% end %>
 
@@ -51,15 +53,15 @@
 
             <% if current_user.role=="driver" then %>
             <a>
-                <%= link_to alquilers_path, :class=>"option" do %>
-                    <i class='bx bxs-car'></i>
+                <%= link_to alquilers_cuindex_path, :class=>"option" do %>
+                    <i class='bx bx-car'></i>
                     <h4>Mis alquileres</h4>
                     <% end %>
             </a>
             <% elsif  current_user.role=="admin"%>
             <a>
                 <%= link_to alquilers_path, :class=>"option" do %>
-                    <i class='bx bxs-car'></i>
+                    <i class='bx bx-car'></i>
                     <h4>Alquileres</h4>
                     <% end %>
             </a>
