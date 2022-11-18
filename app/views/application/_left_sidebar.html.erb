@@ -5,7 +5,21 @@
                 <i class='bx bx-menu bx-md' id="btn_open"></i>
             </div>
             <div class="d-flex" role="search">
-                <%= button_to "Cerrar Sesión" , destroy_user_session_path, method: :delete,class:"btn btn-outline-dark"%>
+                <div class="dropdown">
+                    <button class="dropbtn btn btn-outline-dark"><%= current_user.name+" "+current_user.surname%></button>
+                    <div class="dropdown-content" style="right:0">
+                        <%= link_to "Mi cuenta",current_user %>
+                        <%= button_to "Cerrar Sesión",destroy_user_session_path, method: :delete %>
+                        <hr></hr>
+                        <% if current_user.role=="admin" then %>
+                            <a> Cuenta Administrador </a>
+                        <% elsif current_user.role=="su" then %>
+                            <a> Cuenta Supervisor </a>
+                        <% end %>
+
+                    </div>
+                </div>
+                
             </div>
         </div>
     </nav>

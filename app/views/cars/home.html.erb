@@ -36,6 +36,33 @@
                         <% end %>
 </div>
 
+
+<!-- Comienzo de Alquiler -->
+
+
+<div class="row">
+    <!-- Listado de Autos-->
+    <% Car.all.each do | car | %>
+    <ul class="list-group shadow">
+        <li class="list-group-item">
+            <!-- Informacion-->
+            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                <div class="media-body order-2 order-lg-1">
+                    <h5 class="mt-0 font-weight-bold mb-2"><%= car.marca+" "+car.modelo %></h5>
+                    <p class="font-italic text-muted mb-0 small"><%= "Año: "+car.ano.to_s+" | Color: "+car.color+" | Transmision: "+car.transmision+" | Capacidad: "+car.capacidad.to_s%></p>
+                    <div class="d-flex align-items-center justify-content-between mt-1">
+                        <h6 class="font-weight-bold my-2">5000</h6>
+                    </div>
+                </div>
+                
+            </div> <!-- End -->
+        </li> <!-- End -->
+        <% end %>
+    </ul>
+</div>
+
+
+
 <style>
     .alertValidation{
         padding: 10px;
