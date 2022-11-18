@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  validate :password_regex
+  validate :password_regex,  on: :create
+  validate :expiration_date_future
+
   enum role: [:driver, :su, :admin]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -15,8 +17,13 @@ class User < ApplicationRecord
 
   private
   def password_regex
-    return if password.blank? || password =~ /\A(?=.*[a-z])(?=.*[A-Z]).{5,}\z/ || password == email
-      errors.add :password,'La contraseña debe ser diferente al email y debe tener entre 6 y 20 caracteres incluyendo una letra minúscula y una letra mayúscula'
+    return if password =~ /\A(?=.*[a-z])(?=.*[A-Z]).{5,}\z/ 
+      errors.add :password,'Debe tener entre 6 y 20 caracteres incluyendo una letra minúscula y una letra mayúscula'
+  end
+
+  def expiration_date_future
+    return if vencimiento_licencia.future?
+      errors.add :vencimiento_licencia,'La fecha de vencimiento debe ser una fecha futura'
   end
 
 end

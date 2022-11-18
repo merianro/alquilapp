@@ -78,6 +78,17 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
+                <p class="mb-0">Fecha de vencimiento de la Licencia</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">
+                  <%= user.vencimiento_licencia %>
+                </p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
@@ -103,9 +114,9 @@
             <% end %>
           </div>
           <div class="btn-group botones" role="group">
-            <!-- <%= button_to "Editar datos " , edit_user_path(@user), class:"btn btn-outline-primary" %> -->
-            <%= button_to "Eliminar cuenta", @user,:onclick => "return confirm('Esta seguro que desea eliminar la cuenta?')", method: :delete, class:"btn btn-outline-danger" %>
-
+            <%= button_to "Editar datos" , edit_user_path(@user), class:"btn btn-outline-primary" %>
+            <%= button_to "Editar contraseña" , edit_user_path(@user), class:"btn btn-outline-primary" %>
+            <%= button_to "Eliminar cuenta", @user,:onclick => "return confirm('Esta seguro/a que desea eliminar la cuenta?')", method: :delete, class:"btn btn-outline-danger" %>
           </div>
 
         </div>
@@ -117,8 +128,12 @@
           <div>
             <h3 class="fs-4 text-start">Tu Licencia</h3>
           </div>
+          <% user.validation.images.each do |images| %>
           <div class="container-fluid">
-            <%= image_tag(user.validation.image,class:"img-fluid",style:"width:30%")%>
+            <div class="row justify-content-center containerFoto">
+              <%= image_tag(images,class:"img-fluid",style:"width:40%")%>
+            </div>
+          <% end %>
           </div>
         </div>
         <div class="btn-group botones" role="group">
@@ -135,6 +150,7 @@
 <style>
   .botones {
     margin-left: auto;
+    margin-top: 20px;;
     padding-right: 10px;
     padding-bottom: 10px;
     gap: 10px;
@@ -142,6 +158,6 @@
 
   .containerFoto {
     margin-top: 50px;
-    margin-bottom: 50px;
   }
 </style>
+

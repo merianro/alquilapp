@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'main/home',   to: 'home#main'
   devise_for :users, controllers: { registrations: "users/registrations" }
   
@@ -66,11 +67,26 @@ Rails.application.routes.draw do
   get 'validations/validate', to: 'validations#validate'
   post 'validations/validate', to: 'validations#validate'
 
+  get 'sistema_reportes/new', to: 'sistema_reportes#new'
+  post 'sistema_reportes/new', to: 'sistema_reportes#new'
+  
+  get 'sistema_reportes/atender', to: 'sistema_reportes#atender'
+  post 'sistema_reportes/atender', to: 'sistema_reportes#atender'
+
+  get 'sistema_reportes/desatender', to: 'sistema_reportes#desatender'
+  post 'sistema_reportes/desatender', to: 'sistema_reportes#desatender'
+  
+  get 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
+  post 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
+
+
   resources :users
   resources :validations
   resources :cars
   resources :mercado_pagos
   resources :mp_webhooks
+  resources :sistema_reportes
+  resources :alquilers
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   # Defines the root path route ("/")

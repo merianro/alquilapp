@@ -77,7 +77,7 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
+    
     respond_to do |format|
       if @user.save
         format.html { redirect_to user_url(@user), notice: "Usuario creado correctamente." }
@@ -115,24 +115,44 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_password
+    @user = User.find(params[:id])
+      respond_to do |format|
+        if @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+          format.html { redirect_to user_url(@user), notice: "Contraseña editada correcatamente. Por favor, inicie sesion." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+  end
+
   # DELETE /users/1 or /users/1.json
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-
-    if current_user.admin? or current_user.su?  then
+    
+    if current_user.admin? or current_user.su? 
+      @user.destroy
       respond_to do |format|
         format.html { redirect_to users_drindex_path, notice: "Usuario correctamente eliminado." }
         format.json { head :no_content }
       end
-    else
-      respond_to do |format|
-        format.html { redirect_to users_url, notice: "Usuario correctamente eliminado." }
-        format.json { head :no_content }
+    elsif (@user.saldo >= 0)
+        @user.destroy
+        respond_to do |format|
+          format.html { redirect_to new_user_session_path, notice: "Usuario correctamente eliminado." }
+          format.json { head :no_content }
+        end
+      else
+        respond_to do |format|     
+          format.html { redirect_to user_url(@user), alert: "No se puede eliminar tu cuenta debido a que posees saldo negativo." }
+          format.json { head :no_content }
+        end
       end
     end
 
-  end
+
 
   def anadir_saldo(id,saldo)
     @user = User.find(id)
@@ -148,7 +168,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :surname, :birthdate, :phone, :dni)
+      params.require(:user).permit(:name, :surname, :birthdate, :phone, :vencimiento_licencia, :dni)
     end
 
     def su_params

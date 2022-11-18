@@ -1,0 +1,101 @@
+<%= stylesheet_link_tag "validations.css" %>
+  <div class="container-fluid principal">
+    <div class="row" style="gap: 10px;">
+      <div class="col card left">
+        <div class="text-center">
+          <h2>Reportes asignados pendientes</h2>
+        </div>
+        <table class="table table-hover">
+
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @sistema_reportes.each do |sistema_reportes| %>
+              <% if sistema_reportes.su_id==current_user.id and sistema_reportes.finalizado==false then %>
+                <tr>
+                  <td>
+                    <%= sistema_reportes.user.name %>
+                  </td>
+                  <td>
+                    <%= sistema_reportes.user.surname %>
+                  </td>
+                  <td>
+                    <%= sistema_reportes.user.dni %>
+                  </td>
+                  <td>
+                  </td>
+                  <td class="text-center">
+                    <div class="btn-group">
+                      <%= link_to "Ver reporte",sistema_reportes, class:"btn btn-secondary btn-sm" %>
+                      <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- <span class="visually-hidden">Toggle Dropdown</span> -->
+                      </button>
+                      <ul class="dropdown-menu">
+                        <%= link_to "Desatender" , '/sistema_reportes/desatender?id=' + sistema_reportes.id.to_s , class:"dropdown-item"%>
+                        <%= link_to "Atender" , '/sistema_reportes/atender?id=' + sistema_reportes.id.to_s, class:"dropdown-item" %>
+                        <%= button_to "Rechazar validacion", sistema_reportes,:onclick => "return confirm('Esta seguro que desea rechazar la validacion?')", method: :delete, class:"dropdown-item" %>
+                    </ul>
+                  </div>
+                  </td>
+                </tr>
+                <% end %>
+                  <% end %>
+          </tbody>
+
+        </table>
+      </div>
+      <div class="col card right">
+        <div class="text-center">
+          <h2>Reportes sin atender</h2>
+        </div>
+        <table class="table table-hover">
+
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @sistema_reportes.each do |sistema_reportes| %>
+              <% if sistema_reportes.su_id==nil then %>
+                <tr>
+                  <td>
+                    <%= sistema_reportes.user.name %>
+                  </td>
+                  <td>
+                    <%= sistema_reportes.user.surname %>
+                  </td>
+                  <td>
+                    <%= sistema_reportes.user.dni %>
+                  </td>
+                  <td class="text-center">
+                    <div class="btn-group">
+                      <%= link_to "Ver validacion",sistema_reportes,class:"btn btn-secondary btn-sm" %>
+                      <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- <span class="visually-hidden">Toggle Dropdown</span> -->
+                      </button>
+                      <ul class="dropdown-menu">
+                        <%= link_to "Asignarla" , '/sistema_reportes/asignarse?id=' + sistema_reportes.id.to_s, class:"dropdown-item" %>
+                    </ul>
+                  </div>
+                  </td>
+                </tr>
+                <% end %>
+                  <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

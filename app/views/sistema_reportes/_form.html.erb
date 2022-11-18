@@ -1,7 +1,6 @@
-<%= stylesheet_link_tag "login" %>
 
-  <%= simple_form_for(@validation) do |f| %>
-    <!-- <%= f.error_notification %> -->
+<%= simple_form_for(@sistema_reporte) do |f| %>
+  <!-- <%= f.error_notification %> -->
       <!-- <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %> -->
         <div class="container">
           <div class="row">
@@ -12,15 +11,15 @@
                   <form>
                     <div class="form-floating mb-3">
                       <div class="input-group mb-3">
-                        <%= f.input :images, as: :file, required: true, input_html: {multiple: true}%>
+                        <!-- <%= f.input :images, as: :file, required: true, input_html: {multiple: true}%> -->
                       </div>
                     </div>
                     <div class="form-floating mb-3">
-                      <%= f.input :user_id, :as=> :hidden, input_html: {:value => current_user.id}%>
+                     <!--  <%= f.input :user_id, :as=> :hidden, input_html: {:value => current_user.id}%> -->
                     </div>
                     <hr class="my-4">
                     <div class="d-grid mb-2">
-                      <%= f.button :submit, "Enviar Licencia", class:"btn btn-warning"%>
+                     <!--  <%= f.button :submit, "Enviar Licencia", class:"btn btn-warning"%> -->
                     </div>
                   </form>
                 </div>
@@ -29,3 +28,4 @@
           </div>
         </div>
         <% end %>
+
