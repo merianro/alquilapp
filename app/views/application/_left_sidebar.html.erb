@@ -6,7 +6,7 @@
             </div>
             <div class="d-flex" role="search">
                 <div class="dropdown">
-                    <button class="dropbtn btn btn-outline-dark"><%= current_user.name+" "+current_user.surname%></button>
+                    <button class="dropbtn btn btn-outline-dark"><%= current_user.name+" "+current_user.role%></button>
                     <div class="dropdown-content" style="right:0">
                         <%= link_to "Mi cuenta",current_user %>
                         <%= button_to "Cerrar Sesión",destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark' %>

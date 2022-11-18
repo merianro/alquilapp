@@ -20,7 +20,10 @@
                 var obj = {
                 latitude: <%= car.ubication.x %>,
                 longitude: <%= car.ubication.y %>,
+                icon: "car",
+               
                 tooltip: "Marca: <%= car.marca %>, Modelo: <%= car.modelo %>"
+
             }
             array.push(obj);
             <% end %>
