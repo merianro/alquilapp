@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   
   post '/cars/:id/edit', to: 'cars#edit'
   
-  post '/alquilers/:id/edit', to: 'alquilers#edit'
   
   post '/users/:id/edit', to: 'users#edit'
   post '/users/new', to: 'users#new'
@@ -78,9 +77,6 @@ Rails.application.routes.draw do
   
   get 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
   post 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
-
-  get 'alquilers/cuindex', to: 'alquilers#cuindex'
-  post 'alquilers/cuindex', to: 'alquilers#cuindex'
 
 
   resources :users
