@@ -22,7 +22,7 @@ class AlquilersController < ApplicationController
   # POST /alquilers or /alquilers.json
   def create
     @alquiler = Alquiler.new(alquiler_params)
-
+    @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa)
     respond_to do |format|
       if @alquiler.save
         format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler was successfully created." }
@@ -37,7 +37,7 @@ class AlquilersController < ApplicationController
   # PATCH/PUT /alquilers/1 or /alquilers/1.json
   def update
     respond_to do |format|
-      if @alquiler.update(alquiler_params)
+      if @alquiler.update(horas: @alquiler.horas + params[:alquiler][:horas].to_i)
         format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler was successfully updated." }
         format.json { render :show, status: :ok, location: @alquiler }
       else

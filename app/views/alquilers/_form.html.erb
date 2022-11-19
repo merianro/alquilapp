@@ -1,15 +1,17 @@
-<%= Car.find(params[:format]).marca %>
-<%= Car.find(params[:format]).modelo %>
-<%= Car.find(params[:format]).ano %>
+<% if params[:format] == nil %>
+   <% aux = alquiler.car.id %> 
+ <% else %>
+   <% aux =  Car.find(params[:format]).id %> 
+ <% end %> 
 
 <%= simple_form_for(@alquiler) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :horas, required: true, autofocus: true, input_html: { autocomplete: "horas" } %>
+    <%= f.input :horas,collection: 1..24, required: true, autofocus: true, input_html: { autocomplete: "horas" } %>
     <%= f.input :user_id, :as=> :hidden, input_html: {:value => current_user.id}%>
-    <%= f.input :car_id, :as=> :hidden, input_html: {:value => Car.find(params[:format]).id}%>
+    <%= f.input :car_id, :as=> :hidden, input_html: {:value => aux }%>
     <%= f.button :submit, 'Guardar cambios' %>
 <% end %>
   </div>

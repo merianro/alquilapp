@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   
   post '/cars/:id/edit', to: 'cars#edit'
   
-
+  post '/alquilers/:id/edit', to: 'alquilers#edit'
   
   post '/users/:id/edit', to: 'users#edit'
   post '/users/new', to: 'users#new'

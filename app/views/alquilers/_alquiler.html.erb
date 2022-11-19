@@ -68,24 +68,25 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Porcentaje de Combustible</p>
+                <p class="mb-0">Monto</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= alquiler.car.porcentaje_combustible %></p>
+                <p class="text-muted mb-0">$<%= alquiler.monto %></p>
               </div>
             </div>
-            <hr>
-            <div class="row">
+              <hr>
+             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Tipo de combustible</p>
+                <p class="mb-0">Horas</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= alquiler.car.tipo_de_combustible %></p>
+                <p class="text-muted mb-0"><%= alquiler.horas %></p>
               </div>
             </div>
+
           </div>
           <div class="btn-group editBut" role="group" data-inline:"true">
-              <%= button_to "Extender alquiler", root_path, class:"btn btn-outline-secondary" %>
+           <%= button_to "Extender alquiler", edit_alquiler_path(alquiler), class:"btn btn-outline-secondary" %>
           <div class="botonDelete">
             <% if current_user.admin? then %>
               <%= button_to "Hacer reporte", @car,:onclick => "return confirm('Esta seguro que desea eliminar el auto?')", method: :delete, class:"btn btn-outline-danger" %>

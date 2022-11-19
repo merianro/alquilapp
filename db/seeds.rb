@@ -31,3 +31,5 @@ cars = Car.create([
             {marca: "Audi", modelo:"A6", ano:"2022", color:"Gris", transmision:"Automatica", capacidad:"4",ubication:"-34.911440903653826, -57.96802207196195",patente: 'AD946HU',disponible: true},
             {marca: "BMW", modelo:"Serie 5", ano:"2022", color:"Rojo", transmision:"Automatica", capacidad:"4",ubication:"-34.91369987647464, -57.94841265387437",patente: 'AD285FB',disponible: true}
         ])
+
+parametros = Parametro.create! :tarifa => 100
