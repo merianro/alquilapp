@@ -38,7 +38,8 @@ class AlquilersController < ApplicationController
   # PATCH/PUT /alquilers/1 or /alquilers/1.json
   def update
     respond_to do |format|
-      if @alquiler.update(horas: @alquiler.horas + params[:alquiler][:horas].to_i)          
+      if @alquiler.update(horas: params[:alquiler][:horas].to_i)    
+        @alquiler.update(end_date: @alquiler.created_at - 3.hours + params[:alquiler][:horas].to_i.hours)          
         format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler was successfully updated." }
         format.json { render :show, status: :ok, location: @alquiler }
       else

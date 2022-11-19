@@ -78,6 +78,8 @@ Rails.application.routes.draw do
   get 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
   post 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
 
+  post 'alquilers/:id/edit', to: 'alquilers#edit'
+  
 
   resources :users
   resources :validations
