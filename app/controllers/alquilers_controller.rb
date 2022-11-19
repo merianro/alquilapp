@@ -23,13 +23,14 @@ class AlquilersController < ApplicationController
   def create
     @alquiler = Alquiler.new(alquiler_params)
     @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa)
+    @alquiler.update(end_date: DateTime.now.gmtime - 3.hours + @alquiler.horas.hours)
     respond_to do |format|
       if @alquiler.save
         format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler was successfully created." }
         format.json { render :show, status: :created, location: @alquiler }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @alquiler.errors, status: :unprocessable_entity }
+        format.html {  redirect_to root_path, status: :unprocessable_entity }
+        format.json { render json: @alquiler.errors,  alert: "Debes estar validado para alquilar."  }
       end
     end
   end

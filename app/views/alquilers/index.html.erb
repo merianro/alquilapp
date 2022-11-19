@@ -1,5 +1,4 @@
 <p style="color: green"><%= notice %></p>
-
 <div class="container-fluid justify-content-center">
   <h1>Alquileres</h1>
   <div class="table-responsive">
@@ -8,8 +7,11 @@
     <tr>
       <th class="text-center">Fecha</th>
       <th class="text-center">Patente del Vehículo</th>
+       <% if !current_user.driver?%>  
       <th class="text-center">DNI Usuario</th>
+      <% end%>
       <th class="text-center">Duración</th>
+      <th class="text-center">Fecha de finalización</th>
       <th></th>
     </tr>
   </thead>
@@ -19,7 +21,7 @@
     <% @alquilers.order(:created_at).each do |alquiler| %>
       <tr>
         <td class="text-center">
-          <%=h alquiler.created_at %>
+          <%=h alquiler.created_at.gmtime - 3.hours %>
         </td>
         <td class="text-center">
           <%=h alquiler.car.patente  %>
@@ -29,6 +31,9 @@
         </td>
         <td class="text-center">
           <%=h alquiler.horas %> horas
+        </td>
+        <td class="text-center">
+          <%=h alquiler.end_date.gmtime - 3.hours %>  
         </td>
         <td class="text-center">
           <div class="btn-group">
@@ -47,16 +52,16 @@
       <% @alquilers.where(user_id: current_user.id).order(:created_at).each do |alquiler| %>
       <tr>
         <td class="text-center">
-          <%=h alquiler.created_at %>
+          <%=h alquiler.created_at.gmtime - 3.hours %>
         </td>
         <td class="text-center">
           <%=h alquiler.car.patente  %>
         </td>
         <td class="text-center">
-          <%=h alquiler.user.dni %>
-        </td>
-        <td class="text-center">
           <%=h alquiler.horas %> horas
+        </td>
+         <td class="text-center">
+          <%=h alquiler.end_date.gmtime  %>  
         </td>
         <td class="text-center">
           <div class="btn-group">
