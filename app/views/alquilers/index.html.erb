@@ -41,7 +41,7 @@
               <% if ((DateTime.now.to_time - alquiler.created_at.to_time ) /60 ) < 10 then %>
               <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"></button>
                  <ul class="dropdown-menu">
-                   <%= link_to "Realizar reporte", new_sistema_reporte(alquiler.car.id), class:"btn btn-secondary btn-sm" %>
+                   <%= link_to "Realizar reporte", nnew_sistema_reporte_path(alquiler: alquiler), class:"btn btn-secondary btn-sm" %>
                  </ul>
                    <%end%>
           </div>
@@ -68,9 +68,8 @@
               <%= link_to "Ver detalle", alquiler,class:"btn btn-secondary btn-sm" %>
                <% if ((DateTime.now.to_time - alquiler.created_at.to_time ) /60 ) < 10 then %>
               <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"></button>
-               
                   <ul class="dropdown-menu">
-                     <%= link_to "Realizar Reporte", new_sistema_reporte_url(alquiler.car.id), class:"dropdown-item" %>
+                     <%= link_to "Realizar Reporte", new_sistema_reporte_path(alquiler: alquiler), class:"dropdown-item" %>
                   </ul>
                    <%end%>
           </div>
