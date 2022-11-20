@@ -1,5 +1,5 @@
 class SistemaReportesController < ApplicationController
-  before_action :set_sistema_reporte, only: %i[ show edit update destroy ]
+  before_action :set_sistema_reporte, only: %i[ show edit update destroy]
 
   # GET /sistema_reportes or /sistema_reportes.json
   def index
@@ -25,7 +25,7 @@ class SistemaReportesController < ApplicationController
 
     respond_to do |format|
       if @sistema_reporte.save
-        format.html { redirect_to sistema_reporte_url(@sistema_reporte), notice: "Sistema reporte was successfully created." }
+        format.html { redirect_to :controller => 'alquilers', :action => 'show', :id => @sistema_reporte.alquiler_id }
         format.json { render :show, status: :created, location: @sistema_reporte }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -78,12 +78,27 @@ class SistemaReportesController < ApplicationController
   end
 
   def finalizar
-    @sistema_reporte =  SistemaReporte.find(params[:id])  
+    @sistema_reporte =  SistemaReporte.find(params[:format])  
     @sistema_reporte.update(finalizado: true)
 
-    respond_to do |format|
-      format.html { redirect_to sistema_reportes_url, notice: "" }
-      format.json { head :no_content }
+    
+    redirect_to sistema_reportes_url, notice: "" 
+  end
+
+  def finalizar_aplicar_multa
+    @sistema_reporte =  SistemaReporte.find(params[:id])  
+    @sistema_reporte.update(finalizado: true)
+    car_id_aux = Alquiler.find(@sistema_reporte.alquiler_id).car_id
+    hecho = false
+    if Alquiler.where(car_id: car_id_aux).count > 1 
+        hecho = true
+        aux = Alquiler.where(car_id: car_id_aux).second_to_last.user_id
+        User.find(aux).update(saldo: User.find(aux).saldo - params[:sistema_reporte][:user_id].to_f)
+      end   
+    if hecho
+      redirect_to sistema_reportes_url, notice: "Multa aplicada correctamente al conductor anterior." 
+    else
+      redirect_to sistema_reportes_url, alert: "No habia un usuario anterior a este alquiler con el mismo auto." 
     end
   end
 

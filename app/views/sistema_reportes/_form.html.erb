@@ -14,7 +14,7 @@
                       <div class="input-group mb-3">
                         <%= f.input :user_id, :as=> :hidden, input_html: {:value => current_user.id}%>
                         <%= f.input :descripcion, required: true, input_html: {}%> 
-                        <%= f.input :images, as: :file, required: true, input_html: {multiple: true}%> 
+                        <%= f.input :images, as: :file, required: false, input_html: {multiple: true}%> 
                         <%= f.input :severidad, :as => :select, :collection => SistemaReporte.severidads.keys.to_a, required: true, input_html: {}%> 
                         <%= f.input :alquiler_id, :as=> :hidden, input_html: {:value => params[:alquiler]}%>
                       </div>
@@ -23,6 +23,7 @@
                     <hr class="my-4">
                     <div class="d-grid mb-2">
                      <%= f.button :submit, "Enviar Reporte", class:"btn btn-warning"%>
+                     <%= link_to "Cancelar", :controller => 'alquilers', :action => 'index' %>
                     </div>
                   </form>
                 </div>

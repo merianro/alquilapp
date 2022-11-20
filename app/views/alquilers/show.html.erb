@@ -1,9 +1,12 @@
-<p style="color: green"><%= notice %></p>
+
 <h2> Resumen del alquiler </h2>
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+
 <%= render @alquiler %>
 
 <% if SistemaReporte.where(alquiler_id: @alquiler.id).count > 0   %>
-  <h3> Tienes un reporte realizado para este alquiler, puedes verlo  <%= link_to "aqui", sistema_reporte_url(SistemaReporte.where(alquiler_id: @alquiler.id).first.id)  %> </h3>
+  <h3 style="color: green"> Tienes un reporte realizado para este alquiler, puedes verlo  <%= link_to "aqui", sistema_reporte_url(SistemaReporte.where(alquiler_id: @alquiler.id).first.id)  %> </h3>
  
 <% end %>
 

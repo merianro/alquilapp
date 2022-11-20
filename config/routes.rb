@@ -76,6 +76,13 @@ Rails.application.routes.draw do
   
   get 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
   post 'sistema_reportes/finalizar', to: 'sistema_reportes#finalizar'
+  
+  get 'sistema_reportes/finalizar_aplicar_multa/:id', to: 'sistema_reportes#finalizar_aplicar_multa'
+  post 'sistema_reportes/finalizar_aplicar_multa/:id', to: 'sistema_reportes#finalizar_aplicar_multa'
+  patch 'sistema_reportes/finalizar_aplicar_multa/:id', to: 'sistema_reportes#finalizar_aplicar_multa'
+
+  get 'sistema_reportes/finalizar_multa', to: 'sistema_reportes#finalizar_multa'
+  post 'sistema_reportes/finalizar_multa', to: 'sistema_reportes#finalizar_multa'
 
   post 'alquilers/:id/edit', to: 'alquilers#edit'
   
