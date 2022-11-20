@@ -39,6 +39,7 @@ class AlquilersController < ApplicationController
   def update
     respond_to do |format|
       if @alquiler.update(horas: params[:alquiler][:horas].to_i)    
+        @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa )
         @alquiler.update(end_date: @alquiler.created_at - 3.hours + params[:alquiler][:horas].to_i.hours)          
         format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler was successfully updated." }
         format.json { render :show, status: :ok, location: @alquiler }

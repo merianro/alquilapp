@@ -1,4 +1,5 @@
-<% if params[:format] == nil %>
+
+<% if (params[:format]) == nil %>
    <% aux = alquiler.car.id %> 
  <% else %>
    <% aux =  Car.find(params[:format]).id %> 
@@ -13,7 +14,7 @@
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-              <%= image_tag(Car.find(params[:format]).images[0],class:"rounded-circle mt-5",style:"width:200px")%>
+              <%= image_tag(Car.find(aux).images[0],class:"rounded-circle mt-5",style:"width:200px")%>        
               <span class="font-weight-bold">Vehículo</span>
             </div>
         </div>
@@ -23,17 +24,17 @@
                     <h4 class="text-right">Información del vehículo</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Marca</label><p class="text-muted mb-0"><%= Car.find(params[:format]).marca %></div>
-                    <div class="col-md-6"><label class="labels">Modelo</label><p class="text-muted mb-0"><%= Car.find(params[:format]).modelo %></div>
+                    <div class="col-md-6"><label class="labels">Marca</label><p class="text-muted mb-0"><%= Car.find(aux).marca %></div>
+                    <div class="col-md-6"><label class="labels">Modelo</label><p class="text-muted mb-0"><%= Car.find(aux).modelo %></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Patente</label><p class="text-muted mb-0"><%= Car.find(params[:format]).patente %></div>
-                    <div class="col-md-12"><label class="labels">Año</label><p class="text-muted mb-0"><%= Car.find(params[:format]).ano %></div>
-                    <div class="col-md-12"><label class="labels">Color</label><p class="text-muted mb-0"><%= Car.find(params[:format]).color %></div>
-                    <div class="col-md-12"><label class="labels">Transmisión</label><p class="text-muted mb-0"><%= Car.find(params[:format]).transmision %></div>
-                    <div class="col-md-12"><label class="labels">Capacidad</label><p class="text-muted mb-0"><%= Car.find(params[:format]).capacidad %></div>
-                    <div class="col-md-12"><label class="labels">Tipo de Combustible</label><p class="text-muted mb-0"><%= Car.find(params[:format]).tipo_de_combustible %></div>
-                    <div class="col-md-12"><label class="labels">Porcentaje de Combustible</label><p class="text-muted mb-0"><%= Car.find(params[:format]).porcentaje_combustible %></div>
+                    <div class="col-md-12"><label class="labels">Patente</label><p class="text-muted mb-0"><%= Car.find(aux).patente %></div>
+                    <div class="col-md-12"><label class="labels">Año</label><p class="text-muted mb-0"><%= Car.find(aux).ano %></div>
+                    <div class="col-md-12"><label class="labels">Color</label><p class="text-muted mb-0"><%= Car.find(aux).color %></div>
+                    <div class="col-md-12"><label class="labels">Transmisión</label><p class="text-muted mb-0"><%= Car.find(aux).transmision %></div>
+                    <div class="col-md-12"><label class="labels">Capacidad</label><p class="text-muted mb-0"><%= Car.find(aux).capacidad %></div>
+                    <div class="col-md-12"><label class="labels">Tipo de Combustible</label><p class="text-muted mb-0"><%= Car.find(aux).tipo_de_combustible %></div>
+                    <div class="col-md-12"><label class="labels">Porcentaje de Combustible</label><p class="text-muted mb-0"><%= Car.find(aux).porcentaje_combustible %></div>
                 </div>
                 <div class="mt-5 text-center"><%= f.button :submit,'Confirmar Alquiler',:onclick => "return confirm('Si confirma el alquiler se descontaran #{Parametro.first.tarifa} de su cuenta')",class:"btn btn-outline-success"%></div>
             </div>
