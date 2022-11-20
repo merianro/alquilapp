@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_20_135105) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_20_234522) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_135105) do
     t.bigint "car_id"
     t.integer "monto"
     t.datetime "end_date"
+    t.integer "cantidad_ocupantes", default: 1
     t.index ["car_id"], name: "index_alquilers_on_car_id"
     t.index ["user_id"], name: "index_alquilers_on_user_id"
   end

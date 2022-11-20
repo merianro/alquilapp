@@ -1,42 +1,73 @@
-<div id="<%= dom_id alquiler %>">
-  <div class="container rounded bg-white mt-5 mb-5">
-    <div class="card">
-      <div class="row">
-        <div class="col-md-5 border-right">
-          <div class="p-3 py-5">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="text-right">Información del vehículo</h4>
-            </div>
-            <div class="row mt-2">
-              <div class="col-md-6"><label class="labels">Marca</label><p class="text-muted mb-0"><%= alquiler.car.marca %></div>
-              <div class="col-md-6"><label class="labels">Modelo</label><p class="text-muted mb-0"><%= alquiler.car.modelo %></div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-12"><label class="labels">Patente</label><p class="text-muted mb-0"><%= alquiler.car.patente %></div>
-              <div class="col-md-12"><label class="labels">Año</label><p class="text-muted mb-0"><%= alquiler.car.ano %></div>
-              <div class="col-md-12"><label class="labels">Color</label><p class="text-muted mb-0"><%= alquiler.car.color %></div>
-              <div class="col-md-12"><label class="labels">Transmisión</label><p class="text-muted mb-0"><%= alquiler.car.transmision %></div>
-              <div class="col-md-12"><label class="labels">Capacidad</label><p class="text-muted mb-0"><%= alquiler.car.capacidad %></div>
+<div class="py-2 d-print-none">
+  <div id="<%= dom_id alquiler %>">
+    <div class="container rounded bg-white mt-5 mb-5">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-right">Información del vehículo</h4>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-6"><label class="labels">Marca</label><p class="text-muted mb-0"><%= alquiler.car.marca %></div>
+                <div class="col-md-6"><label class="labels">Modelo</label><p class="text-muted mb-0"><%= alquiler.car.modelo %></div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12"><label class="labels">Patente</label><p class="text-muted mb-0"><%= alquiler.car.patente %></div>
+                <div class="col-md-12"><label class="labels">Año</label><p class="text-muted mb-0"><%= alquiler.car.ano %></div>
+                <div class="col-md-12"><label class="labels">Color</label><p class="text-muted mb-0"><%= alquiler.car.color %></div>
+                <div class="col-md-12"><label class="labels">Transmisión</label><p class="text-muted mb-0"><%= alquiler.car.transmision %></div>
+                <div class="col-md-12"><label class="labels">Capacidad</label><p class="text-muted mb-0"><%= alquiler.car.capacidad %></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3 border-right">
-        <div class="p-3 py-5">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="text-right">Información del alquiler</h4>
+          <div class="col-md-3 border-right">
+            <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-right">Información del alquiler</h4>
+              </div>
+              <div class="col-md-12"><label class="labels">Horas</label><p class="text-muted mb-0"><%= alquiler.horas %></div>
+              <div class="col-md-12"><label class="labels">Monto</label><p class="text-muted mb-0"><%= alquiler.monto %></div>
+            </div>
           </div>
-          <div class="col-md-12"><label class="labels">Horas</label><p class="text-muted mb-0"><%= alquiler.horas %></div>
-          <div class="col-md-12"><label class="labels">Monto</label><p class="text-muted mb-0"><%= alquiler.monto %></div>
-        </div>
-        </div>
-        <div class="btn-group editBut" role="group" data-inline:"true">
-          <%= button_to "Extender alquiler", edit_alquiler_path(alquiler), class:"btn btn-outline-secondary" %>
-          <%= link_to "Realizar Reporte (NO IMPLEMENTADO)", new_sistema_reporte_path(alquiler: @alquiler), class:"btn btn-outline-secondary" %> 
+          <%= link_to "Imprimir",
+          "#",
+          class: "btn",
+          onclick: "window.print()" %>
+          <div class="btn-group editBut" role="group" data-inline:"true">
+            <%= button_to "Extender alquiler", edit_alquiler_path(alquiler), class:"btn btn-outline-secondary" %>
+            <%= link_to "Realizar Reporte (NO IMPLEMENTADO)", new_sistema_reporte_path(alquiler: @alquiler), class:"btn btn-outline-secondary" %> 
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>  
+
+<div class="d-none d-print-block" nowrap>
+    <h1>Permiso de utilizaci&oacute;n de veh&iacute;culo - Alquilapp</h1>
+    <hr>
+    <p >La aplicaci&oacute;n Alquilapp, due&ntilde;a del veh&iacute;culo marca 
+    <%= alquiler.car.marca %>
+    modelo 
+    <%= alquiler.car.modelo%>
+    , fabricado en el a&ntilde;o 
+    <%= alquiler.car.ano %>
+    , de patente 
+    <%= alquiler.car.patente %>
+    certifica que 
+    <%= alquiler.user.name+" "+alquiler.user.surname%>
+    de DNI N&uacute;mero 
+    <%= alquiler.user.dni%> 
+    en caracter de usuario de la aplicaci&oacute;n se encuentra habilitado para la utilizaci&oacute;n y circulaci&oacute;n en el veh&iacute;culo previamente mencionado en el per&iacute;odo comprendido desde 
+    <%= alquiler.created_at.gmtime - 3.hours%>
+    Hasta 
+    <%= alquiler.end_date.gmtime%></p>
+    <p>Fecha:</p>
+    <%= alquiler.created_at.gmtime - 3.hours%>
+
 </div>
+
 
 <style>
 .botonDelete{

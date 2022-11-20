@@ -55,6 +55,7 @@
                     <div class="d-flex align-items-center justify-content-between mt-1">
                         <h6 class="font-weight-bold my-2">5000</h6>
                     </div>
+                    <%= image_tag(car.images[0] || "home.jpg",class:"rounded-circle mt-5",style:"width:200px")%>
                     <%= link_to "Alquilar", new_alquiler_path(car) %>
                 </div>
                 

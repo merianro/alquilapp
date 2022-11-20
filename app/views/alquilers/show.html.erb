@@ -1,5 +1,6 @@
-
-<h2> Resumen del alquiler </h2>
+<div class="py-2 d-print-none">
+  <h2> Resumen del alquiler </h2>
+</div>
 <p style="color: green"><%= notice %></p>
 <p style="color: red"><%= alert %></p>
 
@@ -10,10 +11,11 @@
  
 <% end %>
 
+<div class="py-2 d-print-none">
+  <div>
+    <%# <%= link_to "Edit this alquiler", edit_alquiler_path(@alquiler) %> 
+    <%= link_to "Volver a Mis Alquileres", alquilers_path %>
 
+    <%# <%= button_to "Destroy this alquiler", @alquiler, method: :delete %> 
+  </div>
 <div>
-  <%# <%= link_to "Edit this alquiler", edit_alquiler_path(@alquiler) %> 
-  <%= link_to "Volver a Mis Alquileres", alquilers_path %>
-
-  <%# <%= button_to "Destroy this alquiler", @alquiler, method: :delete %> 
-</div>
