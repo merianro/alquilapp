@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_19_162324) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_20_135105) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -104,9 +104,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_19_162324) do
     t.datetime "updated_at", null: false
     t.integer "su_id"
     t.bigint "user_id"
-    t.boolean "finalizado"
     t.integer "severidad"
     t.text "descripcion"
+    t.boolean "finalizado", default: false
+    t.bigint "alquiler_id"
+    t.index ["alquiler_id"], name: "index_sistema_reportes_on_alquiler_id"
     t.index ["user_id"], name: "index_sistema_reportes_on_user_id"
   end
 

@@ -1,4 +1,6 @@
 class SistemaReporte < ApplicationRecord
+  has_many_attached :images
   belongs_to :user
-  validates_uniqueness_of :user_id
+  enum severidad: [:leve, :moderado, :grave]
+
 end

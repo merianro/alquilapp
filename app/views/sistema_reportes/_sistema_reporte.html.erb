@@ -1,2 +1,61 @@
 <div id="<%= dom_id sistema_reporte %>">
+    <div class="container justify-content-center">
+      <div class="col-lg">
+        <div class="card text-center">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">descripcion</p>
+                </div>
+                <div class="col-sm-9">
+                <p class="text-muted mb-0">
+                  <%= sistema_reporte.descripcion %>
+                </p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Imagen</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">
+                  <%= sistema_reporte.descripcion %>
+                </p>
+              </div>
+            </div>
+            <hr>
+            </div>
+            <hr>
+          </div>
+          <div class="btn-group botones" role="group">
+            <%= button_to "Marcar como finalizado [NO FUNCIONA]", sistema_reporte, :onclick => "return confirm('Esta seguro que desea finalizar el reporte?')", method: :finalizar, class:"dropdown-item" %>
+
+          </div>
+
+        </div>
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<style>
+  .botones {
+    margin-left: auto;
+    margin-top: 20px;;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    gap: 10px;
+  }
+
+  .containerFoto {
+    margin-top: 50px;
+  }
+</style>
+
+
 </div>

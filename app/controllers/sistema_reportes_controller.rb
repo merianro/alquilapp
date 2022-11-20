@@ -58,31 +58,31 @@ class SistemaReportesController < ApplicationController
   end
 
   def atender
-    @sistema_reporte = SistemaReportes.find(params[:id])
+    @sistema_reporte = SistemaReporte.find(params[:id])
     @sistema_reporte.update(su_id: current_user.id)
 
     respond_to do |format|
-      format.html { redirect_to validations_url, notice: "" }
+      format.html { redirect_to sistema_reportes_url, notice: "" }
       format.json { head :no_content }
     end
   end
 
   def desatender
-    @sistema_reporte = SistemaReportes.find(params[:id])
+    @sistema_reporte = SistemaReporte.find(params[:id])
     @sistema_reporte.update(su_id: "")
 
     respond_to do |format|
-      format.html { redirect_to validations_url, notice: "" }
+      format.html { redirect_to sistema_reportes_url, notice: "" }
       format.json { head :no_content }
     end
   end
 
   def finalizar
-    @sistema_reporte =  SistemaReportes.find(params[:id])  
+    @sistema_reporte =  SistemaReporte.find(params[:id])  
     @sistema_reporte.update(finalizado: true)
 
     respond_to do |format|
-      format.html { redirect_to validations_url, notice: "" }
+      format.html { redirect_to sistema_reportes_url, notice: "" }
       format.json { head :no_content }
     end
   end
@@ -95,6 +95,7 @@ class SistemaReportesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sistema_reporte_params
-      params.fetch(:sistema_reporte, {})
+      params.require(:sistema_reporte).permit(:user_id, :descripcion, :severidad, :alquiler_id, images: [] )
+      # el parametro images tiene que ir ultimo si o si
     end
 end

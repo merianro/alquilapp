@@ -87,13 +87,7 @@
           </div>
           <div class="btn-group editBut" role="group" data-inline:"true">
            <%= button_to "Extender alquiler", edit_alquiler_path(alquiler), class:"btn btn-outline-secondary" %>
-          <div class="botonDelete">
-            <% if current_user.admin? then %>
-              <%= button_to "Hacer reporte", @car,:onclick => "return confirm('Esta seguro que desea eliminar el auto?')", method: :delete, class:"btn btn-outline-danger" %>
-            <% end %>
-          </div>
-                  
-          
+           <%= link_to "Realizar Reporte (NO IMPLEMENTADO)", new_sistema_reporte_path(alquiler: @alquiler), class:"btn btn-outline-secondary" %> 
         </div>
           
         </div>

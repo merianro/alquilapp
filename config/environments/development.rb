@@ -15,7 +15,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   config.hosts << '.sa.ngrok.io'
-
+  config.time_zone = "Buenos Aires"
   # ngrok
 
   # Enable server timing

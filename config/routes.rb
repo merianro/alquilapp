@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'main/home',   to: 'home#main'
   devise_for :users, controllers: { registrations: "users/registrations" }
   
