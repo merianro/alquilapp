@@ -103,6 +103,15 @@
                 <%= f.input :tipo_de_combustible, collection: ['Nafta', 'Diesel', 'GNC'],required: true, autofocus: true, input_html: { autocomplete: "tipo_de_combustible" } %>
               </div>
             </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Imagen</p>
+              </div>
+              <div class="container col-sm-9">
+                <%= f.input :images, as: :file, required: true, input_html: {multiple: true}%>
+              </div>
+            </div>
           </div>
             <div class="btn-group botonConf" role="group">
               <%= f.button :submit,'Guardar cambios',class:"btn btn-outline-success"%>          
@@ -125,3 +134,13 @@
   gap: 10px;
 }
 </style>
+
+<script>
+            function preview() {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+            }
+            function clearImage() {
+                document.getElementById('formFile').value = null;
+                frame.src = "";
+            }
+        </script>

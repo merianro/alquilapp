@@ -21,7 +21,7 @@
     <% @alquilers.order(:created_at).each do |alquiler| %>
       <tr>
         <td class="text-center">
-          <%=h alquiler.created_at.gmtime - 3.hours %>
+          <%=h alquiler.created_at.gmtime. - 3.hours %>
         </td>
         <td class="text-center">
           <%=h alquiler.car.patente  %>
