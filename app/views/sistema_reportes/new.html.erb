@@ -1,7 +1,3 @@
-
-<h1> new </h1>
-<%= params.inspect %>
-
  <% if  params[:format] =! nil %> 
   <h1>Nuevo reporte para <%= Alquiler.find(params[:alquiler]).car.marca + ' ' +  Alquiler.find(params[:alquiler]).car.modelo %>  </h1>
  <% end %> 
