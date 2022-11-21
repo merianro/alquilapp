@@ -30,7 +30,7 @@
               <div class="col-md-12"><label class="labels">Monto</label><p class="text-muted mb-0"><%= alquiler.monto %></div>
             </div>
           </div>
-          <%= link_to "Imprimir",
+          <%= link_to "Imprimir permiso de circulacion",
           "#",
           class: "btn",
           onclick: "window.print()" %>
@@ -48,23 +48,23 @@
     <h1>Permiso de utilizaci&oacute;n de veh&iacute;culo - Alquilapp</h1>
     <hr>
     <p >La aplicaci&oacute;n Alquilapp, due&ntilde;a del veh&iacute;culo marca 
-    <%= alquiler.car.marca %>
+    <b><%= alquiler.car.marca %> </b>
     modelo 
-    <%= alquiler.car.modelo%>
+   <b> <%= alquiler.car.modelo%> </b>
     , fabricado en el a&ntilde;o 
-    <%= alquiler.car.ano %>
+   <b> <%= alquiler.car.ano %> </b>
     , de patente 
-    <%= alquiler.car.patente %>
+   <b> <%= alquiler.car.patente %> </b>
     certifica que 
-    <%= alquiler.user.name+" "+alquiler.user.surname%>
+    <b><%= alquiler.user.name+" "+alquiler.user.surname%></b>
     de DNI N&uacute;mero 
-    <%= alquiler.user.dni%> 
+  <b>  <%= alquiler.user.dni%> </b>
     en caracter de usuario de la aplicaci&oacute;n se encuentra habilitado para la utilizaci&oacute;n y circulaci&oacute;n en el veh&iacute;culo previamente mencionado en el per&iacute;odo comprendido desde 
-    <%= alquiler.created_at.gmtime - 3.hours%>
+  <b>  <%= alquiler.created_at.gmtime - 3.hours%></b>
     Hasta 
-    <%= alquiler.end_date.gmtime%></p>
+  <b>  <%= alquiler.end_date.gmtime%></p></b>
     <p>Fecha:</p>
-    <%= alquiler.created_at.gmtime - 3.hours%>
+  <b>  <%= alquiler.created_at.gmtime - 3.hours%></b>
 
 </div>
 

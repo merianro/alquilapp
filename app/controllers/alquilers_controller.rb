@@ -26,11 +26,11 @@ class AlquilersController < ApplicationController
     @alquiler.update(end_date: DateTime.now.gmtime - 3.hours + @alquiler.horas.hours)
     respond_to do |format|
       if @alquiler.save
-        format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler was successfully created." }
+        format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler correctamente creado." }
         format.json { render :show, status: :created, location: @alquiler }
       else
-        format.html {  redirect_to alquilers_url, status: :unprocessable_entity }
-        format.json { render json: @alquiler.errors,  alert: "Debes estar validado para alquilar."  }
+        format.html { render :new, alert: "Debes estar validado para alquilar."  }
+        format.json { render json: @alquiler.errors,  status: :unprocessable_entity  }
       end
     end
   end
@@ -41,7 +41,7 @@ class AlquilersController < ApplicationController
       if @alquiler.update(horas: params[:alquiler][:horas].to_i)    
         @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa )
         @alquiler.update(end_date: @alquiler.created_at - 3.hours + params[:alquiler][:horas].to_i.hours)          
-        format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler was successfully updated." }
+        format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler correctamente actualizado." }
         format.json { render :show, status: :ok, location: @alquiler }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class AlquilersController < ApplicationController
     @alquiler.destroy
 
     respond_to do |format|
-      format.html { redirect_to alquilers_url, notice: "Alquiler was successfully destroyed." }
+      format.html { redirect_to alquilers_url, notice: "Alquiler correctamente destruido." }
       format.json { head :no_content }
     end
   end
