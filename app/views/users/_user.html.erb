@@ -115,7 +115,7 @@
           </div>
           <div class="btn-group botones" role="group">
             <%= button_to "Editar datos" , edit_user_path(@user), class:"btn btn-outline-primary" %>
-            <%= button_to "Editar contraseña" , edit_user_path(@user), class:"btn btn-outline-primary" %>
+            <%= link_to "Editar contraseña" , users_update_password_path(@user), class:"btn btn-outline-primary" %>
             <%= button_to "Eliminar cuenta", @user,:onclick => "return confirm('Esta seguro/a que desea eliminar la cuenta?')", method: :delete, class:"btn btn-outline-danger" %>
           </div>
 

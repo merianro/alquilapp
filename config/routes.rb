@@ -86,6 +86,12 @@ Rails.application.routes.draw do
 
   post 'alquilers/:id/edit', to: 'alquilers#edit'
   
+  get 'users/update_password', to: 'users#update_password'
+  post 'users/update_password', to: 'users#update_password'
+
+  get 'users/actualizar_contrasena', to: 'users#actualizar_contrasena'
+  post 'users/actualizar_contrasena', to: 'users#actualizar_contrasena'
+  patch 'users/actualizar_contrasena', to: 'users#actualizar_contrasena'
 
   resources :users
   resources :validations
