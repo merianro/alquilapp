@@ -110,7 +110,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   
   authenticated :user do
-    root "cars#home", as: :authenticated_root
+    root "cars#home2", as: :authenticated_root
   end
   
   root "main#home"

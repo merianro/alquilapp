@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-              <%= image_tag(Car.find(aux).images[0],class:"rounded-circle mt-5",style:"width:200px")%>        
+              <%= image_tag(Car.find(aux).images[0]|| "home.jpg",class:"rounded-circle mt-5",style:"width:200px")%>        
               <span class="font-weight-bold">Vehículo</span>
             </div>
         </div>
