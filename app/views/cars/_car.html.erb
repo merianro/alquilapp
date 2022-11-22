@@ -82,6 +82,19 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
+                <p class="mb-0">Habilitado</p>
+              </div>
+              <div class="col-sm-9">
+              <% if car.habilitado? then %>
+                <p class="text-muted mb-0">Si</p>
+              <% else %>
+                <p class="text-muted mb-0">No</p>
+              <% end %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
                 <p class="mb-0">Patente</p>
               </div>
               <div class="col-sm-9">

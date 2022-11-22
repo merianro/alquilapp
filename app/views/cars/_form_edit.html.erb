@@ -1,3 +1,6 @@
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+
 <%= simple_form_for(@car) do |f| %>
   <% if car.errors.any? %>
     <div style="color: red">
@@ -74,6 +77,15 @@
               </div>
               <div class="col-sm-9">
                 <%= f.input :disponible, required: true, autofocus: true, input_html: { autocomplete: "disponible" } %>
+              </div>
+              </div>
+              <hr>
+             <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Habilitado</p>
+              </div>
+              <div class="col-sm-9">
+                <%= f.input :habilitado, required: true, autofocus: true, input_html: { autocomplete: "disponible" } %>
               </div>
               </div>
               <hr>

@@ -90,6 +90,32 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1 or /users/1.json
+  def update_details
+    @user = User.find(params[:user][:id])
+    params[:user].delete :id
+    if !@user.su?
+      respond_to do |format|
+        if @user.update(user_params)
+          format.html { redirect_to user_url(@user), notice: "Datos actualizados correctamente." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        if @user.update(su_params)
+          format.html { redirect_to user_url(@user), notice: "Datos actualizados correctamente." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+
   def update
     @user = User.find(params[:id])
     if !@user.su?
@@ -117,6 +143,10 @@ class UsersController < ApplicationController
 
   def actualizar_contrasena
     @user = User.find(params[:user][:id])
+    puts params[:password]
+    puts params[:password_confirmation]
+
+
       respond_to do |format|
         if @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
           format.html { redirect_to user_url(@user), notice: "Contraseña editada correcatamente. Por favor, inicie sesion." }

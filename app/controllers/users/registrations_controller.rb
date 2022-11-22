@@ -3,6 +3,17 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:cancel ]
 
+  protected
+
+ 
+  def update_resource(resource, params)
+    # Require current password if user is trying to change password.
+    return super if params["password"]&.present?
+
+    # Allows user to update registration information without password.
+    resource.update_without_password(params.except("current_password"))
+  end
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 

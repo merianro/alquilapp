@@ -93,6 +93,11 @@ Rails.application.routes.draw do
   post 'users/actualizar_contrasena', to: 'users#actualizar_contrasena'
   patch 'users/actualizar_contrasena', to: 'users#actualizar_contrasena'
 
+
+  get 'users/update_details', to: 'users#update_details'
+  post 'users/update_details', to: 'users#update_details'
+  patch 'users/update_details', to: 'users#update_details'
+
   resources :users
   resources :validations
   resources :cars

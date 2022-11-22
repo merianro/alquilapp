@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  validate :password_regex,  on: :create
+  validate :password_regex,  on: [:create]
   validate :expiration_date_future
-
+  validate :dieciocho
   enum role: [:driver, :su, :admin]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -24,6 +24,11 @@ class User < ApplicationRecord
   def expiration_date_future
     return if vencimiento_licencia.future?
       errors.add :vencimiento_licencia,'La fecha de vencimiento debe ser una fecha futura'
+  end
+
+  def dieciocho
+    return if ((Date.today - birthdate) / 365).to_f >= 18
+      errors.add :birthdate,'Debes ser mayor de 18 anos'
   end
 
 end
