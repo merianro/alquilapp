@@ -24,6 +24,8 @@ class AlquilersController < ApplicationController
     @alquiler = Alquiler.new(alquiler_params)
     @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa)
     @alquiler.update(end_date: DateTime.now.gmtime - 3.hours + @alquiler.horas.hours)
+    @alquiler.car.update(disponible: false)
+
     respond_to do |format|
       if @alquiler.save
         format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler correctamente creado." }
@@ -68,6 +70,6 @@ class AlquilersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def alquiler_params
-      params.require(:alquiler).permit(:horas, :user_id, :car_id)
+      params.require(:alquiler).permit(:horas, :user_id, :car_id, :cantidad_ocupantes)
     end
 end

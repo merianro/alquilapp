@@ -28,6 +28,7 @@
               </div>
               <div class="col-md-12"><label class="labels">Horas</label><p class="text-muted mb-0"><%= alquiler.horas %></div>
               <div class="col-md-12"><label class="labels">Monto</label><p class="text-muted mb-0"><%= alquiler.monto %></div>
+              <div class="col-md-12"><label class="labels">Cantidad de Ocupantes</label><p class="text-muted mb-0"><%= alquiler.cantidad_ocupantes %></div>
             </div>
           </div>
           <%= link_to "Imprimir permiso de circulacion",
@@ -59,7 +60,9 @@
     <b><%= alquiler.user.name+" "+alquiler.user.surname%></b>
     de DNI N&uacute;mero 
   <b>  <%= alquiler.user.dni%> </b>
-    en caracter de usuario de la aplicaci&oacute;n se encuentra habilitado para la utilizaci&oacute;n y circulaci&oacute;n en el veh&iacute;culo previamente mencionado en el per&iacute;odo comprendido desde 
+    en caracter de usuario de la aplicaci&oacute;n se encuentra habilitado para la utilizaci&oacute;n y circulaci&oacute;n en el veh&iacute;culo previamente mencionado junto con 
+  <b> <%= alquiler.cantidad_ocupantes-1 %> </b>
+    en el per&iacute;odo comprendido desde 
   <b>  <%= alquiler.created_at.gmtime - 3.hours%></b>
     Hasta 
   <b>  <%= alquiler.end_date.gmtime%></p></b>
