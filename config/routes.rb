@@ -98,6 +98,9 @@ Rails.application.routes.draw do
   post 'users/update_details', to: 'users#update_details'
   patch 'users/update_details', to: 'users#update_details'
 
+  get 'alquilers/new', to: 'alquilers#new'
+  post 'alquilers/new', to: 'alquilers#new'
+
   resources :users
   resources :validations
   resources :cars

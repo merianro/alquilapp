@@ -1,108 +1,144 @@
-<!DOCTYPE html>
-<html>
 <head>
-<meta charset="utf-8">
-<title>Display a popup on click</title>
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
-<style>
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-</style>
+	<meta charset="utf-8">
+	<title>Display a popup on click</title>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+	<link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+	<script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
 </head>
-<body>
+
+<p style="color: green">
+  <%= notice %>
+</p>
+
+<p style="color: red">
+  <%= alert %>
+</p>
+
+<div class="container-fluid">
+    <% if user_signed_in? then %>
+        <div class="container-fluid alertValidation">
+            <% if current_user.role=="driver" and !current_user.validado and current_user.validation == nil then %>
+            	<div class="alert alert-danger text-center fs-5" role="alert">
+                	<i class='bx bx-error'></i> Recorda que para poder alquilar debes estar validado. <%=link_to "Hace click acá para validarte" , new_validation_path, class:"text-danger" %>
+            	</div>
+        	<% else %>
+          		<% if current_user.role=="driver" and !current_user.validado then %>
+            		<div class="alert alert-warning text-center fs-5" role="alert">
+              			<i class='bx bx-loader'></i> Su licencia esta siendo verificada por un supervisor.
+            		</div>
+          		<% end %>
+          	<% end %>  
+        </div>
+		<body>
+			<style>
+				.mapboxgl-popup {
+					max-width: 800px;
+				}
+			</style>
+			<div id="map" style="height: 800px;"></div>
+
+
+			<script>
+				mapboxgl.accessToken = 'pk.eyJ1IjoiamVyb3JhdHVzbnkiLCJhIjoiY2w5b3VtMXRwMDJwdDN2cGtkbzMzeXk4YiJ9.0DjtZMqtgsFrHq8VHwNarw';
+				const map = new mapboxgl.Map({
+				container: 'map',
+			// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+			style: 'mapbox://styles/mapbox/outdoors-v12',
+			center: [-57.954486, -34.921408],
+			zoom: 13
+			});
+
+			var array = [];
+						<% Car.all.each do | car | %> 
+							var obj = {
+												'type': 'Feature',
+												'properties': {
+													'description':
+													'<div class="container"><div class="text"><h4 class="mt-0 font-weight-bold mb-2"><%= car.marca+" "+car.modelo+" "+car.ano.to_s %></h4><p class="font-italic text-muted mb-0"><%= " Color: "+car.color+" Transmision: "+car.transmision+" Capacidad: "+car.capacidad.to_s%></p><div class="d-flex align-items-center justify-content-between mt-1"><h6 class="font-weight-bold my-2"><%= Parametro.first.tarifa.to_s+"/hora" %></h6></div></div><div class="image"><%= image_tag(car.images[0] || "home.jpg",class:"rounded-circle mt-5",style:"width:200px")%></div></div><%= button_to "Alquilar" , new_alquiler_path(car), class:"btn btn-outline-success" %>',
+													'icon': 'car'
+												},
+											'geometry':{
+												'type': 'Point',
+												'coordinates': [<%= car.ubication.y %>, <%= car.ubication.x %>]
+											}          
+						}
+						array.push(obj);
+						<% end %>
+
+			
+			map.on('load', () => {
+			map.addSource('places', {
+			// This GeoJSON contains features that include an "icon"
+			// property. The value of the "icon" property corresponds
+			// to an image in the Mapbox Streets style's sprite.
+			'type': 'geojson',
+			'data': {
+			'type': 'FeatureCollection',
+			'features': array
+			}
+			});
+			// Add a layer showing the places.
+			map.addLayer({
+			'id': 'places',
+			'type': 'symbol',
+			'source': 'places',
+			'layout': {
+			'icon-image': '{icon}',
+			'icon-size': 2.5,
+			'icon-allow-overlap': true
+			}
+			});
+			
+			// When a click event occurs on a feature in the places layer, open a popup at the
+			// location of the feature, with description HTML from its properties.
+			map.on('click', 'places', (e) => {
+			// Copy coordinates array.
+			const coordinates = e.features[0].geometry.coordinates.slice();
+			const description = e.features[0].properties.description;
+			
+			// Ensure that if the map is zoomed out such that multiple
+			// copies of the feature are visible, the popup appears
+			// over the copy being pointed to.
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+			coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+			
+			new mapboxgl.Popup()
+			.setLngLat(coordinates)
+			.setHTML(description)
+			.addTo(map);
+			});
+			
+			// Change the cursor to a pointer when the mouse is over the places layer.
+			map.on('mouseenter', 'places', () => {
+			map.getCanvas().style.cursor = 'pointer';
+			});
+			
+			// Change it back to a pointer when it leaves.
+			map.on('mouseleave', 'places', () => {
+			map.getCanvas().style.cursor = '';
+			});
+			});
+			</script>
+			
+		</body>
+	<% else %>
+        <%= button_to "Ingresar " , new_user_session_path, class:"btn btn-outline-dark btn-lg" %>
+        <%= image_tag("main.jpg", size: "100% 100%" )%>
+	<% end %>
+</div>
+
 <style>
-.mapboxgl-popup {
-max-width: 400px;
-font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-}
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center
+		text-align:center;
+    }
+    img {
+        max-width: 100%
+    }
+    .image {
+        flex-basis: 100%
+    }
 </style>
-<div id="map" style="height: 600px; margin-top: 200px; margin-left: 100px"></div>
-
-
-<script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoiamVyb3JhdHVzbnkiLCJhIjoiY2w5b3VtMXRwMDJwdDN2cGtkbzMzeXk4YiJ9.0DjtZMqtgsFrHq8VHwNarw';
-const map = new mapboxgl.Map({
-container: 'map',
-// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-style: 'mapbox://styles/mapbox/outdoors-v12',
-center: [-57.95, -34.91],
-zoom: 13.15
-});
-
-  var array = [];
-            <% Car.all.each do | car | %> 
-                var obj = {
-									'type': 'Feature',
-									'properties': {
-										'description':
-										'<strong>Make it Mount Pleasant</strong><p><a <%= link_to car.marca,new_alquiler_path(car)%> target="_blank" >Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>',
-										'icon': 'car'
-									},
-								'geometry':{
-									'type': 'Point',
-									'coordinates': [<%= car.ubication.y %>, <%= car.ubication.x %>]
-								}          
-            }
-            array.push(obj);
-            <% end %>
-
- 
-map.on('load', () => {
-map.addSource('places', {
-// This GeoJSON contains features that include an "icon"
-// property. The value of the "icon" property corresponds
-// to an image in the Mapbox Streets style's sprite.
-'type': 'geojson',
-'data': {
-'type': 'FeatureCollection',
-'features': array
-}
-});
-// Add a layer showing the places.
-map.addLayer({
-'id': 'places',
-'type': 'symbol',
-'source': 'places',
-'layout': {
-'icon-image': '{icon}',
-'icon-size': 2.5,
-'icon-allow-overlap': true
-}
-});
- 
-// When a click event occurs on a feature in the places layer, open a popup at the
-// location of the feature, with description HTML from its properties.
-map.on('click', 'places', (e) => {
-// Copy coordinates array.
-const coordinates = e.features[0].geometry.coordinates.slice();
-const description = e.features[0].properties.description;
- 
-// Ensure that if the map is zoomed out such that multiple
-// copies of the feature are visible, the popup appears
-// over the copy being pointed to.
-while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-}
- 
-new mapboxgl.Popup()
-.setLngLat(coordinates)
-.setHTML(description)
-.addTo(map);
-});
- 
-// Change the cursor to a pointer when the mouse is over the places layer.
-map.on('mouseenter', 'places', () => {
-map.getCanvas().style.cursor = 'pointer';
-});
- 
-// Change it back to a pointer when it leaves.
-map.on('mouseleave', 'places', () => {
-map.getCanvas().style.cursor = '';
-});
-});
-</script>
- 
-</body>
-</html>
