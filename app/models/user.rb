@@ -1,6 +1,8 @@
 class User < ApplicationRecord
-  validate :password_regex,  on: [:create]
-  validate :expiration_date_future
+  validate :password_regex_1,  on: [:create]
+  validate :password_regex_2,  on: [:create]
+
+  validate :expiration_date_future#, unless: [:create_su]
   validate :dieciocho
   enum role: [:driver, :su, :admin]
   # Include default devise modules. Others available are:
@@ -16,9 +18,14 @@ class User < ApplicationRecord
 
 
   private
-  def password_regex
-    return if password =~ /\A(?=.*[a-z])(?=.*[A-Z]).{5,}\z/ 
-      errors.add :password,'Debe tener entre 6 y 20 caracteres incluyendo una letra minúscula y una letra mayúscula'
+  def password_regex_1
+    return if password =~ /\A(?=.*[a-z]).{5,}\z/ 
+      errors.add :password,'Debe tener una letra minúscula'
+  end
+
+  def password_regex_2
+    return if password =~ /\A(?=.*[A-Z]).{5,}\z/ 
+      errors.add :password,'Debe tener una letra mayúscula'
   end
 
   def expiration_date_future
@@ -28,7 +35,7 @@ class User < ApplicationRecord
 
   def dieciocho
     return if ((Date.today - birthdate) / 365).to_f >= 18
-      errors.add :birthdate,'Debes ser mayor de 18 anos'
+      errors.add :birthdate,'Debes ser mayor de 18 años'
   end
 
 end

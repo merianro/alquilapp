@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'main/home',   to: 'home#main'
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { :registrations  => "users/registrations", :sessions  => "users/sessions" }
   
   get 'cars', to: 'cars#index'
   post 'cars', to: 'cars#index'
@@ -97,6 +97,10 @@ Rails.application.routes.draw do
   get 'users/update_details', to: 'users#update_details'
   post 'users/update_details', to: 'users#update_details'
   patch 'users/update_details', to: 'users#update_details'
+
+  get 'users/update_location', to: 'users#update_location'
+  post 'users/update_location', to: 'users#update_location'
+  patch 'users/update_location', to: 'users#update_location'
 
   get 'alquilers/new', to: 'alquilers#new'
   post 'alquilers/new', to: 'alquilers#new'

@@ -182,7 +182,23 @@ class UsersController < ApplicationController
       end
     end
 
+  def update_location
+    @user = User.find(params[:user][:id])
 
+    if params[:user][:location_point] == ""
+      respond_to do |format|     
+      format.html { redirect_to request.referrer, alert: "Por favor permiti el acceso a la ubicacion."}
+      format.json { head :no_content }
+      
+      end
+    else
+      @user.update(location_point: params[:user][:location_point])
+      respond_to do |format|     
+       format.html { redirect_to request.referrer, notice: "Gracias."}
+       format.json { head :no_content }
+      end
+    end
+  end
 
   def anadir_saldo(id,saldo)
     @user = User.find(id)
@@ -198,11 +214,11 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :surname, :birthdate, :phone, :vencimiento_licencia, :dni)
+      params.require(:user).permit(:name, :surname, :birthdate, :phone, :vencimiento_licencia, :dni, :location_point)
     end
 
     def su_params
-      params.require(:user).permit(:name, :surname, :birthdate, :phone, :dni, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :surname, :birthdate, :phone, :dni, :email, :vencimiento_licencia, :password, :password_confirmation)
     end
     
 end

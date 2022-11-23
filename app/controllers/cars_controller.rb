@@ -51,8 +51,8 @@ class CarsController < ApplicationController
 
   def habilitar
     @car = Car.find(params[:id])
-    if (@car.habilitado == true)
-      if (@car.disponible == true)
+    if (@car.habilitado == true) # si estaba habilitado inicialmente
+      if (@car.disponible == true) # y esta disponible
         @car.update(habilitado: false)
         respond_to do |format|
           format.html { redirect_to cars_url, notice: "Auto correctamente deshabilitado." }
@@ -65,7 +65,7 @@ class CarsController < ApplicationController
         end
       end
     else
-      @car.update(habilitado: true)
+      @car.update(habilitado: true) # si estaba deshabilitado inicialmente
       respond_to do |format|
         format.html { redirect_to cars_url, notice: "Auto correctamente habilitado." }
         format.json { head :no_content }

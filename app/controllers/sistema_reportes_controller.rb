@@ -24,7 +24,7 @@ class SistemaReportesController < ApplicationController
     @sistema_reporte = SistemaReporte.new(sistema_reporte_params)
 
     respond_to do |format|
-      if @sistema_reporte.save
+      if @sistema_reporte.save!
         format.html { redirect_to :controller => 'alquilers', :action => 'show', :id => @sistema_reporte.alquiler_id }
         format.json { render :show, status: :created, location: @sistema_reporte }
       else

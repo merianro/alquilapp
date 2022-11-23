@@ -55,9 +55,13 @@
                   input_html: { autocomplete: "expirationdate" }%>  
                 </div>
                 <div class="form-floating mb-3">
+                  <%= f.input :location_point, :as=> :hidden, required: true, autofocus: true%>  
+                </div>
+                <div class="form-floating mb-3">
                   <%= f.input :password, label: 'Contraseña',
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
+                <p class="text-muted mb-0"> La contraseña debe tener entre 6 y 20 caracteres, contener al menos una minuscula y una mayuscula. </p>
                 </div>
                 <div class="form-floating mb-3">
                   <%= f.input :password_confirmation, label: 'Confirmar contraseña',
@@ -76,3 +80,11 @@
       </div>
     </div>
     <% end %>
+
+
+    <script>
+	  navigator.geolocation.getCurrentPosition((pos) => {
+	    document.querySelector("#monster_location_point").value =
+	      `${pos.coords.latitude},${pos.coords.longitude}`;
+	  });
+	</script>

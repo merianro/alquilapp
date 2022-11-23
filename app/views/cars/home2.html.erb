@@ -14,6 +14,17 @@
   <%= alert %>
 </p>
 
+<% if current_user.location_point == nil %>
+ <h3> Por favor permite el acceso a la ubicacion desde el mensaje emergente para mostrarte los vehiculos disponibles.
+	Después, pulsa el boton.</h3>
+	<%= form_with model: current_user, :url => {:controller => 'users', :action => "update_location"} do |f| %>
+  	<%= f.hidden_field :location_point %>
+		<%= f.hidden_field :id, :value => current_user.id %>
+	<%= f.submit "Ya lo hice", class: "btn btn-primary mb-2" %>
+	<% end %>
+<% else %>
+
+
 <div class="container-fluid">
     <% if user_signed_in? then %>
         <div class="container-fluid alertValidation">
@@ -44,13 +55,13 @@
 				container: 'map',
 			// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
 			style: 'mapbox://styles/mapbox/outdoors-v12',
-			center: [-57.954486, -34.921408],
+			center:[-57.954486,-34.921408],
 			zoom: 13
 			});
 
 			var array = [];
 						<% Car.all.each do | car | %> 
-							<% if car.disponible? && car.habilitado? then %>
+							<% if car.disponible? && car.habilitado? && (Geocoder::Calculations.distance_between([car.ubication.x,car.ubication.y], [current_user.location_point[0],current_user.location_point[1]]) < 2) && (Geocoder::Calculations.distance_between([car.ubication.x,car.ubication.y], [-34.921408,-57.954486]) < 2) %>
 								var obj = {
 													'type': 'Feature',
 													'properties': {
@@ -66,6 +77,21 @@
 								array.push(obj);
 							<% end %>
 						<% end %>
+
+
+			var obj2 = {
+													'type': 'Feature',
+													'properties': {
+														'description':
+														'<h3> Vos </h3>',
+														'icon': 'marker'
+													},
+												'geometry':{
+													'type': 'Point',
+													'coordinates': [<%= current_user.location_point[1] %>, <%= current_user.location_point[0] %>]
+												}          
+								}
+												array.push(obj2);
 
 			
 			map.on('load', () => {
@@ -144,3 +170,16 @@
         flex-basis: 100%
     }
 </style>
+
+
+
+<% end%>
+
+
+
+
+	<script>
+		navigator.geolocation.getCurrentPosition((pos) => {
+			document.querySelector("#user_location_point").value = `${pos.coords.latitude},${pos.coords.longitude}`;
+		})
+	</script>

@@ -178,6 +178,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
+  
   # Modificado para cumplir la HU de registro de conductores
   config.password_length = 6..20
 
