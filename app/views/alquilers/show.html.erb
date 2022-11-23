@@ -7,8 +7,11 @@
 <%= render @alquiler %>
 
 <% if SistemaReporte.where(alquiler_id: @alquiler.id).count > 0   %>
+  <% if (current_user.id == @alquiler.user_id) %>
   <h3 style="color: green"> Tienes un reporte realizado para este alquiler, puedes verlo  <%= link_to "aqui", sistema_reporte_url(SistemaReporte.where(alquiler_id: @alquiler.id).first.id)  %> </h3>
- 
+ <% else %>
+   <h3 style="color: green"> Hay un reporte realizado para este alquiler, puedes verlo  <%= link_to "aqui", sistema_reporte_url(SistemaReporte.where(alquiler_id: @alquiler.id).first.id)  %> </h3>
+  <% end %>
 <% end %>
 
 <div class="py-2 d-print-none">

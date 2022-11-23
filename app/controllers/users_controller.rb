@@ -61,7 +61,14 @@ class UsersController < ApplicationController
   def create_su
 
     @user = User.new(su_params)
-  
+
+
+    if User.where(dni: @user.dni, role: 'su').count > 0
+      respond_to do |format|
+        format.html { render :newsu, alert: "Ya existe un supervisor con ese DNI."}
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    else
     respond_to do |format|
       if @user.save
         User.where(id: @user.id).update(role: 'su')
@@ -72,6 +79,7 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
   end
 
   # POST /users or /users.json
@@ -169,18 +177,11 @@ class UsersController < ApplicationController
         format.json { head :no_content }
       end
     elsif (@user.saldo >= 0) 
-      if @alquilers.where(user_id: current_user.user_id).order(:end_date).last.end_date.to_time.future?
           @user.destroy
           respond_to do |format|
-          format.html { redirect_to new_user_session_path, notice: "Usuario correctamente eliminado." }
-          format.json { head :no_content }
+            format.html { redirect_to new_user_session_path, notice: "Usuario correctamente eliminado." }
+            format.json { head :no_content }
           end
-        else
-          respond_to do |format|     
-          format.html { redirect_to user_url(@user), alert: "No se puede eliminar tu cuenta debido a que posees un alquiler activo" }
-          format.json { head :no_content }
-          end
-        end
     else
         respond_to do |format|     
         format.html { redirect_to user_url(@user), alert: "No se puede eliminar tu cuenta debido a que posees saldo negativo." }

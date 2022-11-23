@@ -18,8 +18,7 @@ users = User.create([
     {name:"Marcela",surname:"Ramirez",dni:"26645366",birthdate:"11-11-1975",phone:"221330267",email:"marcela.ramirez@gmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
     {name:"Domingo",surname:"Juarez",dni:"30787365",birthdate:"10-01-1980",phone:"11566673",email:"domingo@yahoo.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
     {name:"Manuel",surname:"Gimenez",dni:"40367231",birthdate:"09-01-2000",phone:"11566673",email:"manuelgimenez@gmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
-    {name:"Francisco",surname:"Perez",dni:"43655884",birthdate:"09-01-2000",phone:"11566673",email:"saldo@g.com",saldo: -100,vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
-
+    {name:"Francisco",surname:"Perez",dni:"43655884",birthdate:"09-01-2000",phone:"11566673",email:"saldo@g.com",saldo: -100,vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"}
 ])
 cars = Car.create([
             {marca: "Audi", modelo:"A3", ano:"2022", color:"Azul", transmision:"Automatica", capacidad:"4",ubication:"-34.91157291234968, -57.94059819120864", patente: 'AD413PS', disponible: true},
