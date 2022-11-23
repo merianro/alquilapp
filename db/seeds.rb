@@ -8,7 +8,7 @@
 
 user = User.create! :name => 'admin', :surname => 'admin', :dni => 20000000, :birthdate => '10-10-1980',:phone => 2215000000, :email => 'admin@g.com',vencimiento_licencia: "10-03-2028", :role => 2, :password => '123Alqui', :password_confirmation => '123Alqui'
 user2 = User.create! :name => 'supervisor', :surname => 'supervisor', :dni => 20000001, :birthdate => '09-10-1980', :phone => 2215000001, :email => 'su@g.com',vencimiento_licencia: "10-03-2028", :role => 1, :password => '123Alqui', :password_confirmation => '123Alqui'
-user3 = User.create! :name => 'conductor', :surname => 'driver', :dni => 20000002, :birthdate => '08-10-1980', :phone => 2215000002, :email => 'user@g.com',vencimiento_licencia: "10-03-2028", :role => 0, :password => '123Alqui', :password_confirmation => '123Alqui'
+user3 = User.create! :name => 'conductor', :surname => 'driver', :dni => 20000002, :birthdate => '08-10-1980', saldo: 999999999, :phone => 2215000002, :email => 'user@g.com',vencimiento_licencia: "10-03-2028", :role => 0, :password => '123Alqui', :password_confirmation => '123Alqui'
 
 users = User.create([
     {name:"Emilio",surname:"Perez",dni:"10638296",birthdate:"10-10-1960",phone:"0387528735",email:"emiliop@gmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
@@ -17,7 +17,9 @@ users = User.create([
     {name:"Pedro",surname:"Dominguez",dni:"30324981",birthdate:"01-12-1980",phone:"3489827364",email:"pedrod@live.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
     {name:"Marcela",surname:"Ramirez",dni:"26645366",birthdate:"11-11-1975",phone:"221330267",email:"marcela.ramirez@gmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
     {name:"Domingo",surname:"Juarez",dni:"30787365",birthdate:"10-01-1980",phone:"11566673",email:"domingo@yahoo.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
-    {name:"Manuel",surname:"Gimenez",dni:"40367231",birthdate:"09-01-2000",phone:"11566673",email:"manuelgimenez@gmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"}
+    {name:"Manuel",surname:"Gimenez",dni:"40367231",birthdate:"09-01-2000",phone:"11566673",email:"manuelgimenez@gmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
+    {name:"Francisco",surname:"Perez",dni:"43655884",birthdate:"09-01-2000",phone:"11566673",email:"saldo@g.com",saldo: -100,vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
+
 ])
 cars = Car.create([
             {marca: "Audi", modelo:"A3", ano:"2022", color:"Azul", transmision:"Automatica", capacidad:"4",ubication:"-34.91157291234968, -57.94059819120864", patente: 'AD413PS', disponible: true},
