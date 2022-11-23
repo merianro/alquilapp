@@ -26,7 +26,7 @@
         <td><%= user.birthdate %></td>
         <td><%= user.email %></td> 
         <td><%= user.phone %></td>
-        <td><%= link_to "Ver detalle", user %></td> 
+        <td class="text-center"><%= link_to "Ver detalle", user,class:"btn btn-secondary btn-sm" %></td> 
       </tr>
       <% end %>
     <% end %>
@@ -34,4 +34,4 @@
 
 </table>
 
-<%= link_to "Agregar nuevo supervisor", users_newsu_path %>
+<%= link_to "Agregar nuevo supervisor", users_newsu_path,class:"btn btn-outline-success btn-sm" %>

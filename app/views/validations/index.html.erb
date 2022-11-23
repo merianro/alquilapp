@@ -19,7 +19,7 @@
 
           <tbody>
             <% @validations.each do |validation| %>
-              <% if validation.su_id==current_user.id and validation.user.validado==false then %>
+              <% if validation.su_id==current_user.id  then %>
                 <tr>
                   <td>
                     <%= validation.user.name %>
@@ -35,6 +35,7 @@
                   <td class="text-center">
                     <div class="btn-group">
                       <%= link_to "Ver validacion",validation,class:"btn btn-secondary btn-sm" %>
+                      <% if validation.user.validado==false then %>
                       <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                         <!-- <span class="visually-hidden">Toggle Dropdown</span> -->
                       </button>
@@ -42,8 +43,9 @@
                         <%= link_to "Desasignar" , '/validations/desasignar?id=' + validation.id.to_s , class:"dropdown-item"%>
                         <%= link_to "Validar" , '/validations/validate?id=' + validation.id.to_s, class:"dropdown-item" %>
                         <%= button_to "Rechazar validacion", validation,:onclick => "return confirm('Esta seguro que desea rechazar la validacion?')", method: :delete, class:"dropdown-item" %>
-                    </ul>
-                  </div>
+                      </ul>
+                      <%end%>
+                    </div>
                   </td>
                 </tr>
                 <% end %>

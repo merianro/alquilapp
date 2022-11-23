@@ -25,6 +25,7 @@ class AlquilersController < ApplicationController
     @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa)
     @alquiler.update(end_date: DateTime.now.gmtime - 3.hours + @alquiler.horas.hours)
     @alquiler.car.update(disponible: false)
+    @alquiler.user.update(saldo: @alquiler.user.saldo - @alquiler.monto)
 
     respond_to do |format|
       if @alquiler.save
