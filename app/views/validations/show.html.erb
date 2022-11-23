@@ -20,8 +20,10 @@
     </div>
     <div class="btn-group botones" role="group">
       <!-- <%= link_to "Edit this validation", edit_validation_path(@validation) %> -->
+      <% if @validation.user.validado==false then %>
       <%= button_to "Rechazar validacion" , @validation, :onclick=> "return confirm('Esta seguro que desea rechazar la
         validacion?')", method: :delete , class:"btn btn-outline-danger"%>
+        <%end%>
         <%= link_to "Volver a validaciones" , validations_path ,class:"btn btn-outline-secondary"%>
     </div>
   </div>
