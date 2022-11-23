@@ -10,7 +10,7 @@
                     <button class="dropbtn btn btn-outline-dark"><%= current_user.name+" "+current_user.role%></button>
                     <div class="dropdown-content" style="right:0">
                         <%= link_to "Mi cuenta",current_user %>
-                        <%= button_to "Cerrar Sesión",destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark' %>
+                        <%= button_to "Cerrar Sesión",destroy_user_session_path, method: :delete, class:"dropdown-item" %>
                         <% if current_user.role=="admin" then %>
                             <hr></hr>
                             <a> Cuenta Administrador </a>

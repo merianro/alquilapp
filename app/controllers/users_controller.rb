@@ -168,19 +168,26 @@ class UsersController < ApplicationController
         format.html { redirect_to users_drindex_path, notice: "Usuario correctamente eliminado." }
         format.json { head :no_content }
       end
-    elsif (@user.saldo >= 0)
-        @user.destroy
-        respond_to do |format|
+    elsif (@user.saldo >= 0) 
+      if @alquilers.where(user_id: current_user.user_id).order(:end_date).last.end_date.to_time.future?
+          @user.destroy
+          respond_to do |format|
           format.html { redirect_to new_user_session_path, notice: "Usuario correctamente eliminado." }
           format.json { head :no_content }
-        end
-      else
-        respond_to do |format|     
-          format.html { redirect_to user_url(@user), alert: "No se puede eliminar tu cuenta debido a que posees saldo negativo." }
+          end
+        else
+          respond_to do |format|     
+          format.html { redirect_to user_url(@user), alert: "No se puede eliminar tu cuenta debido a que posees un alquiler activo" }
           format.json { head :no_content }
+          end
         end
-      end
+    else
+        respond_to do |format|     
+        format.html { redirect_to user_url(@user), alert: "No se puede eliminar tu cuenta debido a que posees saldo negativo." }
+        format.json { head :no_content }
+        end
     end
+  end
 
   def update_location
     @user = User.find(params[:user][:id])

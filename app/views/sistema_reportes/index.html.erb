@@ -38,15 +38,13 @@
                   <td class="text-center">
                     <div class="btn-group">
                       <%= link_to "Ver reporte",sistema_reportes, class:"btn btn-secondary btn-sm" %>
-                      <% if validation.user.validado==false then %>
                       <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                         <!-- <span class="visually-hidden">Toggle Dropdown</span> -->
                       </button>
                       <ul class="dropdown-menu">
                         <%= link_to "Desatender" , '/sistema_reportes/desatender?id=' + sistema_reportes.id.to_s , class:"dropdown-item"%>
-                        <%= button_to "Marcar como finalizado [NO FUNCIONA]", sistema_reportes, :onclick => "return confirm('Esta seguro que desea finalizar el reporte?')", method: :finalizar, class:"dropdown-item" %>
+                        <%= button_to "Marcar como finalizado", sistema_reportes, :onclick => "return confirm('Esta seguro que desea finalizar el reporte?')", method: :finalizar, class:"dropdown-item" %>
                     </ul>
-                    <%end%>
                   </div>
                   </td>
                 </tr>
