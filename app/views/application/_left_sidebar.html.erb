@@ -109,14 +109,16 @@
                                         <h4>Reportes</h4>
                                         <% end %>
                                 </a>
+                            <% end %>
 
+                            <% if current_user.role=="su" then %>
                                 <a>
                                     <%= link_to validations_path, :class=>"option" do %>
                                         <i class='bx bx-check'></i>
                                         <h4>Validaciones</h4>
                                         <% end %>
                                 </a>
-                                <% end %>
+                            <% end %>
 
                                     <% if current_user.role=="driver" then %>
                                         <a>

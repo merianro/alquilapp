@@ -76,7 +76,7 @@
                 <p class="mb-0">Disponible</p>
               </div>
               <div class="col-sm-9">
-                <%= f.input :disponible, required: true, autofocus: true, input_html: { autocomplete: "disponible" } %>
+                <%= f.input :disponible, autofocus: true, input_html: { autocomplete: "disponible" } %>
               </div>
               </div>
               <hr>
@@ -85,7 +85,7 @@
                 <p class="mb-0">Habilitado</p>
               </div>
               <div class="col-sm-9">
-                <%= f.input :habilitado, required: true, autofocus: true, input_html: { autocomplete: "disponible" } %>
+                <%= f.input :habilitado, autofocus: true, input_html: { autocomplete: "disponible" } %>
               </div>
               </div>
               <hr>
@@ -121,7 +121,7 @@
                 <p class="mb-0">Imagen</p>
               </div>
               <div class="container col-sm-9">
-                  <%= f.input :images, as: :file, required: true, input_html: {multiple: true}%> 
+                  <%= f.input :images, as: :file, input_html: {multiple: true}%> 
               </div>
             </div>
           </div>

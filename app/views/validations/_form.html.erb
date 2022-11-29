@@ -8,11 +8,14 @@
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
               <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body p-4 p-sm-5">
-                  <h5 class="card-title text-center mb-4 fw-light fs-5">Añadi tu licencia</h5>
+                  <h5 class="card-title text-center mb-4 fw-light fs-5">Añadi tu licencia y DNI</h5>
                   <form>
                     <div class="form-floating mb-3">
                       <div class="input-group mb-3">
-                        <%= f.input :images, as: :file, required: true, input_html: {multiple: true}%>
+                        <%= f.input :licencia, as: :file, required: true, input_html: { autocomplete: "licencia" }%>
+                      </div>
+                      <div class="input-group mb-3">
+                        <%= f.input :dni, as: :file, required: true, input_html: { autocomplete: "dni" }%>
                       </div>
                     </div>
                     <div class="form-floating mb-3">
@@ -20,7 +23,7 @@
                     </div>
                     <hr class="my-4">
                     <div class="d-grid mb-2">
-                      <%= f.button :submit, "Enviar Licencia", class:"btn btn-warning"%>
+                      <%= f.button :submit, "Enviar Validacion", class:"btn btn-warning"%>
                     </div>
                   </form>
                 </div>

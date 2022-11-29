@@ -45,7 +45,8 @@
                       
                       <ul class="dropdown-menu">
                         <%= link_to "Desatender" , '/sistema_reportes/desatender?id=' + sistema_reportes.id.to_s , class:"dropdown-item"%>
-                        <%= button_to "Marcar como finalizado", sistema_reportes, :onclick => "return confirm('Esta seguro que desea finalizar el reporte?')", method: :finalizar, class:"dropdown-item" %>
+                        <%= link_to 'Finalizar sin multa',  sistema_reportes_finalizar_path(sistema_reportes),class:"dropdown-item" %>
+                        <%= link_to 'Finalizar con multa al inquilino anterior',  sistema_reportes_finalizar_multa_path(sistema_reportes),class:"dropdown-item" %>
                       </ul>
                       <%end%>
                   </div>

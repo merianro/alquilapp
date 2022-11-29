@@ -44,7 +44,7 @@
             </div>
           </div>
           <% if sistema_reporte.finalizado==false then %>
-            <% if current_user.su? %>
+            <% if current_user.su? && current_user.id == @sistema_reporte.su_id%>
               <div class="btn-group botones" role="group">
                 <%= link_to 'Finalizar sin multa',  sistema_reportes_finalizar_path(sistema_reporte),class:"btn btn-outline-success" %>
                 <%= link_to 'Finalizar con multa al inquilino anterior',  sistema_reportes_finalizar_multa_path(sistema_reporte),class:"btn btn-outline-danger" %>
