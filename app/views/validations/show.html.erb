@@ -8,9 +8,20 @@
 
   <div class="card text-center containerFoto">
     <div class="container-fluid">
-      <div>
-        <h3 class="fs-3 text-start">Licencia</h3>
+      <div class="title"> 
+        <h3 class="fs-3 text-start">Licencia
+          <% if @validation.borrado then %>
+            <span class="text-danger"> RECHAZADA</span>
+          <% end %>
+        </h3>
       </div>
+      <% if @validation.borrado then %>
+      <div class="card container-fluid">
+        <h4 class="fs-4 text-start">Motivo de rechazo</h4>
+        <p class="text-start"><%= @validation.description %></p>
+      </div>
+      <% end %>
+      <h2></h2>
       <div class="container-fluid">
         <%= image_tag(@validation.licencia,class:"img-fluid",style:"width:50%; margin-top:30px;")%>
         <%= image_tag(@validation.dni,class:"img-fluid",style:"width:50%; margin-top:30px;")%>
@@ -18,11 +29,31 @@
     </div>
     <div class="btn-group botones" role="group">
       <!-- <%= link_to "Edit this validation", edit_validation_path(@validation) %> -->
-      <% if @validation.user.validado==false then %>
-      <%= button_to "Rechazar validacion" , @validation, :onclick=> "return confirm('Esta seguro que desea rechazar la
-        validacion?')", method: :delete , class:"btn btn-outline-danger"%>
+      <% if !@validation.user.validado and !@validation.borrado and @validation.su_id == current_user.id then %>
+      <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Rechazar validacion
+      </button>
         <%end%>
         <%= link_to "Volver a validaciones" , validations_path ,class:"btn btn-outline-secondary"%>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Motivo de rechazo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(@validation) do |f| %>
+          <%= f.input :description, required: true%>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, "Enviar Validacion", class:"btn btn-warning"%>
+            <% end %>
+        </div>
     </div>
   </div>
 </div>
@@ -38,5 +69,10 @@
 
   .containerFoto{
     margin-bottom: 20px;
+  }
+
+  .title{
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 </style>

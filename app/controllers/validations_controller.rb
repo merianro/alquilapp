@@ -40,9 +40,18 @@ class ValidationsController < ApplicationController
   def update
     respond_to do |format|
       if @validation.update(validation_params)
-        @validation.user.update(validado: false)
-        format.html { redirect_to validation_url(@validation), notice: "Validacion correctamente actualizada." }
-        format.json { render :show, status: :ok, location: @validation }
+        if !@validation.user.validado and @validation.borrado then 
+          @validation.user.update(validado: false)
+          @validation.update(borrado: false)
+          @validation.update(su_id: "")
+          format.html { redirect_to validation_url(@validation), notice: "Validacion correctamente actualizada." }
+          format.json { render :show, status: :ok, location: @validation }
+        else
+          @validation.update(borrado: true);
+          @validation.user.update(validado: false)
+          format.html { redirect_to validation_url(@validation), notice: "Validacion correctamente rechazada." }
+          format.json { render :show, status: :ok, location: @validation }
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @validation.errors, status: :unprocessable_entity }
@@ -83,6 +92,7 @@ class ValidationsController < ApplicationController
   def validate
     @validation = Validation.find(params[:id])  
     @validation.user.update(validado: true)
+    @validation.description = nil
 
     respond_to do |format|
       format.html { redirect_to validations_url, notice: "" }
@@ -98,7 +108,7 @@ class ValidationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def validation_params
-      params.require(:validation).permit(:user_id, :licencia, :dni)
+      params.require(:validation).permit(:user_id, :licencia, :dni, :description, :borrado)
     end
 
     def is_op

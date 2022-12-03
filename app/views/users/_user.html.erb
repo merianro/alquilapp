@@ -6,13 +6,18 @@
           <i class='bx bx-error'></i> Recorda que para poder alquilar debes estar validado.
           <%=link_to "Hace click acá para validarte" , new_validation_path, class:"text-danger" %>
         </div>
-        <% else %>
-          <% if current_user.role=="driver" and !current_user.validado then %>
-            <div class="alert alert-warning text-center fs-5" role="alert">
-              <i class='bx bx-loader'></i> Su licencia esta siendo verificada por un supervisor.
-            </div>
-            <% end %>
+        <% elsif current_user.role=="driver" and current_user.validado == false and current_user.validation.borrado== false %>
+          <div class="alert alert-warning text-center fs-5" role="alert">
+            <i class='bx bx-loader'></i> Su licencia esta siendo verificada por un supervisor.
+          </div>
+          <% else %>
+            <% if current_user.role=="driver" and !current_user.validado and current_user.validation.borrado %>
+              <div class="alert alert-danger text-center fs-5" role="alert">
+                <i class='bx bx-error '></i> Licencia Rechazada. Motivo descripto en su información personal. <br>
+                Debe actualizar su licencia teniendo en cuenta el motivo de rechazo. 
+              </div>
               <% end %>
+                <% end %>
     </div>
 
 
@@ -111,35 +116,49 @@
                       <% end %>
                 </div>
               </div>
-            <% end %>
+              <% end %>
           </div>
           <div class="btn-group botones" role="group">
             <%= button_to "Editar datos" , edit_user_path(@user), class:"btn btn-outline-primary" %>
-            <!-- <%= link_to "Editar contraseña", edit_user_registration_path %> !-->
-            <%= button_to "Eliminar cuenta", @user,:onclick => "return confirm('Esta seguro/a que desea eliminar la cuenta?')", method: :delete, class:"btn btn-outline-danger" %>
+              <!-- <%= link_to "Editar contraseña", edit_user_registration_path %> !-->
+              <%= button_to "Eliminar cuenta" , @user,:onclick=> "return confirm('Esta seguro/a que desea eliminar la
+                cuenta?')", method: :delete, class:"btn btn-outline-danger" %>
           </div>
 
         </div>
 
       </div>
-      <% if user.validation != nil then %>
-      <div class="card text-center containerFoto">
-        <div class="container-fluid">
-          <div>
-            <h3 class="fs-4 text-start">Tu Licencia</h3>
-          </div>
+      <% if user.validation !=nil then %>
+        <div class="card text-center containerFoto">
           <div class="container-fluid">
-            <div class="row justify-content-center containerFoto">
-              <%= image_tag(user.validation.licencia,class:"img-fluid",style:"width:40%")%>
-              <%= image_tag(user.validation.dni,class:"img-fluid",style:"width:40%")%>
+            <div>
+              <h3 class="fs-4 text-start">Tu Licencia
+                <% if current_user.validation.borrado then %>
+                  <span class="text-danger"> HA SIDO RECHAZADA</span>
+                  <% end %>
+              </h3>
             </div>
+            <% if current_user.validation.borrado then %>
+              <div class="card container-fluid">
+                <h4 class="fs-4 text-start">Motivo de rechazo</h4>
+                <p class="text-start">
+                  <%= current_user.validation.description %>
+                </p>
+              </div>
+              <% end %>
+                <div class="container-fluid">
+                  <div class="row justify-content-center containerFoto">
+                    <%= image_tag(user.validation.licencia,class:"img-fluid",style:"width:40%")%>
+                      <%= image_tag(user.validation.dni,class:"img-fluid",style:"width:40%")%>
+                  </div>
+                </div>
+          </div>
+          <div class="btn-group botones" role="group">
+            <%= button_to "Actualizar Licencia" , edit_validation_path(user.validation), class:"btn btn-outline-primary"
+              %>
           </div>
         </div>
-        <div class="btn-group botones" role="group">
-          <%= button_to "Actualizar Licencia" , edit_validation_path(user.validation), class:"btn btn-outline-primary" %>
-        </div>
-      </div>
-      <% end %>
+        <% end %>
     </div>
   </div>
 </div>
@@ -149,7 +168,8 @@
 <style>
   .botones {
     margin-left: auto;
-    margin-top: 20px;;
+    margin-top: 20px;
+    ;
     padding-right: 10px;
     padding-bottom: 10px;
     gap: 10px;
@@ -159,4 +179,3 @@
     margin-top: 50px;
   }
 </style>
-
