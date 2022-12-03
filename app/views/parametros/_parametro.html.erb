@@ -1,0 +1,85 @@
+<div id="<%= dom_id parametro %>">
+<div class="container-fluid justify-content-center" align="center">
+      <div class="col-lg-7">
+      <div class="card mb-4">
+        <div class="card-body text-start">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tarifa por hora</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= parametro.tarifa %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tarifa por hora extendida</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= parametro.tarifa_extension %></p>
+              </div>
+            </div>
+            <hr>
+           
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Multa por entregar el auto con menos combustible</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= parametro.multa_combustible %></p>
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0"> Multa por entregar el auto sucio</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= parametro.multa_auto_sucio %></p>
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0"> Multa por entregar el auto fuera de tiempo (tiempo cada 15m)</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= parametro.multa_tiempo_excedido %></p>
+              </div>
+            </div>
+            <hr>
+           
+            </div>
+          </div>
+          <div class="btn-group editBut" role="group" data-inline:"true">
+            <% if current_user.admin? then%>
+              <%= link_to "Editar",  edit_parametro_path(parametro.id), class:"btn btn-outline-secondary" %>
+      
+            <% end %>
+          
+          </div>
+          
+        </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<style>
+.botonDelete{
+  margin-left: auto;
+  padding: 5px;
+}
+
+.editBut{
+  padding: 5px;
+}
+</style>
+
+</div>
