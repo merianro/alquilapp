@@ -1,0 +1,35 @@
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+<p style="color: green"><%= notice %></p>
+
+<h1>Estadisticas</h1>
+
+
+<h1> Estadisticas Alquileres </h1>
+<%# <%= line_chart Alquiler.group_by_day(:created_at).count %>
+<%# <%= column_chart Alquiler.group_by_day_of_week(:created_at, format: "%a").count %> %> %>
+<h3> Cantidad de Alquileres: <%= Alquiler.count%></h3> 
+<h3> Cantidad de horas alquiladas: <%= Alquiler.all.sum(:horas)%></h3> 
+<h3> Promedio de horas alquiladas: <%= Alquiler.all.sum(:horas) / Alquiler.count %></h3> 
+
+
+<h1> Estadisticas Reportes </h1>
+<h3> Cantidad de reportes: <%= SistemaReporte.count %></h3> 
+<h3> Cantidad reportes en atencion: <%= SistemaReporte.where(finalizado: false).count %></h3> 
+<h3> Cantidad reportes finalizados: <%= SistemaReporte.where(finalizado: true).count %></h3> 
+
+
+<h1> Estadisticas Autos </h1>
+<h3> Cantidad de autos: <%= Car.count %></h3> 
+<h3> Cantidad de autos habilitados: <%= Car.where(habilitado:true).count %></h3> 
+<h3> Cantidad de autos deshabilitados: <%= Car.where(habilitado: false).count %></h3> 
+<h3> Cantidad de autos en uso: <%= Car.where(disponible: false).count %></h3> 
+<h3> Cantidad de autos disponible: <%= Car.where(disponible: true).count %></h3> 
+
+
+
+
+<h1> Estadisticas Supervisores </h1>
+
+
+
+<%= link_to "New estadistica", new_estadistica_path %>
