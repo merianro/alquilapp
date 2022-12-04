@@ -1,5 +1,62 @@
-<%= simple_form_for(@user) do |f| %> 
-  <%= f.input :name, required: true, autofocus: true, input_html: { autocomplete: "name" } %>
+<%= simple_form_for(@user) do |f| %>
+<div class="container-fluid justify-content-center" align="center">
+  <div class="col-lg-7 ">
+    <div class="card mb">
+    <div class="card-body text-start">
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Nombre</p>
+          </div>
+          <div class="col-sm-9">
+            <%= f.input :name,label: 'Nombre' ,required: true, autofocus: true, input_html: { autocomplete: "name" } %>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Apellido</p>
+          </div>
+          <div class="col-sm-9">
+            <%= f.input :surname, label: 'Apellido',required: true, autofocus: true, input_html: { autocomplete: "surname" } %>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Fecha de Nacimiento</p>
+          </div>
+          <div class="col-sm-9">
+            <%= f.input :birthdate,start_year: Time.now.year - 100, end_year: Time.now.year-18,label: 'Fecha de Nacimiento', required: true, autofocus: true, input_html: { autocomplete: "birthdate" } %>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Teléfono</p>
+          </div>
+          <div class="col-sm-9">
+            <%= f.input :phone,label: 'Teléfono', required: true, autofocus: true, input_html: { autocomplete: "birthdate" } %>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">DNI</p>
+          </div>
+          <div class="col-sm-9">
+            <%= f.input :dni,label: 'DNI' ,required: true, autofocus: true, input_html: { autocomplete: "dni" } %>
+          </div>
+        </div>
+      </div>
+      <div class="btn-group botonConf" role="group">
+        <%= f.button :submit,'Guardar cambios',class:"btn btn-outline-success"%>
+        <%= link_to "Volver al perfil",@user,class:"btn btn-outline-secondary"%>          
+      </div>
+    </div>
+    </div>
+
+
+  <!-- <%= f.input :name, required: true, autofocus: true, input_html: { autocomplete: "name" } %>
 
   <%= f.input :surname, required: true, autofocus: true, input_html: { autocomplete: "surname" } %>
 
@@ -15,5 +72,13 @@
   
   <%= f.input :password_confirmation, required: true, autofocus: true, input_html: { autocomplete: "password_confirmation" } %>
 
-  <%= f.button :submit, 'Actualizar Supervisor' %>
+  <%= f.button :submit, 'Actualizar Supervisor' %> -->
 <% end %>
+
+<style>
+  .botonConf{
+    margin-left: auto;
+    padding: 7px;
+    gap: 10px;
+  }
+  </style>

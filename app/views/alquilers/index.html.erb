@@ -21,7 +21,7 @@
     <% @alquilers.order(:created_at).each do |alquiler| %>
       <tr>
         <td class="text-center">
-          <%=h alquiler.created_at.gmtime. - 3.hours %>
+          <%=h alquiler.created_at %>
         </td>
         <td class="text-center">
           <%=h alquiler.car.patente  %>
@@ -33,7 +33,7 @@
           <%=h alquiler.horas %> horas
         </td>
         <td class="text-center">
-          <%=h alquiler.end_date.gmtime - 3.hours %>  
+          <%=h alquiler.end_date %>  
         </td>
         <td class="text-center">
           <div class="btn-group">
@@ -52,7 +52,7 @@
       <% @alquilers.where(user_id: current_user.id).order(:created_at).each do |alquiler| %>
       <tr>
         <td class="text-center">
-          <%=h alquiler.created_at.gmtime - 3.hours %>
+          <%=h alquiler.created_at%>
         </td>
         <td class="text-center">
           <%=h alquiler.car.patente  %>
@@ -61,7 +61,7 @@
           <%=h alquiler.horas %> horas
         </td>
          <td class="text-center">
-          <%=h alquiler.end_date.gmtime  %>  
+          <%=h alquiler.end_date %>  
         </td>
         <td class="text-center">
           <div class="btn-group">

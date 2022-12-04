@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one :validation, dependent: :destroy
   validates_uniqueness_of :dni, scope: %i[role ] 
   # chequea si hay un solo dni por rol
+  has_many :alquilers
 
 
   private

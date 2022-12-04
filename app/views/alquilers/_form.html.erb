@@ -36,7 +36,11 @@
                     <div class="col-md-12"><label class="labels">Tipo de Combustible</label><p class="text-muted mb-0"><%= Car.find(aux).tipo_de_combustible %></div>
                     <div class="col-md-12"><label class="labels">Porcentaje de Combustible</label><p class="text-muted mb-0"><%= Car.find(aux).porcentaje_combustible %></div>
                 </div>
-                <div class="mt-5 text-center"><%= f.button :submit,'Confirmar Alquiler',:onclick => "return confirm('Si confirma el alquiler se descontara el dinero de su cuenta')",class:"btn btn-outline-success"%></div>
+                <div class="mt-5 text-center">
+                    <%= link_to "Atras", root_path, class:"btn btn-outline-secondary" %>
+                    <%= f.button :submit,'Confirmar Alquiler',:onclick => "return confirm('Si confirma el alquiler se descontara el dinero de su cuenta')",class:"btn btn-outline-success"%>
+                </div>
+
             </div>
         </div>
         <div class="col-md-4">

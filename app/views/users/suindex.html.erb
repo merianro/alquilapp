@@ -1,37 +1,53 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Supervisores</h1>
+<div class="container-fluid justify-content-center">
+  <h1>Supervisores</h1>
+  <div class="table-responsive">
+    <table class="table table-hover">
+    
+      <thead class="table-light">
+        <tr>
+          <th class="text-center">Nombre</th> 
+          <th class="text-center">Apellido</th> 
+          <th class="text-center">DNI</th> 
+          <th class="text-center">Fecha de Nacimiento</th> 
+          <th class="text-center">Email</th> 
+          <th class="text-center">Celular de Contacto</th>
+          <th class="text-center"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @users.each do |user| %>
+          <% if user.role == "su" then %>
+          <tr>
+            <td class="text-center"><%= user.name %></td> 
+            <td class="text-center"><%= user.surname %></td> 
+            <td class="text-center"><%= user.dni %></td> 
+            <td class="text-center"><%= user.birthdate %></td>
+            <td class="text-center"><%= user.email %></td> 
+            <td class="text-center"><%= user.phone %></td>
+            <td class="text-center">
+              <div class="btn-group">
+                  <%= link_to "Ver detalle",user,class:"btn btn-secondary btn-sm" %>
+                  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <!-- <span class="visually-hidden">Toggle Dropdown</span> -->
+                   </button>
+                     <ul class="dropdown-menu">
+                       <%= link_to "Editar Supervisor", edit_user_path(user), class:"dropdown-item" %>
+                      <%= link_to "Eliminar Supervisor", user,:onclick => "return confirm('Esta seguro que desea eliminar el Supervisor?')", method: :delete, class:"dropdown-item" %>
+                       
+                     </ul>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    
+    </table>
+  </div>
+  <%= link_to "Agregar nuevo supervisor", users_newsu_path,class:"btn btn-outline-success btn-sm" %>
+</div>
 
-<table class="table table-hover">
 
-  <thead class="thead-dark">
-    <tr>
-      <th>Nombre</th> 
-      <th>Apellido</th> 
-      <th>DNI</th> 
-      <th>Fecha de Nacimiento</th> 
-      <th>Email</th> 
-      <th>Celular de Contacto</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <% if user.role == "su" then %>
-      <tr>
-        <td><%= user.name %></td> 
-        <td><%= user.surname %></td> 
-        <td><%= user.dni %></td> 
-        <td><%= user.birthdate %></td>
-        <td><%= user.email %></td> 
-        <td><%= user.phone %></td>
-        <td class="text-center"><%= link_to "Ver detalle", user,class:"btn btn-secondary btn-sm" %></td> 
-      </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-
-</table>
-
-<%= link_to "Agregar nuevo supervisor", users_newsu_path,class:"btn btn-outline-success btn-sm" %>
