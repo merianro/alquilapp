@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @estadistica %>
+
+<div>
+  <%= link_to "Edit this estadistica", edit_estadistica_path(@estadistica) %> |
+  <%= link_to "Back to estadisticas", estadisticas_path %>
+
+  <%= button_to "Destroy this estadistica", @estadistica, method: :delete %>
+</div>
