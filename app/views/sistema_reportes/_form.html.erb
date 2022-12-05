@@ -21,9 +21,11 @@
                     </div>
                    
                     <hr class="my-4">
-                    <div class="d-grid mb-2">
+                    <div class="d-grid mb-2 ">
                      <%= f.button :submit, "Enviar Reporte", class:"btn btn-warning"%>
-                     <%= link_to "Cancelar", :controller => 'alquilers', :action => 'index' %>
+                    </div>
+                    <div class="d-grid mb-2 ">
+                      <%= link_to "Cancelar",alquilers_path,class:"btn btn-secondary" %>  
                     </div>
                   </form>
                 </div>

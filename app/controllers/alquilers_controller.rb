@@ -66,7 +66,15 @@ class AlquilersController < ApplicationController
   end
 
   def dejar_auto
+    @alquiler = Alquiler.find(params[:id])
     
+    @alquiler.car.update(disponible: true)
+    @alquiler.update(activo: false)
+    @alquiler.user.update(alquiler_activo: false)
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "" }
+      format.json { head :no_content }
+    end
   end
 
   private

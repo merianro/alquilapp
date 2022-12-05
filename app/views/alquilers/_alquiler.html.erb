@@ -34,7 +34,7 @@
           <div class="btn-group botones" role="group">
             <%= link_to "Imprimir permiso de circulacion",href="", class:"btn btn-outline-secondary",onclick: "window.print()" %> 
             <%= button_to "Extender alquiler", edit_alquiler_path(alquiler), class:"btn btn-outline-secondary" %>
-            <% if ((DateTime.now.to_time - alquiler.created_at.to_time ) /60 ) < 10 then %>
+            <% if ((DateTime.now.to_time - alquiler.created_at.to_time ) /60 ) < 10 and alquiler.activo then %>
               <%= link_to "Realizar Reporte", new_sistema_reporte_path(alquiler: @alquiler), class:"btn btn-outline-secondary" %> 
             <%end%>
             </div>

@@ -108,6 +108,9 @@ Rails.application.routes.draw do
 
   get 'parametros/edit', to: 'parametros#edit'
   post 'alquilers/edit', to: 'parametros#edit'
+
+  get 'alquilers/dejar_auto', to: 'alquilers#dejar_auto'
+  post 'alquilers/dejar_auto', to: 'alquilers#dejar_auto'
   
   resources :users
   resources :validations

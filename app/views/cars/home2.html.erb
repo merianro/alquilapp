@@ -64,7 +64,11 @@
 					<span id="seconds"></span>seconds
 				</div>
 
-				
+				<% Alquiler.all.each do |alquiler| %>
+					<% if alquiler.user.id == current_user.id and alquiler.activo then %>
+						<%= link_to "Dejar Auto" ,'/alquilers/dejar_auto?id=' + alquiler.id.to_s, class:"btn btn-primary"%>
+					<% end %>
+				<% end %>
 				
 
 				<script>
