@@ -63,25 +63,32 @@
 					<span id="minutes"></span>minutes
 					<span id="seconds"></span>seconds
 				</div>
+
 				
 				
 
 				<script>
 					<% Alquiler.all.each do |alquiler| %>
 						<% if alquiler.user.id == current_user.id and alquiler.activo then %>
-							var timer;
-							
-							var compareDate = new Date();
-							compareDate.setDate(compareDate.getDate() - 1); //just for this demo today + 7 days
+						var timer;
 
-							timer = setInterval(function() {
-							timeBetweenDates(compareDate);
-							}, 1000);
+						var compareDate = new Date();
+						compareDate.setDate(compareDate.getDate()); //just for this demo today + 7 days
+						compareDate.setDate(<%= alquiler.end_date.day%>);
+						compareDate.setMonth(<%= alquiler.end_date.month%>-1);
+						compareDate.setFullYear(<%= alquiler.end_date.year%>);
+						compareDate.setHours(<%= alquiler.end_date.hour%>);
+						compareDate.setMinutes(<%= alquiler.end_date.min%>);
+						compareDate.setSeconds(<%= alquiler.end_date.sec%>);
 
-							function timeBetweenDates(toDate) {
-							var dateEntered = toDate;
-							var now = new Date();
-							var difference = dateEntered.getTime() - now.getTime();
+						timer = setInterval(function() {
+						timeBetweenDates(compareDate);
+						}, 1000);
+
+						function timeBetweenDates(toDate) {
+						var dateEntered = toDate;
+						var now = new Date();
+						var difference = dateEntered.getTime() - now.getTime();
 
 							if (difference <= 0) {
 
@@ -107,17 +114,17 @@
 								var hours = Math.floor(minutes / 60);
 								
 
-								hours %= 24;
-								minutes %= 60;
-								seconds %= 60;
+							hours %= 24;
+							minutes %= 60;
+							seconds %= 60;
 
-								
-								$("#hours").text(hours);
-								$("#minutes").text(minutes);
-								$("#seconds").text(seconds);
-							}
+							
+							$("#hours").text(hours);
+							$("#minutes").text(minutes);
+							$("#seconds").text(seconds);
 						}
 
+						}
 						<%end%>
 					<% end %>
 				</script>
