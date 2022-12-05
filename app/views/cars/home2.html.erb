@@ -3,8 +3,8 @@
 	<title>Display a popup on click</title>
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
 <p style="color: green">
@@ -64,6 +64,7 @@
 					<span id="seconds"></span>seconds
 				</div>
 				
+				
 
 				<script>
 					<% Alquiler.all.each do |alquiler| %>
@@ -71,7 +72,7 @@
 							var timer;
 							
 							var compareDate = new Date();
-							compareDate.setDate(compareDate.getDate() + 7); //just for this demo today + 7 days
+							compareDate.setDate(compareDate.getDate() - 1); //just for this demo today + 7 days
 
 							timer = setInterval(function() {
 							timeBetweenDates(compareDate);
@@ -84,8 +85,20 @@
 
 							if (difference <= 0) {
 
-								// Timer done
-								clearInterval(timer);
+								var diffe = now.getTime() - dateEntered.getTime();
+								var seconds = Math.floor(diffe / 1000);
+								var minutes = Math.floor(seconds / 60);
+								var hours = Math.floor(minutes / 60);
+								
+
+								hours %= 24;
+								minutes %= 60;
+								seconds %= 60;
+
+								
+								$("#hours").text(hours);
+								$("#minutes").text(minutes);
+								$("#seconds").text(seconds);
 							
 							} else {
 								
@@ -105,9 +118,6 @@
 							}
 						}
 
-						function (params) {
-							
-						}
 						<%end%>
 					<% end %>
 				</script>
