@@ -7,6 +7,7 @@
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
 </head>
 
+
 <p style="color: green">
   <%= notice %>
 </p>
@@ -70,7 +71,6 @@
 					<% end %>
 				<% end %>
 				
-
 				<script>
 					<% Alquiler.all.each do |alquiler| %>
 						<% if alquiler.user.id == current_user.id and alquiler.activo then %>
@@ -96,6 +96,9 @@
 
 							if (difference <= 0) {
 
+								const tim = document.getElementById("timer");
+								tim.style.color = "#EB4533";
+
 								var diffe = now.getTime() - dateEntered.getTime();
 								var seconds = Math.floor(diffe / 1000);
 								var minutes = Math.floor(seconds / 60);
@@ -108,8 +111,11 @@
 
 								
 								$("#hours").text(hours);
+								$("#hours").css('color','red');
 								$("#minutes").text(minutes);
+								$("#minutes").css('color','red');
 								$("#seconds").text(seconds);
+								$("#seconds").css('color','red');
 							
 							} else {
 								

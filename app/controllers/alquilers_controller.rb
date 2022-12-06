@@ -23,7 +23,7 @@ class AlquilersController < ApplicationController
   def create
     @alquiler = Alquiler.new(alquiler_params)
     @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa)
-    @alquiler.update(end_date: @alquiler.created_at + @alquiler.horas.hours)
+    @alquiler.update(end_date: @alquiler.created_at + @alquiler.horas.minutes)
     @alquiler.car.update(disponible: false)
     @alquiler.user.update(saldo: @alquiler.user.saldo - @alquiler.monto)
     @alquiler.update(activo:true)
@@ -67,13 +67,30 @@ class AlquilersController < ApplicationController
 
   def dejar_auto
     @alquiler = Alquiler.find(params[:id])
-    
-    @alquiler.car.update(disponible: true)
+    @alquiler.car.update(disponible: true)  
     @alquiler.update(activo: false)
     @alquiler.user.update(alquiler_activo: false)
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "" }
-      format.json { head :no_content }
+    exceso = DateTime.now.to_i - @alquiler.end_date.to_i
+    if exceso > 0 then
+      aux = exceso / 900
+      @alquiler.user.update(saldo: @alquiler.user.saldo - Parametro.last.multa_tiempo_excedido)
+      if aux >= 1
+        @alquiler.user.update(saldo: @alquiler.user.saldo - (Parametro.last.multa_tiempo_excedido * aux))
+        respond_to do |format|
+          format.html { redirect_to root_path, alert: "Se le ha descontado $" + ((Parametro.last.multa_tiempo_excedido * aux)+Parametro.last.multa_tiempo_excedido).to_s + " de su billetera debido a que no entrego el vehículo a tiempo." }
+          format.json { head :no_content }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to root_path, alert: "Se le ha descontado $" + (Parametro.last.multa_tiempo_excedido).to_s + " de su billetera debido a que no entrego el vehículo a tiempo." }
+          format.json { head :no_content }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: "Su alquiler a finalizado en tiempo. Muchas gracias!" }
+        format.json { head :no_content }
+      end
     end
   end
 
