@@ -37,7 +37,8 @@ gem 'pundit'
 gem 'rails-i18n'
 gem 'activestorage-validator'
 gem 'geocoder'
-
+gem "chartkick"
+gem "groupdate"
 
 
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

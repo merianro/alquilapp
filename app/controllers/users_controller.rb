@@ -214,6 +214,29 @@ class UsersController < ApplicationController
     @user.update(saldo: aux)  
   end
 
+  def habilitar
+    @user = User.find(params[:id])
+    if (@user.banned == false) # si no esta baneado
+      if (@user.disponible == true) # y no esta en un alquiler actualmente
+        @user.update(habilitado: false)
+        respond_to do |format|
+          format.html { redirect_to cars_url, notice: "Auto correctamente deshabilitado." }
+          format.json { head :no_content }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to cars_url, alert: "No se ha podido deshabilitar debido a que el auto se encuentra actualmente en uso." }
+          format.json { head :no_content }      
+        end
+      end
+    else
+      @user.update(habilitado: true) # si estaba deshabilitado inicialmente
+      respond_to do |format|
+        format.html { redirect_to cars_url, notice: "Auto correctamente habilitado." }
+        format.json { head :no_content }
+      end
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -222,7 +245,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :surname, :birthdate, :phone, :vencimiento_licencia, :dni, :location_point)
+      params.require(:user).permit(:name, :surname, :birthdate, :phone, :vencimiento_licencia, :dni, :location_point, :banned)
     end
 
     def su_params

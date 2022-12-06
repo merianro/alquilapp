@@ -84,6 +84,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chart-js-rails (0.1.7)
+      railties (> 3.1)
+    chartkick (4.2.1)
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -105,6 +108,8 @@ GEM
     geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    groupdate (6.1.0)
+      activesupport (>= 5.2)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -272,10 +277,13 @@ DEPENDENCIES
   activestorage-validator
   bootsnap
   capybara
+  chart-js-rails
+  chartkick
   cssbundling-rails (~> 1.1)
   debug
   devise
   geocoder
+  groupdate
   image_processing (~> 1.2)
   importmap-rails
   jbuilder

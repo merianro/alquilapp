@@ -38,7 +38,7 @@ class ParametrosController < ApplicationController
   def update
     respond_to do |format|
       if @parametro.update(parametro_params)
-        format.html { redirect_to  parametros_url, notice: "Parametros correctamente actualizados." }
+        format.html { redirect_to  parametros_url, notice: "Tarifas actualizadas correctamente" }
         format.json { render :show, status: :ok, location: @parametro }
       else
         format.html { render :edit, status: :unprocessable_entity }

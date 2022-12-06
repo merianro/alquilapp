@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :alquilers
 
 
+
   private
   def password_regex_1
     return if password =~ /\A(?=.*[a-z]).{5,}\z/ 

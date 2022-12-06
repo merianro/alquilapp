@@ -29,7 +29,23 @@
             <td class="text-center"><%= user.birthdate %></td>
             <td class="text-center"><%= user.email %></td> 
             <td class="text-center"><%= user.phone %></td>
-            <td class="text-center"><%= link_to "Ver detalle", user,class:"btn btn-secondary btn-sm" %></td> 
+            <td class="text-center">
+              <div class="btn-group">
+                  <%= button_to "Ver detalle",user_path(user),class:"btn btn-secondary btn-sm" %>
+                  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <!-- <span class="visually-hidden">Toggle Dropdown</span> -->
+                   </button>
+                     <ul class="dropdown-menu">
+                       <% if !user.banned%>
+                        <%= link_to "Deshabilitar usuario", 'users/habilitar?id='+user.id.to_s, class:"dropdown-item" %>
+                       <% else %>
+                        <%= link_to "Habilitar usuario", 'users/habilitar?id='+user.id.to_s, class:"dropdown-item" %>
+                      <% end %>
+                  
+                       
+                     </ul>
+              </div>
+            </td>
           </tr>
           <% end %>
         <% end %>

@@ -1,35 +1,63 @@
-<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 <p style="color: green"><%= notice %></p>
 
 <h1>Estadisticas</h1>
 
+<div class="container-fluid justify-content-center" align="center">
+  <h1><b> Estadisticas Alquileres </b></h1>
 
-<h1> Estadisticas Alquileres </h1>
-<%# <%= line_chart Alquiler.group_by_day(:created_at).count %>
-<%# <%= column_chart Alquiler.group_by_day_of_week(:created_at, format: "%a").count %> %> %>
-<h3> Cantidad de Alquileres: <%= Alquiler.count%></h3> 
-<h3> Cantidad de horas alquiladas: <%= Alquiler.all.sum(:horas)%></h3> 
-<h3> Promedio de horas alquiladas: <%= Alquiler.all.sum(:horas) / Alquiler.count %></h3> 
+  <h3> Alquileres creados por día </h3>
+  <%= line_chart Alquiler.group_by_day(:created_at).count %>
 
+  <%= pie_chart Alquiler.group(:car).count %>
+
+
+  <h3> Alquileres totales: <%= Alquiler.count%></h3> 
+  <h3> Cantidad de horas alquiladas: <%= Alquiler.all.sum(:horas)%></h3> 
+  <h3> Promedio de horas alquiladas: <%= Alquiler.all.sum(:horas) / Alquiler.count %></h3> 
+</div>
+<hr>
+<div class="container-fluid justify-content-center" align="center">
 
 <h1> Estadisticas Reportes </h1>
-<h3> Cantidad de reportes: <%= SistemaReporte.count %></h3> 
-<h3> Cantidad reportes en atencion: <%= SistemaReporte.where(finalizado: false).count %></h3> 
-<h3> Cantidad reportes finalizados: <%= SistemaReporte.where(finalizado: true).count %></h3> 
+<h3> Reportes totales: <%= SistemaReporte.count %></h3> 
+<h3> Cantidad de Reportes en atención actualmente:: <%= SistemaReporte.where(finalizado: false).count %></h3> 
+<h3> Cantidad de Reportes finalizados: <%= SistemaReporte.where(finalizado: true).count %></h3> 
+
+<h3> Cantidad reportes por dia:</h3> 
+<%= column_chart SistemaReporte.group_by_day_of_week(:created_at, format: "%a").count %>
+
+</div>
+<hr>
+
+<div class="container-fluid justify-content-center" align="center">
+
+  <h1> Estadisticas Autos </h1>
+  <h3> Porcentaje de autos por modelo </h3>
+  <%= pie_chart Car.group(:modelo).count %>
+  <h3> Cantidad de autos: <%= Car.count %></h3> 
+  <h3> Cantidad de autos habilitados: <%= Car.where(habilitado:true).count %></h3> 
+  <h3> Cantidad de autos deshabilitados: <%= Car.where(habilitado: false).count %></h3> 
+  <h3> Cantidad de autos en uso: <%= Car.where(disponible: false).count %></h3> 
+  <h3> Cantidad de autos disponible: <%= Car.where(disponible: true).count %></h3> 
+
+</div>
+
+<hr>
+
+<div class="container-fluid justify-content-center" align="center">
+
+  <h1> Estadisticas Supervisores </h1>
+  <h3> Promedio mensual reportes atendidos por cada Supervisor: (no se como se hace)</h3>
+
+  <% aux = SistemaReporte.group(:su_id).count.sum %>
+  <% i=1 %> <% total=0 %>
+  <% aux.each_slice(2) do |aux|%>
+    <% total += aux[1].to_i %>
+  <% end %>
+
+<%= total.to_f / (aux.length/2)%>
 
 
-<h1> Estadisticas Autos </h1>
-<h3> Cantidad de autos: <%= Car.count %></h3> 
-<h3> Cantidad de autos habilitados: <%= Car.where(habilitado:true).count %></h3> 
-<h3> Cantidad de autos deshabilitados: <%= Car.where(habilitado: false).count %></h3> 
-<h3> Cantidad de autos en uso: <%= Car.where(disponible: false).count %></h3> 
-<h3> Cantidad de autos disponible: <%= Car.where(disponible: true).count %></h3> 
 
+</div>
 
-
-
-<h1> Estadisticas Supervisores </h1>
-
-
-
-<%= link_to "New estadistica", new_estadistica_path %>

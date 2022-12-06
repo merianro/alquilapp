@@ -20,6 +20,9 @@
     mapboxgl.accessToken = "<%= Rails.application.credentials.mapbox %>";
   </script>
   <script src="https://unpkg.com/mapkick@0.1.1/dist/mapkick.js"></script>
+  
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <%= javascript_importmap_tags %>
   <!--  -->
 
   <%= csrf_meta_tags %>
