@@ -5,19 +5,19 @@
         <div class="card-body text-start">
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Tarifa por hora</p>
+                <p class="mb-0">Monto</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= parametro.tarifa %></p>
+                <p class="text-muted mb-0"><%= parametro.monto %></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Tarifa por hora extendida</p>
+                <p class="mb-0">Nombre</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= parametro.tarifa_extension %></p>
+                <p class="text-muted mb-0"><%= parametro.nombre %></p>
               </div>
             </div>
             <hr>
@@ -25,34 +25,12 @@
 
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Multa por entregar el auto con menos combustible</p>
+                <p class="mb-0">Tipo</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= parametro.multa_combustible %></p>
+                <p class="text-muted mb-0"><%= parametro.tipo %></p>
               </div>
             </div>
-            <hr>
-
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0"> Multa por entregar el auto sucio</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= parametro.multa_auto_sucio %></p>
-              </div>
-            </div>
-            <hr>
-
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0"> Multa por entregar el auto fuera de tiempo (tiempo cada 15m)</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= parametro.multa_tiempo_excedido %></p>
-              </div>
-            </div>
-            <hr>
-           
             </div>
           </div>
           <div class="btn-group editBut" role="group" data-inline:"true">
@@ -83,3 +61,4 @@
 </style>
 
 </div>
+

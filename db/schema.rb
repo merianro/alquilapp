@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_06_214431) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_085946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,11 +109,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_214431) do
   end
 
   create_table "parametros", force: :cascade do |t|
-    t.integer "tarifa", default: 0
-    t.integer "tarifa_extension", default: 0
-    t.integer "multa_combustible", default: 0
-    t.integer "multa_auto_sucio", default: 0
-    t.integer "multa_tiempo_excedido", default: 0
+    t.integer "monto", default: 0
+    t.string "nombre"
+    t.integer "tipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -127,6 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_214431) do
     t.text "descripcion"
     t.boolean "finalizado", default: false
     t.bigint "alquiler_id"
+    t.integer "monto", default: 0
     t.index ["alquiler_id"], name: "index_sistema_reportes_on_alquiler_id"
     t.index ["user_id"], name: "index_sistema_reportes_on_user_id"
   end

@@ -13,7 +13,11 @@
                 <p class="mb-0">Nombre</p>
               </div>
               <div class="col-sm-9">
+                <% if parametro.nombre != "Alquiler" && parametro.nombre != "Tiempo Extendido" && parametro.nombre != "Tiempo Excedido" then %>
                 <%= f.input :nombre, required: true,autofocus: true, input_html: { autocomplete: "nombre" } %>
+                <% else %>
+                <%= f.input :nombre, required: true,disabled: true ,autofocus: true, input_html: { autocomplete: "nombre" } %>
+                <% end %>
               </div>
             </div>
             <hr>
@@ -22,7 +26,11 @@
                 <p class="mb-0">Tipo</p>
               </div>
               <div class="col-sm-9">
-                <%= f.input :tipo, :as => :select, required: false,label: 'Tipo *', include_blank: false,:collection => Parametro.tipos.keys.to_a, input_html: {autocomplete: "tipo"}%> 
+                <% if parametro.nombre != "Alquiler" && parametro.nombre != "Tiempo Extendido" && parametro.nombre != "Tiempo Excedido" then %>
+                <%= f.input :tipo, :as => :select, required: false,label: 'Tipo *', include_blank: false,:collection => Parametro.tipos.keys.to_a, input_html: {autocomplete: "tipo"}%>
+                <% else %>
+                <%= f.input :tipo, :as => :select, required: false,disabled: true,label: 'Tipo *', include_blank: false,:collection => Parametro.tipos.keys.to_a, input_html: {autocomplete: "tipo"}%> 
+                <% end %>
               </div>
             </div>
             <hr>

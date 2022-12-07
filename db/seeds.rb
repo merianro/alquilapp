@@ -33,4 +33,8 @@ cars = Car.create([
             {marca: "BMW", modelo:"Serie 5", ano:"2022", color:"Rojo", transmision:"Automatica", capacidad:"4",ubication:"-34.91369987647464, -57.94841265387437",patente: 'AD285FB',disponible: true}
         ])
 
-parametros = Parametro.create! :tarifa => 100
+parametros = Parametro.create([
+    {nombre: "Alquiler", tipo: "Tarifa", monto: 200},
+    {nombre: "Tiempo Extendido", tipo: "Multa", monto: 250},
+    {nombre: "Tiempo Excedido", tipo: "Multa", monto: 100}
+])

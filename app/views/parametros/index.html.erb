@@ -1,12 +1,58 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green">
+  <%= notice %>
+</p>
 
-<h1>Parametros</h1>
+<p style="color: red">
+  <%= alert %>
+</p>
 
-<div id="parametros">
-  <% @parametros.each do |parametro| %>
-    <%= render parametro %>
-    <p>
-    </p>
-  <% end %>
+
+
+<div class="container-fluid justify-content-center">
+  <h1>Parametros</h1>
+  <div class="table-responsive">
+
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Monto</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @parametros.order(:nombre).each do |parametro| %>
+          <tr>
+            <td class="text-center">
+              <%=h parametro.nombre %>
+            </td>
+            <td class="text-center">
+              <%=h parametro.tipo %>
+            </td>
+            <td class="text-center">
+              $ <%=h parametro.monto %>
+            </td>
+            <td class="text-center">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  Menu
+                  </button>
+                    <ul class="dropdown-menu">
+                      <%= link_to "Editar parametro", edit_parametro_path(parametro), class:"dropdown-item" %>
+                      <% if parametro.nombre != "Alquiler" && parametro.nombre != "Tiempo Extendido" && parametro.nombre != "Tiempo Excedido" then %>
+                        <%= button_to "Eliminar parametro", parametro,:onclick => "return confirm('Esta seguro que desea eliminar el parametro?')", method: :delete, class:"dropdown-item" %>
+                      <% end %>
+                    </ul>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+
+    </table>
+  </div>
 </div>
 
+<%= link_to 'Nuevo Parametro', new_parametro_path , class:"btn btn-primary" %>

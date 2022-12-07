@@ -22,7 +22,7 @@ class AlquilersController < ApplicationController
   # POST /alquilers or /alquilers.json
   def create
     @alquiler = Alquiler.new(alquiler_params)
-    @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa)
+    @alquiler.update(monto: @alquiler.horas * Parametro.find_by(nombre: "Alquiler").monto)
     @alquiler.update(end_date: @alquiler.created_at + @alquiler.horas.hours)
     @alquiler.car.update(disponible: false)
     @alquiler.user.update(saldo: @alquiler.user.saldo - @alquiler.monto)

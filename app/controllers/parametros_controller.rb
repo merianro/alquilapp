@@ -25,8 +25,8 @@ class ParametrosController < ApplicationController
 
     respond_to do |format|
       if @parametro.save
-        format.html { redirect_to parametro_url(@parametro), notice: "Parametro was successfully created." }
-        format.json { render :show, status: :created, location: @parametro }
+        format.html { redirect_to parametros_url, notice: "Parametro creado con exito!." }
+        format.json { render :index, status: :created, location: @parametro }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @parametro.errors, status: :unprocessable_entity }
@@ -38,8 +38,8 @@ class ParametrosController < ApplicationController
   def update
     respond_to do |format|
       if @parametro.update(parametro_params)
-        format.html { redirect_to  parametros_url, notice: "Tarifas actualizadas correctamente" }
-        format.json { render :show, status: :ok, location: @parametro }
+        format.html { redirect_to  parametros_url, notice: "Parametros actualizadas correctamente." }
+        format.json { render :index, status: :ok, location: @parametro }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @parametro.errors, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class ParametrosController < ApplicationController
     @parametro.destroy
 
     respond_to do |format|
-      format.html { redirect_to parametros_url, notice: "Parametro was successfully destroyed." }
+      format.html { redirect_to parametros_url, notice: "Parametro eliminado correctamente." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +65,6 @@ class ParametrosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def parametro_params
-      params.require(:parametro).permit(:tarifa, :tarifa_extension,:multa_combustible,:multa_auto_sucio,:multa_tiempo_excedido)
+      params.require(:parametro).permit(:nombre ,:tipo ,:monto)
     end
 end

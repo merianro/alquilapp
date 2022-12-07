@@ -3,19 +3,24 @@
 <%= simple_form_for(@sistema_reporte, url: aux ) do |f| %>
   <!-- <%= f.error_notification %>    sistema_reportes_finalizar_aplicar_multa_url(@sistema_reporte.id) -->
       <!-- <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %> -->
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-              <div class="card border-0 shadow rounded-3 my-5">
-                <div class="card-body p-4 p-sm-5">
-                  <h5 class="card-title text-center mb-4 fw-light fs-5">Aplica la multa</h5>
-                  <form>
-                    <div class="form-floating mb-3">
-                      <div class="input-group mb-3">
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                          <option value="1">Multa de Combustible</option>
-                          <option value="2">Multa de Auto Sucio</option>
-                        </select>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+              <div class="card-body p-4 p-sm-5">
+                <h5 class="card-title text-center mb-4 fw-light fs-5">Aplica la multa</h5>
+                <form>
+                  <div class="form-floating mb-3">
+                    <div class="input-group mb-3">
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                          <% Parametro.all.each do |parametro| %>
+                          <% if parametro.nombre != "Alquiler" && parametro.nombre != "Tiempo Extendido" && parametro.nombre != "Tiempo Excedido" and parametro.tipo == "Multa" then %>
+                              <option ><%= parametro.nombre%></option>
+                            
+                              <% end %>
+                              <% end %>
+                            </select>
+                            
                         
                         <!-- <%= f.input :user_id, label: 'Multa', input_html: {} %> -->
                       </div>

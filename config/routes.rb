@@ -115,22 +115,23 @@ Rails.application.routes.draw do
   get 'alquilers/new', to: 'alquilers#new'
   post 'alquilers/new', to: 'alquilers#new'
 
-  get 'parametros/edit', to: 'parametros#edit'
-  post 'alquilers/edit', to: 'parametros#edit'
-
   get 'alquilers/dejar_auto', to: 'alquilers#dejar_auto'
   post 'alquilers/dejar_auto', to: 'alquilers#dejar_auto'
+
+  get 'parametros/:id/edit', to: 'parametros#edit'
+  post 'parametros/:id/edit', to: 'parametros#edit'
+  patch 'parametros/:id/edit', to: 'parametros#edit'
   
   resources :users
   resources :validations
-  resources :parametros
   resources :cars
   resources :mercado_pagos
   resources :mp_webhooks
   resources :sistema_reportes
   resources :alquilers
   resources :estadisticas
-  resources :messages
+  resources :messages 
+  resources :parametros
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   

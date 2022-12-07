@@ -50,7 +50,7 @@
             <%= f.input :car_id, :as=> :hidden, input_html: {:value => aux }%>
             </div>
                 <div class="d-flex justify-content-between align-items-center experience"><h4>Seleccione la duración</h4></div><br>
-                <div class="col-md-12"><label class="labels">Precio por hora</label><p class="text-muted mb-0"><%= Parametro.first.tarifa %></div>
+                <div class="col-md-12"><label class="labels">Precio por hora</label><p class="text-muted mb-0"><%= Parametro.find_by(nombre: "Alquiler").monto %></div>
                 <%= f.input :horas,collection: 1..24, required: false, include_blank: false, autofocus: true, input_html: { autocomplete: "horas" } %>
                 <%= f.input :cantidad_ocupantes,collection: 1..Car.find(aux).capacidad, required: false, include_blank: false, autofocus: true, input_html: { autocomplete: "cantidad_ocupantes" } %>
             </div>

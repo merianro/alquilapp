@@ -268,7 +268,7 @@
 														'type': 'Feature',
 														'properties': {
 															'description':
-															'<div class="container"><div class="text"><h4 class="mt-0 font-weight-bold mb-2"><%= car.marca+" "+car.modelo+" "+car.ano.to_s %></h4><p class="font-italic text-muted mb-0"><%= " Color: "+car.color+" Transmision: "+car.transmision+" Capacidad: "+car.capacidad.to_s%></p><div class="d-flex align-items-center justify-content-between mt-1"><h6 class="font-weight-bold my-2"><%= Parametro.first.tarifa.to_s+"/hora" %></h6></div></div><div class="image"><%= image_tag(car.images[0] || "BMWSerie3Negro.png",class:"rounded-circle mt-5",style:"width:200px")%></div></div><%= button_to "Alquilar" , new_alquiler_path(car), class:"btn btn-outline-success" %>',
+															'<div class="container"><div class="text"><h4 class="mt-0 font-weight-bold mb-2"><%= car.marca+" "+car.modelo+" "+car.ano.to_s %></h4><p class="font-italic text-muted mb-0"><%= " Color: "+car.color+" Transmision: "+car.transmision+" Capacidad: "+car.capacidad.to_s%></p><div class="d-flex align-items-center justify-content-between mt-1"><h6 class="font-weight-bold my-2"><%= Parametro.find_by(nombre: "Alquiler").monto.to_s+"/hora" %></h6></div></div><div class="image"><%= image_tag(car.images[0] || "BMWSerie3Negro.png",class:"rounded-circle mt-5",style:"width:200px")%></div></div><% if current_user.validado then%><%= button_to "Alquilar" , new_alquiler_path(car), class:"btn btn-outline-success" %><%end%>',
 															'icon': 'car'
 														},
 													'geometry':{

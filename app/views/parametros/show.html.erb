@@ -3,8 +3,5 @@
 <%= render @parametro %>
 
 <div>
-  <%= link_to "Edit this parametro", edit_parametro_path(@parametro) %> |
-  <%= link_to "Back to parametros", parametros_path %>
-
-  <%= button_to "Destroy this parametro", @parametro, method: :delete %>
+  <%= link_to "Back to parametros", parametros_path , class:"btn btn-warning"%>
 </div>
