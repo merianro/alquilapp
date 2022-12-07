@@ -11,9 +11,9 @@ user2 = User.create! :name => 'supervisor', :surname => 'supervisor', :dni => 20
 user3 = User.create! :name => 'conductor', :surname => 'driver', :dni => 20000002, :birthdate => '08-10-1980', saldo: 999999999,:phone => 2215000002, :email => 'user@g.com',vencimiento_licencia: "10-03-2028", :role => 0, :password => '123Alqui', :password_confirmation => '123Alqui'
 
 users = User.create([
-    {name:"Emilio",surname:"Perez",dni:"10638296",birthdate:"10-10-1960",phone:"0387528735",email:"emiliop@gmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
-    {name:"Susana",surname:"Garcia",dni:"9587432",birthdate:"04-09-1960",phone:"221674902",email:"susanagarcia@hotmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
-    {name:"Juan Carlos",surname:"Gonzalez",dni:"7395206",birthdate:"10-03-1958",phone:"11472937",email:"juancgon@yahoo.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
+    {name:"Emilio",surname:"Perez",dni:"10638296",birthdate:"10-10-1960",phone:"0387528735",email:"emiliop@gmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui", validado: true},
+    {name:"Susana",surname:"Garcia",dni:"9587432",birthdate:"04-09-1960",phone:"221674902",email:"susanagarcia@hotmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui",validado: true},
+    {name:"Juan Carlos",surname:"Gonzalez",dni:"7395206",birthdate:"10-03-1958",phone:"11472937 ",email:"juancgon@yahoo.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
     {name:"Pedro",surname:"Dominguez",dni:"30324981",birthdate:"01-12-1980",phone:"3489827364",email:"pedrod@live.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
     {name:"Marcela",surname:"Ramirez",dni:"26645366",birthdate:"11-11-1975",phone:"221330267",email:"marcela.ramirez@gmail.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
     {name:"Domingo",surname:"Juarez",dni:"30787365",birthdate:"10-01-1980",phone:"11566673",email:"domingo@yahoo.com",vencimiento_licencia: "10-03-2028",role:0,password:"123Alqui",password_confirmation:"123Alqui"},
@@ -36,5 +36,7 @@ cars = Car.create([
 parametros = Parametro.create([
     {nombre: "Alquiler", tipo: "Tarifa", monto: 200},
     {nombre: "Tiempo Extendido", tipo: "Multa", monto: 250},
-    {nombre: "Tiempo Excedido", tipo: "Multa", monto: 100}
+    {nombre: "Tiempo Excedido", tipo: "Multa", monto: 100},
+    {nombre: "Vehiculo sucio", tipo: "Multa", monto: 500},
+    {nombre: "Vehiculo fuera del casco", tipo: "Multa", monto: 500}
 ])
