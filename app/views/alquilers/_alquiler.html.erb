@@ -33,10 +33,6 @@
           </div>
           <div class="btn-group botones" role="group">
             <%= link_to "Imprimir permiso de circulacion",href="", class:"btn btn-outline-secondary",onclick: "window.print()" %> 
-            <%= button_to "Extender alquiler", edit_alquiler_path(alquiler), class:"btn btn-outline-secondary" %>
-            <% if ((DateTime.now.to_time - alquiler.created_at.to_time ) /60 ) < 10 and alquiler.activo and alquiler.sistema_reporte == nil then %>
-              <%= link_to "Realizar Reporte", new_sistema_reporte_path(alquiler: @alquiler), class:"btn btn-outline-secondary" %> 
-            <%end%>
             </div>
         </div>
       </div>
@@ -85,7 +81,6 @@ padding: 5px;
   margin-left: auto;
   margin-top: 20px;;
   padding-right: 10px;
-  padding-bottom: 10px;
   gap: 10px;
 }
 

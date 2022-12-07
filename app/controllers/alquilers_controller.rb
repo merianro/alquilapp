@@ -21,21 +21,37 @@ class AlquilersController < ApplicationController
 
   # POST /alquilers or /alquilers.json
   def create
-    @alquiler = Alquiler.new(alquiler_params)
-    @alquiler.update(monto: @alquiler.horas * Parametro.find_by(nombre: "Alquiler").monto)
-    @alquiler.update(end_date: @alquiler.created_at + @alquiler.horas.hours)
-    @alquiler.car.update(disponible: false)
-    @alquiler.user.update(saldo: @alquiler.user.saldo - @alquiler.monto)
-    @alquiler.update(activo:true)
-    @alquiler.user.update(alquiler_activo: true)
+    useraux = params[:alquiler][:user_id]
+    caraux = params[:alquiler][:car_id]
+    puts (Alquiler.where(user_id: useraux.to_i,car_id: caraux.to_i).count)
+    if Alquiler.where(user_id: useraux.to_i,car_id: caraux.to_i).count > 0 then
+      ultal = Alquiler.where(user_id: useraux.to_i,car_id: caraux.to_i).last.end_date.to_i - DateTime.now.to_i
+    else
+      ultal = 999999
+    end
+    if ultal > 10800 then
 
-    respond_to do |format|
-      if @alquiler.save
-        format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler correctamente creado." }
-        format.json { render :show, status: :created, location: @alquiler }
-      else
-        format.html { render :new, alert: "Debes estar validado para alquilar."  }
-        format.json { render json: @alquiler.errors,  status: :unprocessable_entity  }
+      @alquiler = Alquiler.new(alquiler_params)
+      @alquiler.update(monto: @alquiler.horas * Parametro.find_by(nombre: "Alquiler").monto)
+      @alquiler.update(end_date: @alquiler.created_at + @alquiler.horas.hours)
+      @alquiler.car.update(disponible: false)
+      @alquiler.user.update(saldo: @alquiler.user.saldo - @alquiler.monto)
+      @alquiler.update(activo:true)
+      @alquiler.user.update(alquiler_activo: true)
+
+      respond_to do |format|
+        if @alquiler.save
+          format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler correctamente creado." }
+          format.json { render :show, status: :created, location: @alquiler }
+        else
+          format.html { render :new, alert: "Debes estar validado para alquilar."  }
+          format.json { render json: @alquiler.errors,  status: :unprocessable_entity  }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: "No puede alquilar este vehículo, ya lo utilizó hace menos de 3 horas" }
+        format.json { head :no_content }
       end
     end
   end
@@ -50,7 +66,7 @@ class AlquilersController < ApplicationController
         format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler correctamente actualizado." }
         format.json { render :show, status: :ok, location: @alquiler }
       else
-        format.html { redirect_to edit_alquiler_path(@alquiler), alert: "La cantidad de horas debe ser menor a 24." }
+        format.html { redirect_to edit_alquiler_path(@alquiler), alert: "La cantidad total de horas de alquiler debe ser menor a 24." }
         format.json { render json: @alquiler.errors, status: :unprocessable_entity }
       end
     end
