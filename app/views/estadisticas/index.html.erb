@@ -6,13 +6,14 @@
   <%= link_to "Ultimos 30 días", '/estadisticas/index30', class:"btn btn-outline-secondary" %>
 </div>
 
+<% if current_user.admin? %>
 
 <h1>Estadisticas históricas</h1>
 
 <div class="container-fluid justify-content-center" align="center">
   <h1><b> Estadisticas Alquileres </b></h1>
 
-  <h3> Alquileres creados en los últimos 7 días </h3>
+  <h3> Alquileres totales creados</h3>
   <%= line_chart Alquiler.group_by_day(:created_at).count %>
 
 
@@ -43,10 +44,10 @@
 
 <div class="container-fluid justify-content-center" align="center">
 
-  <h1> Estadisticas Reportes en los últimos 7 días </h1>
+  <h1> Estadisticas Reportes </h1>
   <h3> Reportes totales <%= SistemaReporte.count %></h3> 
-  <h3> Cantidad de Reportes en atención actualmente:: <%= SistemaReporte.where(finalizado: false).count %></h3> 
-  <h3> Cantidad de Reportes finalizados <%= SistemaReporte.where(finalizado: true).count %></h3> 
+  <h3> Cantidad de Reportes en atención actualmente: <%= SistemaReporte.where(finalizado: false).count %></h3> 
+  <h3> Cantidad de Reportes finalizados: <%= SistemaReporte.where(finalizado: true).count %></h3> 
 
   <h3> Cantidad reportes por dia</h3> 
   <%= column_chart SistemaReporte.group_by_day_of_week(:created_at, format: "%a").count %>
@@ -57,7 +58,7 @@
 <div class="container-fluid justify-content-center" align="center">
 
   <h1> Estadisticas Supervisores </h1>
-  <h3> Promedio en los últimos 7 días  de reportes atendidos por cada Supervisor:</h3>
+  <h3> Promedio de reportes atendidos por cada Supervisor:</h3>
 
   <% aux = SistemaReporte.group(:su_id).count.sum %>
    <% total=0 %>
@@ -73,5 +74,48 @@
 
 </div>
 
+<% end %>
+
+<% if current_user.su?%>
+  <h1>Estadisticas históricas</h1>
+  <hr>
+  <div class="container-fluid justify-content-center" align="center">
+
+    <h1> Estadisticas tuyas como Supervisor </h1>
+
+    <h3> Total de reportes atendidos por usted: </h3>  <%= SistemaReporte.where(su_id:  current_user.id).count %>
+    <h3> Total de validaciones hechas por usted: </h3>  <%= Validation.where(su_id: current_user.id).count %>
 
 
+  </div>
+
+<% end %>
+
+<% if current_user.driver?%>
+      <h1>Estadisticas históricas</h1>
+
+    <div class="container-fluid justify-content-center" align="center">
+      <h1><b> Estadisticas Alquileres </b></h1>
+
+      <h3> Alquileres totales creados por usted</h3>
+      <%= line_chart Alquiler.where(user_id: current_user.id).group_by_day(:created_at).count %>
+
+
+      <h3> Alquileres totales <%= Alquiler.where(user_id: current_user.id).count%></h3> 
+      <h3> Cantidad de horas alquiladas: <%= Alquiler.where(user_id: current_user.id).sum(:horas) %></h3> 
+      <h3> Promedio de horas alquiladas: <%= (Alquiler.where(user_id: current_user.id).sum(:horas).to_f / Alquiler.where(user_id: current_user.id).count.to_f).to_f %></h3> 
+    </div>
+
+    <hr>
+
+    <div class="container-fluid justify-content-center" align="center">
+
+      <h1> Estadisticas Reportes </h1>
+      <h3> Reportes totales creados por usted: <%= SistemaReporte.where(user_id: current_user.id).count %></h3> 
+      <h3> Cantidad de Reportes en atención actualmente: <%= SistemaReporte.where(user_id: current_user.id, finalizado: false).count %></h3> 
+      <h3> Cantidad de Reportes finalizados: <%= SistemaReporte.where(user_id: current_user.id, finalizado: true).count %></h3> 
+    </div>
+
+    <hr>
+   
+<% end %>

@@ -6,21 +6,23 @@
   <%= link_to "Ultimos 30 días", '/estadisticas/index30', class:"btn btn-outline-secondary" %>
 </div>
 
-<h1>Estadisticas</h1>
+<% if current_user.admin? %>
+
+<h1>Estadisticas últimos 7 días</h1>
 
 <div class="container-fluid justify-content-center" align="center">
   <h1><b> Estadisticas Alquileres </b></h1>
 
-  <h3> Alquileres creados en los últimos 7 días </h3>
-  <%= line_chart Alquiler.where(created_at: Date.today-7..Date.today).group_by_day(:created_at).count %>
+  <h3> Alquileres totales creados en los últimos 7 días</h3>
+  <%= line_chart Alquiler.where(created_at: Date.today-30..Date.today).group_by_day(:created_at).count %>
 
 
- <!--  <%= pie_chart Alquiler.where(created_at: Date.today-7..Date.today).group(:car).count %> !-->
+ <!--  <%= pie_chart Alquiler.group(:car).count %> !-->
 
 
-  <h3> Alquileres totales en los últimos 7 días: <%= Alquiler.where(created_at: Date.today-7..Date.today).count%></h3> 
-  <h3> Cantidad de horas alquiladas en los últimos 7 días: <%= Alquiler.where(created_at: Date.today-7..Date.today ).sum(:horas) %></h3> 
-  <h3> Promedio de horas alquiladas en los últimos 7 días: <%= (Alquiler.where(created_at: Date.today-7..Date.today).sum(:horas).to_f / Alquiler.where(created_at: Date.today-7..Date.today).count.to_f).to_f %></h3> 
+  <h3> Alquileres totales <%= Alquiler.count%></h3> 
+  <h3> Cantidad de horas alquiladas en los últimos 7 días <%= Alquiler.where(created_at: Date.today-30..Date.today).sum(:horas) %></h3> 
+  <h3> Promedio de horas alquiladas en los últimos 7 días <%= (Alquiler.where(created_at: Date.today-30..Date.today).sum(:horas).to_f / Alquiler.where(created_at: Date.today-30..Date.today).count.to_f).to_f %></h3> 
 </div>
 
 <hr>
@@ -43,22 +45,22 @@
 <div class="container-fluid justify-content-center" align="center">
 
   <h1> Estadisticas Reportes en los últimos 7 días </h1>
-  <h3> Reportes totales en los últimos 7 días: <%= SistemaReporte.where(created_at: Date.today-7..Date.today).count %></h3> 
-  <h3> Cantidad de Reportes en atención actualmente:: <%= SistemaReporte.where(finalizado: false).count %></h3> 
-  <h3> Cantidad de Reportes finalizados en los últimos 7 días: <%= SistemaReporte.where(created_at: Date.today-7..Date.today,finalizado: true).count %></h3> 
+  <h3> Reportes totales en los últimos 7 días: <%= SistemaReporte.where(created_at: Date.today-30..Date.today).count %></h3> 
+  <h3> Cantidad de Reportes en atención actualmente: <%= SistemaReporte.where(finalizado: false).count %></h3> 
+  <h3> Cantidad de Reportes finalizados en los últimos 7 días: <%= SistemaReporte.where(created_at: Date.today-30..Date.today,finalizado: true).count %></h3> 
 
-  <h3> Cantidad reportes por dia en los últimos 7 días:</h3> 
-  <%= column_chart SistemaReporte.where(created_at: Date.today-7..Date.today).group_by_day_of_week(:created_at, format: "%a").count %>
+  <h3> Cantidad reportes por dia</h3> 
+  <%= column_chart SistemaReporte.group_by_day_of_week(:created_at, format: "%a").count %>
 
 </div>
 
 <hr>
 <div class="container-fluid justify-content-center" align="center">
 
-  <h1> Estadisticas Supervisores </h1>
-  <h3> Promedio en los últimos 7 días  de reportes atendidos por cada Supervisor:</h3>
+  <h1> Estadisticas Supervisores en los últimos 7 días</h1>
+  <h3> Promedio de reportes atendidos por cada Supervisor en los últimos 7 días:</h3>
 
-  <% aux = SistemaReporte.where(created_at: Date.today-7..Date.today).group(:su_id).count.sum %>
+  <% aux = SistemaReporte.where(created_at: Date.today-30..Date.today).group(:su_id).count.sum %>
    <% total=0 %>
    <% cantSu = User.where(role: "su").count %>
   <% if aux !=  0 %> 
@@ -67,10 +69,51 @@
     <% end %>
     <%= total.to_f / cantSu %>
   <% else%>
-    <h3> No se han atendido reportes en los ultimos 7 dias.</h3>
+    <h3> No se han atendido reportes en los últimos 7 días.</h3>
   <% end %>
 
 </div>
 
+<% end %>
+
+<% if current_user.su?%>
+  <h1>Estadisticas históricas</h1>
+  <hr>
+  <div class="container-fluid justify-content-center" align="center">
+
+    <h1><b> Estadisticas tuyas como Supervisor en los últimos 7 días </b></h1>
+
+    <h3> Total de reportes atendidos por usted en los últimos 7 días: </h3>  <%= SistemaReporte.where(created_at: Date.today-30..Date.today,su_id:  current_user.id).count %>
+    <h3> Total de validaciones hechas por usted en los últimos 7 días: </h3>  <%= Validation.where(created_at: Date.today-30..Date.today,su_id: current_user.id).count %>
 
 
+  </div>
+
+<% end %>
+
+<% if current_user.driver?%>
+    <div class="container-fluid justify-content-center" align="center">
+      <h1><b> Estadisticas Alquileres de los últimos 7 días</b></h1>
+
+      <h3> Alquileres totales creados por usted en los últimos 7 días</h3>
+      <%= line_chart Alquiler.where(created_at: Date.today-30..Date.today,user_id: current_user.id).group_by_day(:created_at).count %>
+
+
+      <h3> Alquileres totales en los últimos 7 días: <%= Alquiler.where(created_at: Date.today-30..Date.today,user_id: current_user.id).count%></h3> 
+      <h3> Cantidad de horas alquiladas en los últimos 7 días: <%= Alquiler.where(created_at: Date.today-30..Date.today,user_id: current_user.id).sum(:horas) %></h3> 
+      <h3> Promedio de horas alquiladas en los últimos 7 días: <%= (Alquiler.where(created_at: Date.today-30..Date.today, user_id: current_user.id).sum(:horas).to_f / Alquiler.where(user_id: current_user.id).count.to_f).to_f %></h3> 
+    </div>
+
+    <hr>
+
+    <div class="container-fluid justify-content-center" align="center">
+
+      <h1> Estadisticas Reportes </h1>
+      <h3> Reportes totales creados por usted en los últimos 7 días: <%= SistemaReporte.where(user_id: current_user.id).count %></h3> 
+      <h3> Cantidad de Reportes en atención actualmente: <%= SistemaReporte.where(user_id: current_user.id, finalizado: false).count %></h3> 
+      <h3> Cantidad de Reportes finalizados en los últimos 7 días: <%= SistemaReporte.where(created_at: Date.today-30..Date.today, user_id: current_user.id, finalizado: true).count %></h3> 
+    </div>
+
+    <hr>
+   
+<% end %>
