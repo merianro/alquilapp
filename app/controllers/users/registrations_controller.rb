@@ -3,6 +3,22 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:cancel ]
 
+
+  def destroy
+    if (resource.alquiler_activo == false) && (resource.saldo >= 0)
+      resource.soft_delete
+      Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+      set_flash_message :notice, :destroyed if is_navigational_format?
+      respond_with_navigational(resource){ redirect_to new_user_session_path }
+    else 
+      if (resource.alquiler_activo == true)
+        redirect_to user_url(@user), alert: "No se puede eliminar tu cuenta debido a que estás en un alquiler."
+      else 
+        redirect_to user_url(@user), alert: "No se puede eliminar tu cuenta debido a que posees saldo negativo."
+      end
+    end
+  end
+
   protected
 
  
@@ -13,6 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # Allows user to update registration information without password.
     resource.update_without_password(params.except("current_password"))
   end
+
 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]

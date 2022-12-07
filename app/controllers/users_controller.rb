@@ -169,15 +169,14 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user = User.find(params[:id])
-    
     if current_user.admin? or current_user.su? 
-      @user.destroy
+      @user.update(name: nil, surname: nil, phone: nil, dni: nil, email: nil, password: nil)
       respond_to do |format|
-        format.html { redirect_to users_drindex_path, notice: "Usuario correctamente eliminado." }
+        format.html { redirect_to root_path, notice: "Usuario correctamente eliminado." }
         format.json { head :no_content }
       end
     elsif (@user.saldo >= 0) 
-          @user.destroy
+         @user.update(name: nil, surname: nil, phone: nil, dni: nil, email: nil, password: nil)
           respond_to do |format|
             format.html { redirect_to new_user_session_path, notice: "Usuario correctamente eliminado." }
             format.json { head :no_content }

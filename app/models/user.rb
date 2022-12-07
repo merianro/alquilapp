@@ -13,10 +13,22 @@ class User < ApplicationRecord
   # Al crearse el usuario se setea con rango usuario automaticamente.
   has_many :cars
   has_one :validation, dependent: :destroy
-  validates_uniqueness_of :dni, scope: %i[role ] 
+  validates_uniqueness_of :dni
   # chequea si hay un solo dni por rol
   has_many :alquilers
 
+  def soft_delete
+    update_attribute(:deleted_at, Time.current) 
+    update_attribute(:name, nil)
+    update_attribute(:surname, nil)
+    update_attribute(:dni, nil)
+    update_attribute(:phone, 0)
+  end
+
+  def active_for_authentication?
+    super && !deleted_at
+  end
+  
 
 
   private
