@@ -1,4 +1,5 @@
 class Alquiler < ApplicationRecord
+  has_one :sistema_reporte
   belongs_to :user
   belongs_to :car
   validate :validado

@@ -12,13 +12,18 @@
                   <form>
                     <div class="form-floating mb-3">
                       <div class="input-group mb-3">
-                        <%= f.input :user_id, label: 'Multa', input_html: {}%>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                          <option value="1">Multa de Combustible</option>
+                          <option value="2">Multa de Auto Sucio</option>
+                        </select>
+                        
+                        <!-- <%= f.input :user_id, label: 'Multa', input_html: {} %> -->
                       </div>
                     </div>
                     <hr class="my-4">
                     <div class="d-grid mb-2">
-                     <%= f.button :submit, "Aplicar multa", class:"btn btn-warning"%>
-                     <%= link_to "Cancelar", :controller => 'sistema_reportes', :action => 'index' %>
+                      <%= f.button :submit, "Aplicar multa", class:"btn btn-warning" %>
+                      <%= link_to "Cancelar", :controller => 'sistema_reportes', :action => 'index' %>
                     </div>
                   </form>
                 </div>

@@ -47,6 +47,7 @@
                         <%= link_to "Desatender" , '/sistema_reportes/desatender?id=' + sistema_reportes.id.to_s , class:"dropdown-item"%>
                         <%= link_to 'Finalizar sin multa',  sistema_reportes_finalizar_path(sistema_reportes),class:"dropdown-item" %>
                         <%= link_to 'Finalizar con multa al inquilino anterior',  sistema_reportes_finalizar_multa_path(sistema_reportes),class:"dropdown-item" %>
+                        <%= link_to 'Enviar a Administrador', new_message_path(sistema_reportes.id) ,class:"dropdown-item" %>
                       </ul>
                       <%end%>
                   </div>

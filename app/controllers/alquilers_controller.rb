@@ -23,7 +23,7 @@ class AlquilersController < ApplicationController
   def create
     @alquiler = Alquiler.new(alquiler_params)
     @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa)
-    @alquiler.update(end_date: @alquiler.created_at + @alquiler.horas.minutes)
+    @alquiler.update(end_date: @alquiler.created_at + @alquiler.horas.hours)
     @alquiler.car.update(disponible: false)
     @alquiler.user.update(saldo: @alquiler.user.saldo - @alquiler.monto)
     @alquiler.update(activo:true)

@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="container-fluid justify-content-center">
+  <h1>Mensajes</h1>
+  <div class="table-responsive">
+
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th class="text-center">Creado el dia</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @messages.each do |message| %>
+          <tr>
+            <td class="text-center">
+              <%=h message.created_at %>
+            </td>
+            <td class="text-center">
+              <div class="btn-group">
+                  <%= link_to "Ver Mensaje",message_path(message),class:"btn btn-secondary btn-sm" %>
+              </div>
+            </td>
+          </tr>
+          <% end %> 
+      </tbody>
+
+    </table>
+  </div>
+</div>

@@ -9,7 +9,7 @@
                 <div class="dropdown">
                     <button class="dropbtn btn btn-outline-dark"><%= current_user.name+" "+current_user.role%></button>
                     <div class="dropdown-content" style="right:0">
-                        <%= link_to "Mi cuenta",current_user %>
+                        <%= link_to "Mi cuenta",current_user,class:"dropdown-item" %>
                         <%= button_to "Cerrar Sesión",destroy_user_session_path, method: :delete, class:"dropdown-item" %>
                         <% if current_user.role=="admin" then %>
                             <hr></hr>
@@ -77,7 +77,16 @@
                         <% end %>
                 </a>
 
+                
                 <% if current_user.role=="admin" then %>
+
+                    <a>
+                        <%= link_to messages_path, :class=>"option" do %>
+                            <i class='bx bx-chat'></i>  
+                            <h4>Mensajes</h4>
+                            <% end %>
+                    </a>
+                    
                     <a>
                         <%= link_to users_suindex_path, :class=>"option" do %>
                             <i class='bx bxs-group'></i>
@@ -129,14 +138,14 @@
                                 </a>
                             <% end %>
 
-                                    <% if current_user.role=="driver" then %>
-                                        <a>
-                                            <%= link_to mercado_pagos_path, :class=>"option" do %>
-                                                <i class='bx bx-wallet'></i>
-                                                <h4>Mi billetera</h4>
-                                                <% end %>
-                                        </a>
-                                        <% end %>
+                                <% if current_user.role=="driver" then %>
+                                    <a>
+                                        <%= link_to mercado_pagos_path, :class=>"option" do %>
+                                            <i class='bx bx-wallet'></i>
+                                            <h4>Mi billetera</h4>
+                                            <% end %>
+                                    </a>
+                                    <% end %>
         
         </div>
 

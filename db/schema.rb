@@ -93,6 +93,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_231155) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "sistema_reporte_id"
+    t.index ["sistema_reporte_id"], name: "index_messages_on_sistema_reporte_id"
+  end
+
   create_table "mp_webhooks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

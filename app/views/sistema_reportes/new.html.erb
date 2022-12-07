@@ -1,8 +1,10 @@
- <% if  params[:format] =! nil %> 
-  <h1>Nuevo reporte para <%= Alquiler.find(params[:alquiler]).car.marca + ' ' +  Alquiler.find(params[:alquiler]).car.modelo %>  </h1>
- <% end %> 
+<% if params[:format]=! nil %>
+    <h1>
+        Nuevo reporte para <%= Alquiler.find(params[:alquiler]).car.marca + ' ' + Alquiler.find(params[:alquiler]).car.modelo %>
+    </h1>
+<% end %>
 
 
-<%= render "form", sistema_reporte: @sistema_reporte, alquiler_id: params[:format] %>
+<%= render "form" , sistema_reporte: @sistema_reporte, alquiler_id: params[:format] %>
 
 <br>
