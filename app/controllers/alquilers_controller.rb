@@ -88,7 +88,7 @@ class AlquilersController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to root_path, notice: "Su alquiler a finalizado en tiempo. Muchas gracias!" }
+        format.html { redirect_to root_path, notice: "Su alquiler ha finalizado." }
         format.json { head :no_content }
       end
     end

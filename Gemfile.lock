@@ -84,8 +84,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    chart-js-rails (0.1.7)
-      railties (> 3.1)
     chartkick (4.2.1)
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
@@ -277,7 +275,6 @@ DEPENDENCIES
   activestorage-validator
   bootsnap
   capybara
-  chart-js-rails
   chartkick
   cssbundling-rails (~> 1.1)
   debug

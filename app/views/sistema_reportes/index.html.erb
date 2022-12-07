@@ -22,7 +22,16 @@
           <tbody>
             <% @sistema_reportes.each do |sistema_reportes| %>
               <% if sistema_reportes.su_id==current_user.id then %>
-                <tr>
+                <% color = case sistema_reportes.severidad %>
+                    <%when "Leve" then aux="table-success"%>
+                    <%when "Moderado" then aux="table-warning"%>
+                    <%when "Grave" then aux="table-danger"%>
+                    <%else aux="table-active"%>
+                <%end%>
+
+
+
+                <tr class=aux>
                   <td>
                     <%= sistema_reportes.user.name %>
                   </td>

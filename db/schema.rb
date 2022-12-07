@@ -165,8 +165,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_231155) do
     t.bigint "phone"
     t.date "vencimiento_licencia"
     t.point "location_point"
-    t.boolean "banned", default: false
     t.boolean "alquiler_activo", default: false
+    t.boolean "banned", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

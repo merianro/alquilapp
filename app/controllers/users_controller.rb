@@ -157,7 +157,7 @@ class UsersController < ApplicationController
 
       respond_to do |format|
         if @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
-          format.html { redirect_to user_url(@user), notice: "Contraseña editada correcatamente. Por favor, inicie sesion." }
+          format.html { redirect_to user_url(@user), notice: "Contraseña editada correctamente. Por favor, inicie sesion." }
           format.json { render :show, status: :ok, location: @user }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -252,5 +252,5 @@ class UsersController < ApplicationController
     def su_params
       params.require(:user).permit(:name, :surname, :birthdate, :phone, :dni, :email, :vencimiento_licencia, :password, :password_confirmation)
     end
-    
+  end
 end
