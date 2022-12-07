@@ -43,13 +43,14 @@ class AlquilersController < ApplicationController
   # PATCH/PUT /alquilers/1 or /alquilers/1.json
   def update
     respond_to do |format|
-      if @alquiler.update(horas: params[:alquiler][:horas].to_i)    
+      if (@alquiler.horas + params[:alquiler][:horas].to_i <= 24 )
+        @alquiler.update(horas: @alquiler.horas + params[:alquiler][:horas].to_i)   
         @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa )
-        @alquiler.update(end_date: @alquiler.created_at - 3.hours + params[:alquiler][:horas].to_i.hours)          
+        @alquiler.update(end_date: @alquiler.created_at + @alquiler.horas.hours)    
         format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler correctamente actualizado." }
         format.json { render :show, status: :ok, location: @alquiler }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to edit_alquiler_path(@alquiler), alert: "La cantidad de horas debe ser menor a 24." }
         format.json { render json: @alquiler.errors, status: :unprocessable_entity }
       end
     end

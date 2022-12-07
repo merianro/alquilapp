@@ -18,7 +18,7 @@
 
   <tbody>
     <% if current_user.admin? || current_user.su? %>
-    <% @alquilers.order(:created_at).each do |alquiler| %>
+    <% @alquilers.order(created_at: :desc).each do |alquiler| %>
       <tr>
         <td class="text-center">
           <%=h alquiler.created_at %>
@@ -49,7 +49,7 @@
       </tr>
       <% end %>
       <% else %>
-      <% @alquilers.where(user_id: current_user.id).order(:created_at).each do |alquiler| %>
+      <% @alquilers.where(user_id: current_user.id).order(created_at: :desc).each do |alquiler| %>
       <tr>
         <td class="text-center">
           <%=h alquiler.created_at%>

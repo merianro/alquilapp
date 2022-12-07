@@ -20,18 +20,17 @@
           </thead>
 
           <tbody>
-            <% @sistema_reportes.each do |sistema_reportes| %>
+            <% @sistema_reportes.order(severidad: :desc).each do |sistema_reportes| %>
               <% if sistema_reportes.su_id==current_user.id then %>
-                <% color = case sistema_reportes.severidad %>
-                    <%when "Leve" then aux="table-success"%>
-                    <%when "Moderado" then aux="table-warning"%>
-                    <%when "Grave" then aux="table-danger"%>
-                    <%else aux="table-active"%>
-                <%end%>
-
-
-
-                <tr class=aux>
+                  <% if sistema_reportes.severidad=="Leve" then %>
+                    <tr class="table-success">
+                  <% elsif sistema_reportes.severidad=="Moderado" then %>
+                    <tr class="table-warning">
+                  <% elsif sistema_reportes.severidad=="Grave" then %>
+                    <tr class="table-danger">
+                  <% else %>
+                    <tr class="table-active">
+                  <% end %>
                   <td>
                     <%= sistema_reportes.user.name %>
                   </td>
@@ -88,7 +87,15 @@
           <tbody>
             <% @sistema_reportes.each do |sistema_reportes| %>
               <% if sistema_reportes.su_id==nil then %>
-                <tr>
+                  <% if sistema_reportes.severidad=="Leve" then %>
+                    <tr class="table-success">
+                  <% elsif sistema_reportes.severidad=="Moderado" then %>
+                    <tr class="table-warning">
+                  <% elsif sistema_reportes.severidad=="Grave" then %>
+                    <tr class="table-danger">
+                  <% else %>
+                    <tr class="table-active">
+                  <% end %>
                   <td>
                     <%= sistema_reportes.user.name %>
                   </td>

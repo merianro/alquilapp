@@ -130,6 +130,7 @@ Rails.application.routes.draw do
   resources :sistema_reportes
   resources :alquilers
   resources :estadisticas
+  resources :messages
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
