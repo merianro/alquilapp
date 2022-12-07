@@ -217,25 +217,26 @@ class UsersController < ApplicationController
   def habilitar
     @user = User.find(params[:id])
     if (@user.banned == false) # si no esta baneado
-      if (@user.disponible == true) # y no esta en un alquiler actualmente
-        @user.update(habilitado: false)
+      if (@user.alquiler_activo == false) # y no esta en un alquiler actualmente
+        @user.update(banned: true)
         respond_to do |format|
-          format.html { redirect_to cars_url, notice: "Auto correctamente deshabilitado." }
+          format.html { redirect_to users_drindex_path, notice: "Usuario correcatamente deshabilitado." }
           format.json { head :no_content }
         end
       else
         respond_to do |format|
-          format.html { redirect_to cars_url, alert: "No se ha podido deshabilitar debido a que el auto se encuentra actualmente en uso." }
+          format.html { redirect_to users_drindex_path, alert: "El usuario no puede ser bloqueado ya que se encuentra en un alquiler activo." }
           format.json { head :no_content }      
         end
       end
     else
-      @user.update(habilitado: true) # si estaba deshabilitado inicialmente
+      @user.update(banned: false) # si estaba deshabilitado inicialmente
       respond_to do |format|
-        format.html { redirect_to cars_url, notice: "Auto correctamente habilitado." }
+        format.html { redirect_to users_drindex_path, notice: "Usuario correctamente habilitado." }
         format.json { head :no_content }
       end
     end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

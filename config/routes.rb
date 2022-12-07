@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :estadisticas
   get 'main/home',   to: 'home#main'
   devise_for :users, controllers: { :registrations  => "users/registrations", :sessions  => "users/sessions" }
   
@@ -8,6 +7,9 @@ Rails.application.routes.draw do
 
   get 'cars/habilitar', to: 'cars#habilitar'
   post 'cars/habilitar', to: 'cars#habilitar'
+
+  get 'users/habilitar', to: 'users#habilitar'
+  post 'users/habilitar', to: 'users#habilitar'
 
   get 'cars/new', to: 'cars#new'
   post 'cars/new', to: 'cars#new'
@@ -29,6 +31,13 @@ Rails.application.routes.draw do
 
   get 'users/suindex', to: 'users#suindex'
   post 'users/suindex', to: 'users#suindex'
+
+  get 'estadisticas/index7', to: 'estadisticas#index7'
+  post 'estadisticas/index7', to: 'estadisticas#index7'
+
+  get 'estadisticas/index30', to: 'estadisticas#index30'
+  post 'estadisticas/index30', to: 'estadisticas#index30'
+  
   
   get 'users/drindex', to: 'users#drindex'
   post 'users/drindex', to: 'users#drindex'
@@ -120,6 +129,8 @@ Rails.application.routes.draw do
   resources :mp_webhooks
   resources :sistema_reportes
   resources :alquilers
+  resources :estadisticas
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   # Defines the root path route ("/")

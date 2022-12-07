@@ -15,6 +15,7 @@
           <th class="text-center">Fecha de Nacimiento</th> 
           <th class="text-center">Email</th> 
           <th class="text-center">Celular de Contacto</th>
+          <th class="text-center">Bloqueado</th>
           <th class="text-center"></th>
         </tr>
       </thead>
@@ -29,6 +30,8 @@
             <td class="text-center"><%= user.birthdate %></td>
             <td class="text-center"><%= user.email %></td> 
             <td class="text-center"><%= user.phone %></td>
+            <td class="text-center"><%= user.banned %></td>
+
             <td class="text-center">
               <div class="btn-group">
                   <%= button_to "Ver detalle",user_path(user),class:"btn btn-secondary btn-sm" %>
@@ -37,9 +40,9 @@
                    </button>
                      <ul class="dropdown-menu">
                        <% if !user.banned%>
-                        <%= link_to "Deshabilitar usuario", 'users/habilitar?id='+user.id.to_s, class:"dropdown-item" %>
+                         <%= link_to "Bloquear usuario", 'habilitar?id='+user.id.to_s, class:"dropdown-item" %>
                        <% else %>
-                        <%= link_to "Habilitar usuario", 'users/habilitar?id='+user.id.to_s, class:"dropdown-item" %>
+                        <%= link_to "Desbloquear usuario", 'habilitar?id='+user.id.to_s, class:"dropdown-item" %>
                       <% end %>
                   
                        

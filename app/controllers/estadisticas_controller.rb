@@ -19,6 +19,12 @@ class EstadisticasController < ApplicationController
   def edit
   end
 
+  def index7
+  end
+
+  def index30
+  end
+
   # POST /estadisticas or /estadisticas.json
   def create
     @estadistica = Estadistica.new(estadistica_params)
