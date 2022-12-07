@@ -219,7 +219,7 @@ class UsersController < ApplicationController
       if (@user.alquiler_activo == false) # y no esta en un alquiler actualmente
         @user.update(banned: true)
         respond_to do |format|
-          format.html { redirect_to users_drindex_path, notice: "Usuario correcatamente deshabilitado." }
+          format.html { redirect_to users_drindex_path, notice: "Usuario bloqueado correcatamente." }
           format.json { head :no_content }
         end
       else
@@ -231,7 +231,7 @@ class UsersController < ApplicationController
     else
       @user.update(banned: false) # si estaba deshabilitado inicialmente
       respond_to do |format|
-        format.html { redirect_to users_drindex_path, notice: "Usuario correctamente habilitado." }
+        format.html { redirect_to users_drindex_path, notice: "Usuario desbloqueado correctamente." }
         format.json { head :no_content }
       end
     end

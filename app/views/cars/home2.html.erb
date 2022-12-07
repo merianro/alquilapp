@@ -58,7 +58,7 @@
 						<div id="map" style="height: 800px;"></div>
 					<% else %>
 						<% Alquiler.all.each do |alquiler| %>
-							<% if alquiler.user.id == current_user.id and alquiler.activo then %>
+							<% if alquiler.user_id == current_user.id and alquiler.activo then %>
 								<div class="py-2 d-print-none">
 									<div class="container rounded bg-white mt-5 mb-5">
 										<div class="card">
@@ -153,7 +153,7 @@
 					
 					<script>
 						<% Alquiler.all.each do |alquiler| %>
-							<% if alquiler.user.id == current_user.id and alquiler.activo then %>
+							<% if alquiler.user_id == current_user.id and alquiler.activo then %>
 							var timer;
 
 							var compareDate = new Date();
