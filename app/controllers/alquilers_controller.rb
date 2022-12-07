@@ -45,7 +45,7 @@ class AlquilersController < ApplicationController
     respond_to do |format|
       if (@alquiler.horas + params[:alquiler][:horas].to_i <= 24 )
         @alquiler.update(horas: @alquiler.horas + params[:alquiler][:horas].to_i)   
-        @alquiler.update(monto: @alquiler.horas * Parametro.last.tarifa )
+        @alquiler.update(monto: @alquiler.horas * Parametro.find_by(nombre: "Alquiler").monto )
         @alquiler.update(end_date: @alquiler.created_at + @alquiler.horas.hours)    
         format.html { redirect_to alquiler_url(@alquiler), notice: "Alquiler correctamente actualizado." }
         format.json { render :show, status: :ok, location: @alquiler }
@@ -74,16 +74,16 @@ class AlquilersController < ApplicationController
     exceso = DateTime.now.to_i - @alquiler.end_date.to_i
     if exceso > 0 then
       aux = exceso / 900
-      @alquiler.user.update(saldo: @alquiler.user.saldo - Parametro.last.multa_tiempo_excedido)
+      @alquiler.user.update(saldo: @alquiler.user.saldo - Parametro.find_by(nombre: "Tiempo Excedido").monto)
       if aux >= 1
-        @alquiler.user.update(saldo: @alquiler.user.saldo - (Parametro.last.multa_tiempo_excedido * aux))
+        @alquiler.user.update(saldo: @alquiler.user.saldo - (Parametro.find_by(nombre: "Tiempo Excedido").monto * aux))
         respond_to do |format|
-          format.html { redirect_to root_path, alert: "Se le ha descontado $" + ((Parametro.last.multa_tiempo_excedido * aux)+Parametro.last.multa_tiempo_excedido).to_s + " de su billetera debido a que no entrego el vehículo a tiempo." }
+          format.html { redirect_to root_path, alert: "Se le ha descontado $" + ((Parametro.find_by(nombre: "Tiempo Excedido").monto * aux)+Parametro.find_by(nombre: "Tiempo Excedido").monto).to_s + " de su billetera debido a que no entrego el vehículo a tiempo." }
           format.json { head :no_content }
         end
       else
         respond_to do |format|
-          format.html { redirect_to root_path, alert: "Se le ha descontado $" + (Parametro.last.multa_tiempo_excedido).to_s + " de su billetera debido a que no entrego el vehículo a tiempo." }
+          format.html { redirect_to root_path, alert: "Se le ha descontado $" + (Parametro.find_by(nombre: "Tiempo Excedido").monto).to_s + " de su billetera debido a que no entrego el vehículo a tiempo." }
           format.json { head :no_content }
         end
       end
