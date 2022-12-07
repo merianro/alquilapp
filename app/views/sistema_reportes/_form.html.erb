@@ -13,7 +13,7 @@
                     <div class="form-floating mb-3">
                       <div class="input-group mb-3">
                         <%= f.input :user_id, :as=> :hidden, input_html: {:value => current_user.id}%>
-                        <%= f.input :descripcion, required: true, input_html: {}%> 
+                       <%= f.input :descripcion, input_html: {}  %> 
                         <%= f.input :images, as: :file, required: false, input_html: {multiple: true}%> 
                         <%= f.input :severidad, :as => :select, required: false,label: 'Severidad *', include_blank: false,:collection => SistemaReporte.severidads.keys.to_a, input_html: {}%> 
                         <%= f.input :alquiler_id, :as=> :hidden, input_html: {:value => params[:alquiler]}%>

@@ -1,5 +1,6 @@
 class SistemaReporte < ApplicationRecord
   has_many_attached :images
+  #validates :descripcion, presence: true
   validates :images, presence: false, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..(5.megabytes) }
   belongs_to :user
   enum severidad: [:Leve, :Moderado, :Grave]

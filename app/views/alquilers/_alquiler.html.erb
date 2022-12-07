@@ -33,7 +33,10 @@
           </div>
           <div class="btn-group botones" role="group">
             <%= link_to "Imprimir permiso de circulacion",href="", class:"btn btn-outline-secondary",onclick: "window.print()" %>
-            <%= link_to "Realizar Reporte", new_sistema_reporte_path(alquiler: @alquiler), class:"btn btn-outline-info" %> 
+   
+            <% if alquiler.sistema_reporte == nil%>
+              <%= link_to "Realizar Reporte", new_sistema_reporte_path(alquiler: @alquiler), class:"btn btn-outline-info" %> 
+            <% end %>
             </div>
         </div>
       </div>
