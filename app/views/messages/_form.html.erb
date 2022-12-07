@@ -1,21 +1,3 @@
-
-<%= simple_form_for(@message) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :text %>
-    <%= f.input :sistema_reporte_id, :as=> :hidden, input_html: {:value => params[:format]}%>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-
-
-<% end %>
-
-
 <%= stylesheet_link_tag "login" %>
 
 <%= simple_form_for(@message) do |f| %>
@@ -30,11 +12,8 @@
                   <form>
                     <div class="form-floating mb-3">
                       <div class="input-group mb-3">
-                        <%= f.input :user_id, :as=> :hidden, input_html: {:value => current_user.id}%>
-                        <%= f.input :descripcion, required: true, input_html: {}%> 
-                        <%= f.input :images, as: :file, required: false, input_html: {multiple: true}%> 
-                        <%= f.input :severidad, :as => :select, required: false,label: 'Severidad *', include_blank: false,:collection => SistemaReporte.severidads.keys.to_a, input_html: {}%> 
-                        <%= f.input :alquiler_id, :as=> :hidden, input_html: {:value => params[:alquiler]}%>
+                        <div><label class="labels"></label><p class="text-muted mb-0"><%= f.input :text%></div>
+                        <%= f.input :sistema_reporte_id, :as=> :hidden, input_html: {:value => params[:format]}%>
                       </div>
                     </div>
                    
@@ -43,7 +22,7 @@
                      <%= f.button :submit, "Enviar Reporte", class:"btn btn-warning"%>
                     </div>
                     <div class="d-grid mb-2 ">
-                      <%= link_to "Cancelar",alquilers_path,class:"btn btn-secondary" %>  
+                      <%= link_to "Cancelar",sistema_reportes_path,class:"btn btn-secondary" %>  
                     </div>
                   </form>
                 </div>
