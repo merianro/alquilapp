@@ -111,7 +111,7 @@
 											<% if ((DateTime.now.to_time - alquiler.created_at.to_time ) /60 ) < 10 or ( ((alquiler.end_date.to_time - DateTime.now.to_time ) /60 ) < 15 and ((alquiler.end_date.to_time - DateTime.now.to_time ) /60 ) > 0 and alquiler.activo )then %>
 												<div class="p-5 d-flex justify-content-center align-items-center">
 														<% if ((DateTime.now.to_time - alquiler.created_at.to_time ) /60 ) < 10 and alquiler.activo then %>
-																<%= link_to "Realizar Reporte", new_sistema_reporte_path(alquiler: @alquiler), class:"btn btn-outline-info" %> 
+																<%= link_to "Ver detalle", alquiler, class:"btn btn-outline-info" %> 
 														<%end%>
 														<% if ((alquiler.end_date.to_time - DateTime.now.to_time ) /60 ) < 15 and ((alquiler.end_date.to_time - DateTime.now.to_time ) /60 ) > 0 and alquiler.activo then %>
 																<%= button_to "Extender alquiler", edit_alquiler_path(alquiler), class:"btn btn-outline-success" %>
