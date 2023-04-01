@@ -263,7 +263,7 @@
 
 				var array = [];
 							<% Car.all.each do | car | %> 
-								<% if current_user.admin? || car.disponible? && car.habilitado? && (Geocoder::Calculations.distance_between([car.ubication.x,car.ubication.y], [current_user.location_point[0],current_user.location_point[1]]) < 2000) && (Geocoder::Calculations.distance_between([car.ubication.x,car.ubication.y], [-34.921408,-57.954486]) < 2000) %>
+								<% if current_user.admin? || car.disponible? && car.habilitado? && (Geocoder::Calculations.distance_between([car.ubication.x,car.ubication.y], [current_user.location_point[0],current_user.location_point[1]]) < 5) && (Geocoder::Calculations.distance_between([car.ubication.x,car.ubication.y], [-34.921408,-57.954486]) < 5) %>
 									var obj = {
 														'type': 'Feature',
 														'properties': {
